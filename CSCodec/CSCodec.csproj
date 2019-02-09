@@ -24,8 +24,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Filters\Conversion\" />
     <Folder Include="Binary\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ArrayCalcSimdTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ArrayCalcSimdTypes.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ArrayCalcSimdTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ArrayCalcSimdTypes.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

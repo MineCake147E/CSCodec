@@ -1,0 +1,108 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<# Type[] typegenAddSub = new Type[]{
+typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(short), typeof(ushort), typeof(sbyte), typeof(byte),
+typeof(float), typeof(double)}; #>
+<# Type[] typegenMul = new Type[]{typeof(int), typeof(short), typeof(float), typeof(double)}; #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Diagnostics;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+namespace CSCodec{
+	public static partial class ArrayCalculationExtensions
+	{
+	<#foreach(var type in typegenMul){#>
+
+		/// <summary>
+		/// Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+		/// </summary>
+		/// <param name="buffer">The array to scale.</param>
+		/// <param name="offset">The offset to scale.</param>
+		/// <param name="count">The count of element.</param>
+		/// <param name="scale">The scale.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void ScaleArray(this <#= type #>[] buffer, int offset, int count, <#= type #> scale)
+		{
+			int procCountFinal = count % Vector<<#= type #>>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
+			{
+				(new Vector<<#= type #>>(buffer, i) * scale).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] *= scale;
+			}
+		}
+	<#}#>
+	<#foreach(var type in typegenAddSub){#>
+		/// <summary>
+		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+		/// <paramref name="bufferA"/> will be overwritten.
+		/// </summary>
+		/// <param name="bufferA"></param>
+		/// <param name="offsetA"></param>
+		/// <param name="bufferB"></param>
+		/// <param name="offsetB"></param>
+		/// <param name="count"></param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void AddArray(<#= type #>[] bufferA, int offsetA, <#= type #>[] bufferB, int offsetB, int count)
+		{
+			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
+			int procCountFinal = count % Vector<<#= type #>>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i = offsetA;
+			int j = offsetB;
+			do
+			{
+				(new Vector<<#= type #>>(bufferA, i) + new Vector<<#= type #>>(bufferB, j)).CopyTo(bufferA, i);
+				i += Vector<<#= type #>>.Count;
+				j += Vector<<#= type #>>.Count;
+			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
+			for (int k = 0; k < procCountFinal; k++)
+			{
+				bufferA[i + k] += bufferB[j + k];
+			}
+		}
+		/// <summary>
+		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// <paramref name="bufferA"/> will be overwritten.
+		/// </summary>
+		/// <param name="bufferA"></param>
+		/// <param name="offsetA"></param>
+		/// <param name="bufferB"></param>
+		/// <param name="offsetB"></param>
+		/// <param name="count"></param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void SubtractArray(<#= type #>[] bufferA, int offsetA, <#= type #>[] bufferB, int offsetB, int count)
+		{
+			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
+			int procCountFinal = count % Vector<<#= type #>>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i = offsetA;
+			int j = offsetB;
+			do
+			{
+				(new Vector<<#= type #>>(bufferA, i) - new Vector<<#= type #>>(bufferB, j)).CopyTo(bufferA, i);
+				i += Vector<<#= type #>>.Count;
+				j += Vector<<#= type #>>.Count;
+			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
+			for (int k = 0; k < procCountFinal; k++)
+			{
+				bufferA[i + k] -= bufferB[j + k];
+			}
+		}
+		<# } #>
+	}
+}

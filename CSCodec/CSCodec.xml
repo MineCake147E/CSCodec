@@ -1,0 +1,734 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CSCodec</name>
+    </assembly>
+    <members>
+        <member name="T:CSCodec.ArrayCalculationExtensions">
+            <summary>
+            Hardware-Accelerated array manipulation.
+            </summary>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int32[],System.Int32,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int32[],System.Int32,System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt32[],System.Int32,System.Int32,System.UInt32)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt32[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt32[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int64[],System.Int32,System.Int32,System.Int64)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int64[],System.Int32,System.Int64[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int64[],System.Int32,System.Int64[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt64[],System.Int32,System.Int32,System.UInt64)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt64[],System.Int32,System.UInt64[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt64[],System.Int32,System.UInt64[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int16[],System.Int32,System.Int16[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int16[],System.Int32,System.Int16[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt16[],System.Int32,System.Int32,System.UInt16)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt16[],System.Int32,System.UInt16[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt16[],System.Int32,System.UInt16[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.SByte[],System.Int32,System.Int32,System.SByte)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.SByte[],System.Int32,System.SByte[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.SByte[],System.Int32,System.SByte[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Byte[],System.Int32,System.Int32,System.Byte)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Int32,System.Int32,System.Single)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Single[],System.Int32,System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Single[],System.Int32,System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Double[],System.Int32,System.Double[],System.Int32,System.Int32)">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Double[],System.Int32,System.Double[],System.Int32,System.Int32)">
+            <summary>
+            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="offsetA"></param>
+            <param name="bufferB"></param>
+            <param name="offsetB"></param>
+            <param name="count"></param>
+        </member>
+        <member name="P:CSCodec.ArrayCalculationExtensions.IsSIMDSupported">
+            <summary>
+            Gets a value indicating whether SIMD is supported.
+            </summary>
+            <value>
+              <c>true</c> if this instance is SIMD supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:CSCodec.Core.AudioEncoding">
+            <summary>
+            Audio encoding.
+            </summary>
+            TODO Edit XML Comment Template for AudioEncoding
+        </member>
+        <member name="F:CSCodec.Core.AudioEncoding.PCM">
+            <summary>
+            The PCM.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.AudioEncoding.IeeeFloat">
+            <summary>
+            The IEEE754 floating point number.
+            </summary>
+        </member>
+        <member name="T:CSCodec.Core.WaveFormat">
+            <summary>
+            Representing a format of wave.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.encoding">
+            <summary>
+            The encoding for wave.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.channels">
+            <summary>
+            The number of channels in wave.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.sampleRate">
+            <summary>
+            The sampling frequency of wave.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.blockAlign">
+            <summary>
+            The block align.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.bitsPerSample">
+            <summary>
+            The bits per sample.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Core.WaveFormat.extraSize">
+            <summary>
+            The extra size.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Core.WaveFormat.#ctor(CSCodec.Core.AudioEncoding,System.Int16,System.Int32,System.Int16,System.Int16,System.Int16)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Core.WaveFormat"/> class.
+            </summary>
+            <param name="encoding">The encoding.</param>
+            <param name="channels">The channels.</param>
+            <param name="sampleRate">The sample rate.</param>
+            <param name="blockAlign">The block align.</param>
+            <param name="bitsPerSample">The bits per sample.</param>
+            <param name="extraSize">Size of the extra.</param>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.AudioEncoding">
+            <summary>
+            Gets the audio encoding.
+            </summary>
+            <value>
+            The audio encoding.
+            </value>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.Channels">
+            <summary>
+            Gets the channels.
+            </summary>
+            <value>
+            The channels.
+            </value>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.SampleRate">
+            <summary>
+            Gets the sample rate.
+            </summary>
+            <value>
+            The sample rate.
+            </value>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.BlockAlignment">
+            <summary>
+            Gets the block alignment.
+            </summary>
+            <value>
+            The block alignment.
+            </value>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.BitsPerSample">
+            <summary>
+            Gets the bits per sample.
+            </summary>
+            <value>
+            The bits per sample.
+            </value>
+        </member>
+        <member name="P:CSCodec.Core.WaveFormat.ExtraSize">
+            <summary>
+            Gets the size of the extra.
+            </summary>
+            <value>
+            The size of the extra.
+            </value>
+        </member>
+        <member name="T:CSCodec.DecoderBase">
+            <summary>
+            The Base class for Codecs.
+            </summary>
+        </member>
+        <member name="M:CSCodec.DecoderBase.#ctor(CSCodec.Core.WaveFormat)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.DecoderBase"/> class.
+            </summary>
+            <param name="format">The format.</param>
+            <exception cref="T:System.ArgumentNullException">format</exception>
+        </member>
+        <member name="P:CSCodec.DecoderBase.Format">
+            <summary>
+            Gets the format.
+            </summary>
+            <value>
+            The format.
+            </value>
+        </member>
+        <member name="M:CSCodec.DecoderBase.Read(System.Span{System.Byte})">
+            <summary>
+            Reads the stream to the specified buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+        </member>
+        <member name="T:CSCodec.Filters.Transformation.FastFourierTransformation">
+            <summary>
+            Functions that performs Fast Fourier Transform.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.Reverse(System.Span{System.Numerics.Complex})">
+            <summary>
+            Bit-Reversal
+            </summary>
+            <param name="span">The in/out span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.Complex})">
+            <summary>
+            FFTs the specified span.
+            </summary>
+            <param name="span">The span.</param>
+            <exception cref="T:System.ArgumentException">The length of span must be power of 2! - span</exception>
+            TODO Edit XML Comment Template for FFT
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Numerics.Complex[],System.Int32,System.Int32)">
+            <summary>
+            Transforms the specified buffer using Cooley-Tukey algorithm.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="count">The count.</param>
+        </member>
+        <member name="T:CSCodec.Math.CodecMathHelper">
+             <summary>
+            
+             </summary>
+             TODO Edit XML Comment Template for CodecMathHelper
+        </member>
+        <member name="M:CSCodec.Math.CodecMathHelper.CountBits(System.UInt32)">
+            <summary>
+            same as floor(log2(i))
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Math.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
+            <summary>
+            Reverses the bits of the specified value in specified width.
+            </summary>
+            <param name="i">The value.</param>
+            <param name="width">The width in bits.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Math.CodecMathHelper.ReverseBits(System.UInt32)">
+            <summary>
+            Reverses the bits of the specified value in 32bit.
+            </summary>
+            <param name="i">The i.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Math.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
+            <summary>
+            Determines whether the specified <paramref name="i"/> is power of two.
+            </summary>
+            <param name="i">The value.</param>
+            <returns>
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Math.CodecMathHelper.IsPowerOfTwo(System.Int32)">
+            <summary>
+            Determines whether the specified <paramref name="i"/> is power of two.
+            </summary>
+            <param name="i">The value.</param>
+            <returns>
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="F:CSCodec.FunctionValueType.Raster">
+            <summary>
+            サンプル
+            </summary>
+        </member>
+        <member name="F:CSCodec.FunctionValueType.Vector">
+            <summary>
+            ブロック
+            </summary>
+        </member>
+        <member name="F:CSCodec.FunctionValueType.RasterBit">
+            <summary>
+            ビット
+            </summary>
+        </member>
+        <member name="F:CSCodec.FunctionValueType.ByteArray">
+            <summary>
+            バイト列
+            </summary>
+        </member>
+        <member name="T:System.Int24">
+            <summary>
+            An simple representation of 24bit signed integer.
+            </summary>
+            <seealso cref="T:System.IEquatable`1" />
+        </member>
+        <member name="M:System.Int24.#ctor(System.Byte,System.Byte,System.Byte)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Int24"/> struct.
+            </summary>
+            <param name="tail">The tail.</param>
+            <param name="middle">The middle.</param>
+            <param name="head">The head.</param>
+        </member>
+        <member name="M:System.Int24.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:System.Int24"/> struct.
+            </summary>
+            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00</param>
+        </member>
+        <member name="M:System.Int24.FromBytes(System.Byte[],System.Int32,System.Int24[],System.Int32,System.Int32)">
+            <summary>
+            Constructs new <see cref="T:System.Int24"/> instances from the specified bytes.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="outbuf">The output buffer.</param>
+            <param name="dstoffset">The destination offset.</param>
+            <param name="dstcount">The destination count.</param>
+        </member>
+        <member name="M:System.Int24.ToBytes(System.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts to bytes.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="outbuf">The output buffer.</param>
+            <param name="dstoffset">The destination offset.</param>
+            <param name="srccount">The source count.</param>
+            TODO Edit XML Comment Template for ToBytes
+        </member>
+        <member name="M:System.Int24.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_Implicit(System.Int24)~System.Int32">
+            <summary>
+            Performs an implicit conversion from <see cref="T:System.Int24"/> to <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="v">The input value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+            TODO Edit XML Comment Template for Int32
+        </member>
+        <member name="M:System.Int24.op_Explicit(System.Int32)~System.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:System.Int24"/>.
+            </summary>
+            <param name="v">The input value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_Addition(System.Int24,System.Int24)">
+            <summary>
+            Implements the operator +.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">The b.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_Subtraction(System.Int24,System.Int24)">
+            <summary>
+            Implements the operator -.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">The b.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+            TODO Edit XML Comment Template for -
+        </member>
+        <member name="M:System.Int24.op_Multiply(System.Int24,System.Int24)">
+            <summary>
+            Implements the operator *.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">The b.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+            TODO Edit XML Comment Template for *
+        </member>
+        <member name="M:System.Int24.op_Division(System.Int24,System.Int24)">
+            <summary>
+            Implements the operator /.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">The b.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+            TODO Edit XML Comment Template for /
+        </member>
+        <member name="M:System.Int24.op_RightShift(System.Int24,System.Int32)">
+            <summary>
+            Performs an right-shift operation and returns to specified value.
+            </summary>
+            <param name="a">a.</param>
+            <param name="b">The b.</param>
+            <returns>
+            The result of the operator.
+            </returns>
+            TODO Edit XML Comment Template for >>
+        </member>
+        <!-- 正しくない形式の XML コメントがメンバー "M:System.Int24.op_LeftShift(System.Int24,System.Int32)" で無視されました -->
+        <member name="M:System.Int24.op_Equality(System.Int24,System.Int24)">
+            <summary>
+            Indicates whether the values of two specified <see cref="T:System.Int24"/> objects are equal.
+            </summary>
+            <param name="int1">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="int2">The second <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
+            </returns>
+            TODO Edit XML Comment Template for ==
+        </member>
+        <member name="M:System.Int24.op_Inequality(System.Int24,System.Int24)">
+            <summary>
+            Indicates whether the values of two specified <see cref="T:System.Int24"/> objects are not equal.
+            </summary>
+            <param name="int1">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="int2">The second <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if int1 and int2 are not equal; otherwise, <c>false</c>.
+            </returns>
+            TODO Edit XML Comment Template for !=
+        </member>
+        <member name="M:System.Int24.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+            TODO Edit XML Comment Template for Equals
+        </member>
+        <member name="M:System.Int24.Equals(System.Int24)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+            </returns>
+            TODO Edit XML Comment Template for Equals
+        </member>
+        <member name="M:System.Int24.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+            TODO Edit XML Comment Template for GetHashCode
+        </member>
+    </members>
+</doc>
