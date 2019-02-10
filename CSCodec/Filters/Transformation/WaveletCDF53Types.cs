@@ -324,7 +324,7 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
@@ -372,7 +372,7 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
@@ -420,7 +420,7 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
@@ -468,7 +468,7 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
@@ -516,7 +516,7 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>

@@ -6,10 +6,37 @@
     <members>
         <member name="T:CSCodec.ArrayCalculationExtensions">
             <summary>
-            Hardware-Accelerated array manipulation.
+            Hardware-Accelerated (or not) array manipulation.
             </summary>
         </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int32[],System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int32,System.Int32,System.Int16)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Int32,System.Int32,System.Single)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="offset">The offset to scale.</param>
+            <param name="count">The count of element.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Int32,System.Int32,System.Double)">
             <summary>
             Scales <paramref name="buffer"/> with <paramref name="scale"/>.
             </summary>
@@ -40,15 +67,6 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt32[],System.Int32,System.Int32,System.UInt32)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt32[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -70,15 +88,6 @@
             <param name="bufferB"></param>
             <param name="offsetB"></param>
             <param name="count"></param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int64[],System.Int32,System.Int32,System.Int64)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
         </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int64[],System.Int32,System.Int64[],System.Int32,System.Int32)">
             <summary>
@@ -102,15 +111,6 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt64[],System.Int32,System.Int32,System.UInt64)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt64[],System.Int32,System.UInt64[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -132,15 +132,6 @@
             <param name="bufferB"></param>
             <param name="offsetB"></param>
             <param name="count"></param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int32,System.Int32,System.Int16)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
         </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int16[],System.Int32,System.Int16[],System.Int32,System.Int32)">
             <summary>
@@ -164,15 +155,6 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.UInt16[],System.Int32,System.Int32,System.UInt16)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt16[],System.Int32,System.UInt16[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -194,15 +176,6 @@
             <param name="bufferB"></param>
             <param name="offsetB"></param>
             <param name="count"></param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.SByte[],System.Int32,System.Int32,System.SByte)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
         </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.SByte[],System.Int32,System.SByte[],System.Int32,System.Int32)">
             <summary>
@@ -226,15 +199,6 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Byte[],System.Int32,System.Int32,System.Byte)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -256,15 +220,6 @@
             <param name="bufferB"></param>
             <param name="offsetB"></param>
             <param name="count"></param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Int32,System.Int32,System.Single)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
         </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Single[],System.Int32,System.Single[],System.Int32,System.Int32)">
             <summary>
@@ -288,15 +243,6 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Double[],System.Int32,System.Double[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -319,6 +265,54 @@
             <param name="offsetB"></param>
             <param name="count"></param>
         </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int32[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int64[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Single[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Double[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int16[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.SByte[],System.Int32,System.Int32)">
+            <summary>
+            Negates the specified <paramref name="buffer"/>.
+            </summary>
+            <param name="buffer">The array to Negate.</param>
+            <param name="offset">The offset to Negate.</param>
+            <param name="count">The count of element.</param>
+        </member>
         <member name="P:CSCodec.ArrayCalculationExtensions.IsSIMDSupported">
             <summary>
             Gets a value indicating whether SIMD is supported.
@@ -326,6 +320,14 @@
             <value>
               <c>true</c> if this instance is SIMD supported; otherwise, <c>false</c>.
             </value>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.CopyReal(System.Span{System.Numerics.Complex},System.Span{System.Double}@)">
+            <summary>
+            Copies the real.
+            </summary>
+            <param name="complices">The complices.</param>
+            <param name="destination">The destination.</param>
+            <exception cref="T:System.ArgumentException">complices' length and destination's must be same!!!</exception>
         </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
@@ -463,6 +465,23 @@
             </summary>
             <param name="buffer">The buffer.</param>
         </member>
+        <member name="T:CSCodec.Filters.Transformation.DiscreteCosineTransformation">
+            <summary>
+            Implements Discrete Cosine Transformation(DCT).
+            </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.DiscreteCosineTransformation.PerformIV(System.Span{System.Double})">
+            <summary>
+            Calculates Discrete Cosine Transform Type-IV for real input <paramref name="span"/>.
+            </summary>
+            <param name="span">The specified input.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.DiscreteCosineTransformation.PerformInverseIV(System.Span{System.Double})">
+            <summary>
+            Calculates Inverse Discrete Cosine Transform Type-IV for real input <paramref name="span"/>.
+            </summary>
+            <param name="span">The specified input.</param>
+        </member>
         <member name="T:CSCodec.Filters.Transformation.FastFourierTransformation">
             <summary>
             Functions that performs Fast Fourier Transform.
@@ -474,13 +493,20 @@
             </summary>
             <param name="span">The in/out span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.Complex})">
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.Perform(System.Span{System.Numerics.Complex},CSCodec.Filters.Transformation.FftMode)">
             <summary>
-            FFTs the specified span.
+            Performs forward transform to the specified span.
             </summary>
             <param name="span">The span.</param>
+            <param name="mode">The FFT's Mode.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.Complex},CSCodec.Filters.Transformation.FftMode)">
+            <summary>
+            Transforms the specified span using Cooley-Tukey algorithm.
+            </summary>
+            <param name="span">The buffer.</param>
+            <param name="mode">The FFT's Mode.</param>
             <exception cref="T:System.ArgumentException">The length of span must be power of 2! - span</exception>
-            TODO Edit XML Comment Template for FFT
         </member>
         <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Numerics.Complex[],System.Int32,System.Int32)">
             <summary>
@@ -490,20 +516,603 @@
             <param name="offset">The offset.</param>
             <param name="count">The count.</param>
         </member>
-        <member name="T:CSCodec.Math.CodecMathHelper">
-             <summary>
-            
-             </summary>
-             TODO Edit XML Comment Template for CodecMathHelper
+        <member name="T:CSCodec.Filters.Transformation.FftMode">
+            <summary>
+            Fast Fourier Transformation Modes
+            </summary>
         </member>
-        <member name="M:CSCodec.Math.CodecMathHelper.CountBits(System.UInt32)">
+        <member name="F:CSCodec.Filters.Transformation.FftMode.Forward">
+            <summary>
+            The forward transform.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Filters.Transformation.FftMode.Backward">
+            <summary>
+            The backward transform.
+            </summary>
+        </member>
+        <member name="T:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation">
+            <summary>
+            Time Domain Aliasing Cancellation Helper class.
+            In fact, not only DCT-IV, any reversible transform (e.g. wavelet transform) can be applied for TDAC.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="T:CSCodec.Filters.Transformation.WaveletTransformation">
+            <summary>
+            Performs Wavelet Transforms.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Int32})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Int24})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Int16})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.SByte})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Single})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Double})">
+            <summary>
+            Performs The Multi-Level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="span">The Transforming span.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Performs The 1-level Inverse Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>
+            Performs The 1-level Haar Transform to the specified elements.
+            </summary>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Int32},System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Int32}@,System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Int16},System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Int16}@,System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.SByte},System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.SByte}@,System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Single},System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Single}@,System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Double},System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Double}@,System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>
+            Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+            </summary>
+            <param name="even">The even.</param>
+            <param name="odd">The odd.</param>
+        </member>
+        <member name="T:CSCodec.CodecMathHelper">
+            <summary>
+            Supports some bit arithmetics.
+            </summary>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.CountBits(System.UInt32)">
             <summary>
             same as floor(log2(i))
             </summary>
             <param name="i"></param>
             <returns></returns>
         </member>
-        <member name="M:CSCodec.Math.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
             <summary>
             Reverses the bits of the specified value in specified width.
             </summary>
@@ -511,14 +1120,14 @@
             <param name="width">The width in bits.</param>
             <returns></returns>
         </member>
-        <member name="M:CSCodec.Math.CodecMathHelper.ReverseBits(System.UInt32)">
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32)">
             <summary>
             Reverses the bits of the specified value in 32bit.
             </summary>
             <param name="i">The i.</param>
             <returns></returns>
         </member>
-        <member name="M:CSCodec.Math.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
+        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
             <summary>
             Determines whether the specified <paramref name="i"/> is power of two.
             </summary>
@@ -527,7 +1136,7 @@
               <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:CSCodec.Math.CodecMathHelper.IsPowerOfTwo(System.Int32)">
+        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.Int32)">
             <summary>
             Determines whether the specified <paramref name="i"/> is power of two.
             </summary>
@@ -574,7 +1183,7 @@
             <summary>
             Initializes a new instance of the <see cref="T:System.Int24"/> struct.
             </summary>
-            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00</param>
+            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
         </member>
         <member name="M:System.Int24.FromBytes(System.Byte[],System.Int32,System.Int24[],System.Int32,System.Int32)">
             <summary>
@@ -588,14 +1197,13 @@
         </member>
         <member name="M:System.Int24.ToBytes(System.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
             <summary>
-            Converts to bytes.
+            Converts an array of <see cref="T:System.Int24"/>s to the specified array of bytes.
             </summary>
             <param name="buffer">The buffer.</param>
             <param name="offset">The offset.</param>
             <param name="outbuf">The output buffer.</param>
             <param name="dstoffset">The destination offset.</param>
             <param name="srccount">The source count.</param>
-            TODO Edit XML Comment Template for ToBytes
         </member>
         <member name="M:System.Int24.ToString">
             <summary>
@@ -613,13 +1221,39 @@
             <returns>
             The result of the conversion.
             </returns>
-            TODO Edit XML Comment Template for Int32
+        </member>
+        <member name="M:System.Int24.op_UnaryNegation(System.Int24)">
+            <summary>
+            Negates a specified <see cref="T:System.Int24"/> value.
+            </summary>
+            <param name="value">The value to negate.</param>
+            <returns>
+            The result of the <paramref name="value"/> parameter multiplied by negative one (-1).
+            </returns>
         </member>
         <member name="M:System.Int24.op_Explicit(System.Int32)~System.Int24">
             <summary>
             Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:System.Int24"/>.
             </summary>
             <param name="v">The input value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_Explicit(System.Single)~System.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:System.Int24"/> to <see cref="T:System.Single"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_Explicit(System.Double)~System.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:System.Double"/> to <see cref="T:System.Int24"/>.
+            </summary>
+            <param name="value">The value.</param>
             <returns>
             The result of the conversion.
             </returns>
@@ -701,6 +1335,46 @@
             </returns>
             TODO Edit XML Comment Template for !=
         </member>
+        <member name="M:System.Int24.op_LessThan(System.Int24,System.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:System.Int24"/> is less than another specified <see cref="T:System.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is less than right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_GreaterThan(System.Int24,System.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:System.Int24"/> is greater than another specified <see cref="T:System.Int24"/> value.
+            </summary>
+            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is greater than right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_LessThanOrEqual(System.Int24,System.Int24)">
+            <summary>
+            Returns a value that indicates whether a specified <see cref="T:System.Int24"/> is less than or equal to another specified <see cref="T:System.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is less than or equal to right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:System.Int24.op_GreaterThanOrEqual(System.Int24,System.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:System.Int24"/> is greater than or equal to another specified <see cref="T:System.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
+            <param name="right">The second  <see cref="T:System.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if <see cref="T:System.Int24"/> is greater than or equal to <see cref="T:System.Int24"/>; otherwise, <c>false</c>.
+            </returns>
+        </member>
         <member name="M:System.Int24.Equals(System.Object)">
             <summary>
             Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
@@ -729,6 +1403,15 @@
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
             TODO Edit XML Comment Template for GetHashCode
+        </member>
+        <member name="M:System.Int24.CompareTo(System.Int24)">
+            <summary>
+            Compares the value of this instance to a specified <see cref="T:System.Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="T:System.Int24"/> value.
+            </summary>
+            <param name="other">The <see cref="T:System.Int24"/> to compare to the current instance.</param>
+            <returns>
+            A signed number indicating the relative values of this instance and the other parameter.
+            </returns>
         </member>
     </members>
 </doc>
