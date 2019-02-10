@@ -1,0 +1,173 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<# Type[] typegenSigned = new Type[]{typeof(int), typeof(short), typeof(sbyte), typeof(float), typeof(double)}; #>
+<# Type[] typegenCasted = new Type[]{typeof(short), typeof(sbyte)}; #>
+<# Type[] typegenCastless = new Type[]{typeof(int), typeof(float), typeof(double)}; #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Diagnostics;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+namespace CSCodec.Filters.Transformation
+{
+	public static partial class WaveletTransformation
+	{
+		<#foreach(var type in typegenSigned){#>
+
+		/// <summary>
+		/// Performs The Multi-Level Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void HaarMultiLevel(Span<<#= type #>> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			span.ArrangeOddEven(out Span<<#= type #>> even, out Span<<#= type #>> odd);
+			do
+			{
+				HaarInternal(even, odd);
+				even.ArrangeOddEven(out even, out odd);
+			} while (even.Length > 1);
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		private static void HaarInverseMultiLevelInternal(Span<<#= type #>> span)
+		{
+			unchecked
+			{
+				if (span.Length == 2)
+				{
+					span.ArrangeOddEven(out var even2, out var odd2);
+					HaarInverseInternal(even2, odd2);
+					return;
+				}
+				span.ArrangeOddEven(out var even, out var odd);
+				HaarInverseMultiLevelInternal(even);
+				HaarInverseInternal(even, odd);
+			}
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void HaarInverseMultiLevel(Span<<#= type #>> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			HaarInverseMultiLevelInternal(span);
+		}
+		<#}#>
+		<#foreach(var type in typegenCasted){#>
+
+		/// <summary>
+		/// Performs The 1-level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < even.Length; i++)
+				{
+					//-Update
+					even[i] -= (<#= type #>)(odd[i] >> 1);
+				}
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//+Predict
+					odd[i] += even[i];
+				}
+			}
+		}
+
+		/// <summary>
+		/// Performs The 1-level Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//-Predict
+					odd[i] -= even[i];
+				}
+				for (int i = 0; i < even.Length; i++)
+				{
+					//+Update
+					even[i] += (<#= type #>)(odd[i] >> 1);
+				}
+			}
+		}
+		<#}#>
+		<#foreach(var type in typegenCastless){#>
+
+		/// <summary>
+		/// Performs The 1-level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < even.Length; i++)
+				{
+					//-Update
+					even[i] -= odd[i] / 2;
+				}
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//+Predict
+					odd[i] += even[i];
+				}
+			}
+		}
+
+		/// <summary>
+		/// Performs The 1-level Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//-Predict
+					odd[i] -= even[i];
+				}
+				for (int i = 0; i < even.Length; i++)
+				{
+					//+Update
+					even[i] += odd[i] / 2;
+				}
+			}
+		}
+		<#}#>
+
+	}
+}

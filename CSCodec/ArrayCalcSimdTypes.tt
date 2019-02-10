@@ -7,6 +7,8 @@
 typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(short), typeof(ushort), typeof(sbyte), typeof(byte),
 typeof(float), typeof(double)}; #>
 <# Type[] typegenMul = new Type[]{typeof(int), typeof(short), typeof(float), typeof(double)}; #>
+<# Type[] typegenNeg = new Type[]{typeof(int), typeof(long), typeof(float), typeof(double)}; #>
+<# Type[] typegenNegCast = new Type[]{typeof(short), typeof(sbyte)}; #>
 <#@ output extension=".cs" #>
 using System;
 using System.Collections.Generic;
@@ -103,6 +105,56 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-		<# } #>
+	<# } #>
+	<#foreach(var type in typegenNeg){#>
+
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this <#= type #>[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<<#= type #>>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
+			{
+				(-(new Vector<<#= type #>>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = -buffer[i];
+			}
+		}
+	<#}#>
+	<#foreach(var type in typegenNegCast){#>
+
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this <#= type #>[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<<#= type #>>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
+			{
+				(-(new Vector<<#= type #>>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = (<#= type #>)(-buffer[i]);
+			}
+		}
+	<#}#>
 	}
 }

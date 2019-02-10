@@ -33,8 +33,8 @@ namespace CSCodec
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static uint ReverseBits(uint i, int width)
 		{
-			int shift = 33 - width;
-			return ReverseBits(i << shift) >> shift;
+			int shift = 32 - width;
+			return ReverseBits(i << shift);
 		}
 
 		/// <summary>

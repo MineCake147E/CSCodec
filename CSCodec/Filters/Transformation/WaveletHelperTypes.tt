@@ -1,0 +1,61 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<# Type[] typegenSigned = new Type[]{typeof(int), typeof(long), typeof(short), typeof(sbyte), typeof(float), typeof(double)}; #>
+<# Type[] typegenCasted = new Type[]{typeof(short), typeof(sbyte)}; #>
+<# Type[] typegenCastless = new Type[]{typeof(long), typeof(int), typeof(float), typeof(double)}; #>
+<#@ output extension=".cs" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Diagnostics;
+using System.Numerics;
+using System.Runtime.CompilerServices;
+namespace CSCodec.Filters.Transformation
+{
+	public static partial class WaveletTransformation
+	{
+		//Permutation Functions
+	<#foreach(var type in typegenSigned){#>
+		/// <summary>Splits the specified array to odd even index.</summary>
+		/// <param name="source">The source.</param>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		/// <exception cref="ArgumentException">The source's length was odd.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void SplitOddEven(Span<<#= type #>> source, out Span<<#= type #>> even, out Span<<#= type #>> odd)
+		{
+			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
+			source.ArrangeOddEven(out even, out odd);
+		}
+
+		/// <summary>Splits the specified array to odd even index.</summary>
+		/// <param name="source">The source.</param>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[DebuggerNonUserCode()]
+		private static void ArrangeOddEven(this in Span<<#= type #>> source, out Span<<#= type #>> even, out Span<<#= type #>> odd)
+		{
+			Span<<#= type #>> temp = stackalloc <#= type #>[source.Length];
+			source.CopyTo(temp);
+			even = source.Slice(0, source.Length >> 1);
+			odd = source.Slice(even.Length, even.Length);
+			int j = 0;
+			unchecked
+			{
+				for (int i = 0; i < even.Length; i++, j += 2)
+				{
+					even[i] = temp[j];
+					odd[i] = temp[j | 1];
+				}
+			}
+			//temp gets released here
+		}
+	<#}#>
+
+	}
+}

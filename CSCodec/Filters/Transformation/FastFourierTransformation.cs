@@ -26,7 +26,7 @@ namespace CSCodec.Filters.Transformation
 			for (int i = 0; i < span.Length >> 1; i++)
 			{
 				var v = span[i];
-				int index = (int)(CodecMathHelper.ReverseBits((uint)i << width) >> width);
+				int index = (int)(CodecMathHelper.ReverseBits((uint)i << width));
 				span[i] = span[index];
 				span[index] = v;
 			}

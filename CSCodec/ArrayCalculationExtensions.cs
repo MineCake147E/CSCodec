@@ -8,7 +8,7 @@ using System.Text;
 namespace CSCodec
 {
 	/// <summary>
-	/// Hardware-Accelerated array manipulation.
+	/// Hardware-Accelerated (or not) array manipulation.
 	/// </summary>
 	public static partial class ArrayCalculationExtensions
 	{
@@ -22,6 +22,21 @@ namespace CSCodec
 
 		static ArrayCalculationExtensions()
 		{
+		}
+
+		/// <summary>
+		/// Copies the real.
+		/// </summary>
+		/// <param name="complices">The complices.</param>
+		/// <param name="destination">The destination.</param>
+		/// <exception cref="ArgumentException">complices' length and destination's must be same!!!</exception>
+		public static void CopyReal(this Span<Complex> complices, ref Span<double> destination)
+		{
+			if (complices.Length != destination.Length) throw new ArgumentException("complices' length and destination's must be same!!!");
+			for (int i = 0; i < complices.Length; i++)
+			{
+				destination[i] = complices[i].Real;
+			}
 		}
 	}
 }

@@ -28,9 +28,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Filters\Transformation\WaveletCDF53Types.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WaveletCDF53Types.tt</DependentUpon>
+    </None>
+    <None Include="Filters\Transformation\WaveletHelperTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WaveletHelperTypes.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="ArrayCalcSimdTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArrayCalcSimdTypes.cs</LastGenOutput>
+    </None>
+    <None Update="Filters\Transformation\WaveletCDF53Types.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WaveletCDF53Types.cs</LastGenOutput>
+    </None>
+    <None Update="Filters\Transformation\WaveletHaarTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WaveletHaarTypes.cs</LastGenOutput>
+    </None>
+    <None Update="Filters\Transformation\WaveletHelperTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>WaveletHelperTypes.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -43,6 +68,21 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ArrayCalcSimdTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Filters\Transformation\WaveletCDF53Types.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WaveletCDF53Types.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Filters\Transformation\WaveletHaarTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WaveletHaarTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Filters\Transformation\WaveletHelperTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>WaveletHelperTypes.tt</DependentUpon>
     </Compile>
   </ItemGroup>
 

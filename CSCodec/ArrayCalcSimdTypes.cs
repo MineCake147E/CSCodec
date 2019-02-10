@@ -162,7 +162,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -220,7 +220,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -278,7 +278,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -336,7 +336,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -394,7 +394,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -452,7 +452,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -510,7 +510,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -568,7 +568,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -626,7 +626,7 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
-				/// <summary>
+			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
@@ -684,5 +684,143 @@ namespace CSCodec{
 				bufferA[i + k] -= bufferB[j + k];
 			}
 		}
+		
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.Int32[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.Int32>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int32>.Count)
+			{
+				(-(new Vector<System.Int32>(buffer, i))).CopyTo(buffer, i);
 			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = -buffer[i];
+			}
+		}
+	
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.Int64[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.Int64>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int64>.Count)
+			{
+				(-(new Vector<System.Int64>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = -buffer[i];
+			}
+		}
+	
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.Single[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.Single>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Single>.Count)
+			{
+				(-(new Vector<System.Single>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = -buffer[i];
+			}
+		}
+	
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.Double[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.Double>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Double>.Count)
+			{
+				(-(new Vector<System.Double>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = -buffer[i];
+			}
+		}
+		
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.Int16[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.Int16>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int16>.Count)
+			{
+				(-(new Vector<System.Int16>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = (System.Int16)(-buffer[i]);
+			}
+		}
+	
+		/// <summary>
+		/// Negates the specified <paramref name="buffer"/>.
+		/// </summary>
+		/// <param name="buffer">The array to Negate.</param>
+		/// <param name="offset">The offset to Negate.</param>
+		/// <param name="count">The count of element.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void NegateArray(this System.SByte[] buffer, int offset, int count)
+		{
+			int procCountFinal = count % Vector<System.SByte>.Count;
+			int procCountSIMD = count - procCountFinal;
+			int i;
+			for (i = offset; i < offset + procCountSIMD; i += Vector<System.SByte>.Count)
+			{
+				(-(new Vector<System.SByte>(buffer, i))).CopyTo(buffer, i);
+			}
+			for (i = offset + procCountSIMD; i < offset + count; i++)
+			{
+				buffer[i] = (System.SByte)(-buffer[i]);
+			}
+		}
+		}
 }
