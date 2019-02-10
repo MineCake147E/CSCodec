@@ -10,7 +10,7 @@ namespace System
 	/// </summary>
 	/// <seealso cref="System.IEquatable{T}" />
 	[StructLayout(LayoutKind.Explicit)]
-	public readonly struct Int24 : IEquatable<Int24>
+	public readonly struct Int24 : IEquatable<Int24>, IComparable<Int24>
 	{
 		[FieldOffset(0)]
 		private readonly byte tail;
@@ -37,7 +37,7 @@ namespace System
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Int24"/> struct.
 		/// </summary>
-		/// <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00</param>
+		/// <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
 		public Int24(int shiftedValue)
 		{
 			tail = (byte)(shiftedValue >> 8);
@@ -63,14 +63,13 @@ namespace System
 		}
 
 		/// <summary>
-		/// Converts to bytes.
+		/// Converts an array of <see cref="Int24"/>s to the specified array of bytes.
 		/// </summary>
 		/// <param name="buffer">The buffer.</param>
 		/// <param name="offset">The offset.</param>
 		/// <param name="outbuf">The output buffer.</param>
 		/// <param name="dstoffset">The destination offset.</param>
 		/// <param name="srccount">The source count.</param>
-		/// TODO Edit XML Comment Template for ToBytes
 		public static void ToBytes(Int24[] buffer, int offset, byte[] outbuf, int dstoffset, int srccount)
 		{
 			int y = dstoffset;
@@ -101,10 +100,21 @@ namespace System
 		/// <returns>
 		/// The result of the conversion.
 		/// </returns>
-		/// TODO Edit XML Comment Template for Int32
 		public static implicit operator int(Int24 v)
 		{
 			return ((v.tail << 8) | (v.middle << 16) | (v.head << 24)) >> 8;
+		}
+
+		/// <summary>
+		/// Negates a specified <see cref="Int24"/> value.
+		/// </summary>
+		/// <param name="value">The value to negate.</param>
+		/// <returns>
+		/// The result of the <paramref name="value"/> parameter multiplied by negative one (-1).
+		/// </returns>
+		public static Int24 operator -(Int24 value)
+		{
+			return (Int24)(-(int)value);
 		}
 
 		/// <summary>
@@ -114,7 +124,7 @@ namespace System
 		/// <returns>
 		/// The result of the conversion.
 		/// </returns>
-		public static explicit operator Int24(int v) => new Int24(v);
+		public static explicit operator Int24(int v) => new Int24(v << 8);
 
 		/// <summary>
 		/// Implements the operator +.
@@ -228,6 +238,46 @@ namespace System
 		}
 
 		/// <summary>
+		/// Determines whether one specified <see cref="Int24"/> is less than another specified <see cref="Int24"/>.
+		/// </summary>
+		/// <param name="left">The first <see cref="Int24"/> to compare.</param>
+		/// <param name="right">The second <see cref="Int24"/> to compare.</param>
+		/// <returns>
+		///   <c>true</c> if left is less than right; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool operator <(Int24 left, Int24 right) => (int)left < right;
+
+		/// <summary>
+		/// Determines whether one specified <see cref="Int24"/> is greater than another specified <see cref="Int24"/> value.
+		/// </summary>
+		/// <param name="left">The first <see cref="Int24"/> to compare.</param>
+		/// <param name="right">The second <see cref="Int24"/> to compare.</param>
+		/// <returns>
+		///   <c>true</c> if left is greater than right; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool operator >(Int24 left, Int24 right) => (int)left > right;
+
+		/// <summary>
+		/// Returns a value that indicates whether a specified <see cref="Int24"/> is less than or equal to another specified <see cref="Int24"/>.
+		/// </summary>
+		/// <param name="left">The first <see cref="Int24"/> to compare.</param>
+		/// <param name="right">The second <see cref="Int24"/> to compare.</param>
+		/// <returns>
+		///   <c>true</c> if left is less than or equal to right; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool operator <=(Int24 left, Int24 right) => (int)left <= right;
+
+		/// <summary>
+		/// Determines whether one specified <see cref="Int24"/> is greater than or equal to another specified <see cref="Int24"/>.
+		/// </summary>
+		/// <param name="left">The first <see cref="Int24"/> to compare.</param>
+		/// <param name="right">The second  <see cref="Int24"/> to compare.</param>
+		/// <returns>
+		///   <c>true</c> if <see cref="Int24"/> is greater than or equal to <see cref="Int24"/>; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool operator >=(Int24 left, Int24 right) => (int)left >= right;
+
+		/// <summary>
 		/// Determines whether the specified <see cref="object" />, is equal to this instance.
 		/// </summary>
 		/// <param name="obj">The <see cref="object" /> to compare with this instance.</param>
@@ -269,6 +319,18 @@ namespace System
 			hashCode = hashCode * -1521134295 + middle.GetHashCode();
 			hashCode = hashCode * -1521134295 + head.GetHashCode();
 			return hashCode;
+		}
+
+		/// <summary>
+		/// Compares the value of this instance to a specified <see cref="Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="Int24"/> value.
+		/// </summary>
+		/// <param name="other">The <see cref="Int24"/> to compare to the current instance.</param>
+		/// <returns>
+		/// A signed number indicating the relative values of this instance and the other parameter.
+		/// </returns>
+		public int CompareTo(Int24 other)
+		{
+			return ((int)this).CompareTo(other);
 		}
 	}
 }

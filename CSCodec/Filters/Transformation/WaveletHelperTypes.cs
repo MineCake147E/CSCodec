@@ -17,7 +17,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.Int32> source, out Span<System.Int32> even, out Span<System.Int32> odd)
+		public static void SplitOddEven(Span<int> source, out Span<int> even, out Span<int> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -28,9 +28,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.Int32> source, out Span<System.Int32> even, out Span<System.Int32> odd)
+		private static void ArrangeOddEven(this in Span<int> source, out Span<int> even, out Span<int> odd)
 		{
-			Span<System.Int32> temp = stackalloc System.Int32[source.Length];
+			Span<int> temp = stackalloc int[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);
@@ -52,7 +52,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.Int64> source, out Span<System.Int64> even, out Span<System.Int64> odd)
+		public static void SplitOddEven(Span<Int24> source, out Span<Int24> even, out Span<Int24> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -63,9 +63,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.Int64> source, out Span<System.Int64> even, out Span<System.Int64> odd)
+		private static void ArrangeOddEven(this in Span<Int24> source, out Span<Int24> even, out Span<Int24> odd)
 		{
-			Span<System.Int64> temp = stackalloc System.Int64[source.Length];
+			Span<Int24> temp = stackalloc Int24[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);
@@ -87,7 +87,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.Int16> source, out Span<System.Int16> even, out Span<System.Int16> odd)
+		public static void SplitOddEven(Span<short> source, out Span<short> even, out Span<short> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -98,9 +98,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.Int16> source, out Span<System.Int16> even, out Span<System.Int16> odd)
+		private static void ArrangeOddEven(this in Span<short> source, out Span<short> even, out Span<short> odd)
 		{
-			Span<System.Int16> temp = stackalloc System.Int16[source.Length];
+			Span<short> temp = stackalloc short[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);
@@ -122,7 +122,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.SByte> source, out Span<System.SByte> even, out Span<System.SByte> odd)
+		public static void SplitOddEven(Span<sbyte> source, out Span<sbyte> even, out Span<sbyte> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -133,9 +133,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.SByte> source, out Span<System.SByte> even, out Span<System.SByte> odd)
+		private static void ArrangeOddEven(this in Span<sbyte> source, out Span<sbyte> even, out Span<sbyte> odd)
 		{
-			Span<System.SByte> temp = stackalloc System.SByte[source.Length];
+			Span<sbyte> temp = stackalloc sbyte[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);
@@ -157,7 +157,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.Single> source, out Span<System.Single> even, out Span<System.Single> odd)
+		public static void SplitOddEven(Span<float> source, out Span<float> even, out Span<float> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -168,9 +168,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.Single> source, out Span<System.Single> even, out Span<System.Single> odd)
+		private static void ArrangeOddEven(this in Span<float> source, out Span<float> even, out Span<float> odd)
 		{
-			Span<System.Single> temp = stackalloc System.Single[source.Length];
+			Span<float> temp = stackalloc float[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);
@@ -192,7 +192,7 @@ namespace CSCodec.Filters.Transformation
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven(Span<System.Double> source, out Span<System.Double> even, out Span<System.Double> odd)
+		public static void SplitOddEven(Span<double> source, out Span<double> even, out Span<double> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -203,9 +203,9 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="even">The even elements.</param>
 		/// <param name="odd">The odd elements.</param>
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven(this in Span<System.Double> source, out Span<System.Double> even, out Span<System.Double> odd)
+		private static void ArrangeOddEven(this in Span<double> source, out Span<double> even, out Span<double> odd)
 		{
-			Span<System.Double> temp = stackalloc System.Double[source.Length];
+			Span<double> temp = stackalloc double[source.Length];
 			source.CopyTo(temp);
 			even = source.Slice(0, source.Length >> 1);
 			odd = source.Slice(even.Length, even.Length);

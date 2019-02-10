@@ -15,10 +15,10 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarMultiLevel(Span<System.Int32> span)
+		public static void HaarMultiLevel(Span<int> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Int32> even, out Span<System.Int32> odd);
+			span.ArrangeOddEven(out Span<int> even, out Span<int> odd);
 			do
 			{
 				HaarInternal(even, odd);
@@ -31,7 +31,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void HaarInverseMultiLevelInternal(Span<System.Int32> span)
+		private static void HaarInverseMultiLevelInternal(Span<int> span)
 		{
 			unchecked
 			{
@@ -52,7 +52,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarInverseMultiLevel(Span<System.Int32> span)
+		public static void HaarInverseMultiLevel(Span<int> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
@@ -63,10 +63,10 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarMultiLevel(Span<System.Int16> span)
+		public static void HaarMultiLevel(Span<Int24> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Int16> even, out Span<System.Int16> odd);
+			span.ArrangeOddEven(out Span<Int24> even, out Span<Int24> odd);
 			do
 			{
 				HaarInternal(even, odd);
@@ -79,7 +79,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void HaarInverseMultiLevelInternal(Span<System.Int16> span)
+		private static void HaarInverseMultiLevelInternal(Span<Int24> span)
 		{
 			unchecked
 			{
@@ -100,7 +100,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarInverseMultiLevel(Span<System.Int16> span)
+		public static void HaarInverseMultiLevel(Span<Int24> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
@@ -111,10 +111,10 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarMultiLevel(Span<System.SByte> span)
+		public static void HaarMultiLevel(Span<short> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.SByte> even, out Span<System.SByte> odd);
+			span.ArrangeOddEven(out Span<short> even, out Span<short> odd);
 			do
 			{
 				HaarInternal(even, odd);
@@ -127,7 +127,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void HaarInverseMultiLevelInternal(Span<System.SByte> span)
+		private static void HaarInverseMultiLevelInternal(Span<short> span)
 		{
 			unchecked
 			{
@@ -148,7 +148,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarInverseMultiLevel(Span<System.SByte> span)
+		public static void HaarInverseMultiLevel(Span<short> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
@@ -159,10 +159,10 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarMultiLevel(Span<System.Single> span)
+		public static void HaarMultiLevel(Span<sbyte> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Single> even, out Span<System.Single> odd);
+			span.ArrangeOddEven(out Span<sbyte> even, out Span<sbyte> odd);
 			do
 			{
 				HaarInternal(even, odd);
@@ -175,7 +175,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void HaarInverseMultiLevelInternal(Span<System.Single> span)
+		private static void HaarInverseMultiLevelInternal(Span<sbyte> span)
 		{
 			unchecked
 			{
@@ -196,7 +196,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarInverseMultiLevel(Span<System.Single> span)
+		public static void HaarInverseMultiLevel(Span<sbyte> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
@@ -207,10 +207,10 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarMultiLevel(Span<System.Double> span)
+		public static void HaarMultiLevel(Span<float> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Double> even, out Span<System.Double> odd);
+			span.ArrangeOddEven(out Span<float> even, out Span<float> odd);
 			do
 			{
 				HaarInternal(even, odd);
@@ -223,7 +223,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void HaarInverseMultiLevelInternal(Span<System.Double> span)
+		private static void HaarInverseMultiLevelInternal(Span<float> span)
 		{
 			unchecked
 			{
@@ -244,7 +244,55 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void HaarInverseMultiLevel(Span<System.Double> span)
+		public static void HaarInverseMultiLevel(Span<float> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			HaarInverseMultiLevelInternal(span);
+		}
+		
+		/// <summary>
+		/// Performs The Multi-Level Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void HaarMultiLevel(Span<double> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			span.ArrangeOddEven(out Span<double> even, out Span<double> odd);
+			do
+			{
+				HaarInternal(even, odd);
+				even.ArrangeOddEven(out even, out odd);
+			} while (even.Length > 1);
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		private static void HaarInverseMultiLevelInternal(Span<double> span)
+		{
+			unchecked
+			{
+				if (span.Length == 2)
+				{
+					span.ArrangeOddEven(out var even2, out var odd2);
+					HaarInverseInternal(even2, odd2);
+					return;
+				}
+				span.ArrangeOddEven(out var even, out var odd);
+				HaarInverseMultiLevelInternal(even);
+				HaarInverseInternal(even, odd);
+			}
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void HaarInverseMultiLevel(Span<double> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
@@ -257,14 +305,14 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<System.Int16> even, in Span<System.Int16> odd)
+		private static void HaarInverseInternal(in Span<Int24> even, in Span<Int24> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < even.Length; i++)
 				{
 					//-Update
-					even[i] -= (System.Int16)(odd[i] >> 1);
+					even[i] -= (Int24)(odd[i] >> 1);
 				}
 				for (int i = 0; i < odd.Length; i++)
 				{
@@ -281,7 +329,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<System.Int16> even, in Span<System.Int16> odd)
+		private static void HaarInternal(in Span<Int24> even, in Span<Int24> odd)
 		{
 			unchecked
 			{
@@ -293,7 +341,7 @@ namespace CSCodec.Filters.Transformation
 				for (int i = 0; i < even.Length; i++)
 				{
 					//+Update
-					even[i] += (System.Int16)(odd[i] >> 1);
+					even[i] += (Int24)(odd[i] >> 1);
 				}
 			}
 		}
@@ -305,14 +353,14 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<System.SByte> even, in Span<System.SByte> odd)
+		private static void HaarInverseInternal(in Span<short> even, in Span<short> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < even.Length; i++)
 				{
 					//-Update
-					even[i] -= (System.SByte)(odd[i] >> 1);
+					even[i] -= (short)(odd[i] >> 1);
 				}
 				for (int i = 0; i < odd.Length; i++)
 				{
@@ -329,7 +377,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<System.SByte> even, in Span<System.SByte> odd)
+		private static void HaarInternal(in Span<short> even, in Span<short> odd)
 		{
 			unchecked
 			{
@@ -341,7 +389,55 @@ namespace CSCodec.Filters.Transformation
 				for (int i = 0; i < even.Length; i++)
 				{
 					//+Update
-					even[i] += (System.SByte)(odd[i] >> 1);
+					even[i] += (short)(odd[i] >> 1);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Performs The 1-level Inverse Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInverseInternal(in Span<sbyte> even, in Span<sbyte> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < even.Length; i++)
+				{
+					//-Update
+					even[i] -= (sbyte)(odd[i] >> 1);
+				}
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//+Predict
+					odd[i] += even[i];
+				}
+			}
+		}
+
+		/// <summary>
+		/// Performs The 1-level Haar Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		private static void HaarInternal(in Span<sbyte> even, in Span<sbyte> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < odd.Length; i++)
+				{
+					//-Predict
+					odd[i] -= even[i];
+				}
+				for (int i = 0; i < even.Length; i++)
+				{
+					//+Update
+					even[i] += (sbyte)(odd[i] >> 1);
 				}
 			}
 		}
@@ -353,7 +449,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<System.Int32> even, in Span<System.Int32> odd)
+		private static void HaarInverseInternal(in Span<int> even, in Span<int> odd)
 		{
 			unchecked
 			{
@@ -377,7 +473,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<System.Int32> even, in Span<System.Int32> odd)
+		private static void HaarInternal(in Span<int> even, in Span<int> odd)
 		{
 			unchecked
 			{
@@ -401,7 +497,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<System.Single> even, in Span<System.Single> odd)
+		private static void HaarInverseInternal(in Span<float> even, in Span<float> odd)
 		{
 			unchecked
 			{
@@ -425,7 +521,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<System.Single> even, in Span<System.Single> odd)
+		private static void HaarInternal(in Span<float> even, in Span<float> odd)
 		{
 			unchecked
 			{
@@ -449,7 +545,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<System.Double> even, in Span<System.Double> odd)
+		private static void HaarInverseInternal(in Span<double> even, in Span<double> odd)
 		{
 			unchecked
 			{
@@ -473,7 +569,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<System.Double> even, in Span<System.Double> odd)
+		private static void HaarInternal(in Span<double> even, in Span<double> odd)
 		{
 			unchecked
 			{

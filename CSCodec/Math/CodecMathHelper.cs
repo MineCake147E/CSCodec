@@ -6,9 +6,8 @@ using System.Text;
 namespace CSCodec
 {
 	/// <summary>
-	///
+	/// Supports some bit arithmetics.
 	/// </summary>
-	/// TODO Edit XML Comment Template for CodecMathHelper
 	public static class CodecMathHelper
 	{
 		/// <summary>

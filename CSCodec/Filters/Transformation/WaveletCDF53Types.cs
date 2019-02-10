@@ -11,14 +11,14 @@ namespace CSCodec.Filters.Transformation
 	{
 		
 		/// <summary>
-		/// Performs The Multi-Level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53MultiLevel(Span<System.Int32> span)
+		public static void CDF53MultiLevel(Span<int> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Int32> even, out Span<System.Int32> odd);
+			span.ArrangeOddEven(out Span<int> even, out Span<int> odd);
 			do
 			{
 				CDF53Internal(even, odd);
@@ -27,11 +27,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void CDF53InverseMultiLevelInternal(Span<System.Int32> span)
+		private static void CDF53InverseMultiLevelInternal(Span<int> span)
 		{
 			unchecked
 			{
@@ -48,25 +48,25 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53InverseMultiLevel(Span<System.Int32> span)
+		public static void CDF53InverseMultiLevel(Span<int> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
 		
 		/// <summary>
-		/// Performs The Multi-Level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53MultiLevel(Span<System.Int16> span)
+		public static void CDF53MultiLevel(Span<Int24> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Int16> even, out Span<System.Int16> odd);
+			span.ArrangeOddEven(out Span<Int24> even, out Span<Int24> odd);
 			do
 			{
 				CDF53Internal(even, odd);
@@ -75,11 +75,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void CDF53InverseMultiLevelInternal(Span<System.Int16> span)
+		private static void CDF53InverseMultiLevelInternal(Span<Int24> span)
 		{
 			unchecked
 			{
@@ -96,25 +96,25 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53InverseMultiLevel(Span<System.Int16> span)
+		public static void CDF53InverseMultiLevel(Span<Int24> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
 		
 		/// <summary>
-		/// Performs The Multi-Level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53MultiLevel(Span<System.SByte> span)
+		public static void CDF53MultiLevel(Span<short> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.SByte> even, out Span<System.SByte> odd);
+			span.ArrangeOddEven(out Span<short> even, out Span<short> odd);
 			do
 			{
 				CDF53Internal(even, odd);
@@ -123,11 +123,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void CDF53InverseMultiLevelInternal(Span<System.SByte> span)
+		private static void CDF53InverseMultiLevelInternal(Span<short> span)
 		{
 			unchecked
 			{
@@ -144,25 +144,25 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53InverseMultiLevel(Span<System.SByte> span)
+		public static void CDF53InverseMultiLevel(Span<short> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
 		
 		/// <summary>
-		/// Performs The Multi-Level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53MultiLevel(Span<System.Single> span)
+		public static void CDF53MultiLevel(Span<sbyte> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Single> even, out Span<System.Single> odd);
+			span.ArrangeOddEven(out Span<sbyte> even, out Span<sbyte> odd);
 			do
 			{
 				CDF53Internal(even, odd);
@@ -171,11 +171,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void CDF53InverseMultiLevelInternal(Span<System.Single> span)
+		private static void CDF53InverseMultiLevelInternal(Span<sbyte> span)
 		{
 			unchecked
 			{
@@ -192,25 +192,25 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53InverseMultiLevel(Span<System.Single> span)
+		public static void CDF53InverseMultiLevel(Span<sbyte> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
 		
 		/// <summary>
-		/// Performs The Multi-Level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53MultiLevel(Span<System.Double> span)
+		public static void CDF53MultiLevel(Span<float> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			span.ArrangeOddEven(out Span<System.Double> even, out Span<System.Double> odd);
+			span.ArrangeOddEven(out Span<float> even, out Span<float> odd);
 			do
 			{
 				CDF53Internal(even, odd);
@@ -219,11 +219,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		private static void CDF53InverseMultiLevelInternal(Span<System.Double> span)
+		private static void CDF53InverseMultiLevelInternal(Span<float> span)
 		{
 			unchecked
 			{
@@ -240,11 +240,59 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// Performs The Multi-Level Inverse Haar Transform to the specified elements.
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
 		/// </summary>
 		/// <param name="span">The Transforming span.</param>
 		[DebuggerNonUserCode()]
-		public static void CDF53InverseMultiLevel(Span<System.Double> span)
+		public static void CDF53InverseMultiLevel(Span<float> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			CDF53InverseMultiLevelInternal(span);
+		}
+		
+		/// <summary>
+		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void CDF53MultiLevel(Span<double> span)
+		{
+			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+			span.ArrangeOddEven(out Span<double> even, out Span<double> odd);
+			do
+			{
+				CDF53Internal(even, odd);
+				even.ArrangeOddEven(out even, out odd);
+			} while (even.Length > 1);
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		private static void CDF53InverseMultiLevelInternal(Span<double> span)
+		{
+			unchecked
+			{
+				if (span.Length == 2)
+				{
+					span.ArrangeOddEven(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);
+					return;
+				}
+				span.ArrangeOddEven(out var even, out var odd);
+				CDF53InverseMultiLevelInternal(even);
+				CDF53InverseInternal(even, odd);
+			}
+		}
+
+		/// <summary>
+		/// Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
+		/// </summary>
+		/// <param name="span">The Transforming span.</param>
+		[DebuggerNonUserCode()]
+		public static void CDF53InverseMultiLevel(Span<double> span)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
@@ -256,21 +304,21 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<System.Int16> even, in Span<System.Int16> odd)
+		private static void CDF53Internal(in Span<Int24> even, in Span<Int24> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < odd.Length - 1; i++)
 				{
 					//-Predict
-					odd[i] -= (System.Int16)((even[i] + even[i + 1]) >> 1);
+					odd[i] -= (Int24)((even[i] + even[i + 1]) >> 1);
 				}
 				odd[odd.Length - 1] -= even[even.Length - 1];
-				even[0] += (System.Int16)((odd[0] + 1) >> 1);
+				even[0] += (Int24)((odd[0] + 1) >> 1);
 				for (int i = 1; i < even.Length; i++)
 				{
 					//+Update
-					even[i] += (System.Int16)((odd[i - 1] + odd[i] + 2) >> 2);
+					even[i] += (Int24)((odd[i - 1] + odd[i] + 2) >> 2);
 				}
 			}
 		}
@@ -280,21 +328,21 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<System.Int16> even, in Span<System.Int16> odd)
+		private static void CDF53InverseInternal(in Span<Int24> even, in Span<Int24> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < odd.Length - 1; i++)
 				{
 					//-Update
-					odd[i] -= (System.Int16)((even[i - 1] + even[i] + 2) >> 2);
+					odd[i] -= (Int24)((even[i - 1] + even[i] + 2) >> 2);
 				}
-				odd[odd.Length - 1] -= (System.Int16)((even[0] + 1) >> 1);
+				odd[odd.Length - 1] -= (Int24)((even[0] + 1) >> 1);
 				even[0] += odd[even.Length - 1];
 				for (int i = 1; i < even.Length; i++)
 				{
 					//+Predict
-					even[i] += (System.Int16)((odd[i] + odd[i + 1]) >> 1);
+					even[i] += (Int24)((odd[i] + odd[i + 1]) >> 1);
 				}
 			}
 		}
@@ -304,21 +352,21 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<System.SByte> even, in Span<System.SByte> odd)
+		private static void CDF53Internal(in Span<short> even, in Span<short> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < odd.Length - 1; i++)
 				{
 					//-Predict
-					odd[i] -= (System.SByte)((even[i] + even[i + 1]) >> 1);
+					odd[i] -= (short)((even[i] + even[i + 1]) >> 1);
 				}
 				odd[odd.Length - 1] -= even[even.Length - 1];
-				even[0] += (System.SByte)((odd[0] + 1) >> 1);
+				even[0] += (short)((odd[0] + 1) >> 1);
 				for (int i = 1; i < even.Length; i++)
 				{
 					//+Update
-					even[i] += (System.SByte)((odd[i - 1] + odd[i] + 2) >> 2);
+					even[i] += (short)((odd[i - 1] + odd[i] + 2) >> 2);
 				}
 			}
 		}
@@ -328,21 +376,69 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<System.SByte> even, in Span<System.SByte> odd)
+		private static void CDF53InverseInternal(in Span<short> even, in Span<short> odd)
 		{
 			unchecked
 			{
 				for (int i = 0; i < odd.Length - 1; i++)
 				{
 					//-Update
-					odd[i] -= (System.SByte)((even[i - 1] + even[i] + 2) >> 2);
+					odd[i] -= (short)((even[i - 1] + even[i] + 2) >> 2);
 				}
-				odd[odd.Length - 1] -= (System.SByte)((even[0] + 1) >> 1);
+				odd[odd.Length - 1] -= (short)((even[0] + 1) >> 1);
 				even[0] += odd[even.Length - 1];
 				for (int i = 1; i < even.Length; i++)
 				{
 					//+Predict
-					even[i] += (System.SByte)((odd[i] + odd[i + 1]) >> 1);
+					even[i] += (short)((odd[i] + odd[i + 1]) >> 1);
+				}
+			}
+		}
+		
+		/// <summary>
+		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even.</param>
+		/// <param name="odd">The odd.</param>
+		private static void CDF53Internal(in Span<sbyte> even, in Span<sbyte> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < odd.Length - 1; i++)
+				{
+					//-Predict
+					odd[i] -= (sbyte)((even[i] + even[i + 1]) >> 1);
+				}
+				odd[odd.Length - 1] -= even[even.Length - 1];
+				even[0] += (sbyte)((odd[0] + 1) >> 1);
+				for (int i = 1; i < even.Length; i++)
+				{
+					//+Update
+					even[i] += (sbyte)((odd[i - 1] + odd[i] + 2) >> 2);
+				}
+			}
+		}
+
+		/// <summary>
+		/// Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
+		/// </summary>
+		/// <param name="even">The even.</param>
+		/// <param name="odd">The odd.</param>
+		private static void CDF53InverseInternal(in Span<sbyte> even, in Span<sbyte> odd)
+		{
+			unchecked
+			{
+				for (int i = 0; i < odd.Length - 1; i++)
+				{
+					//-Update
+					odd[i] -= (sbyte)((even[i - 1] + even[i] + 2) >> 2);
+				}
+				odd[odd.Length - 1] -= (sbyte)((even[0] + 1) >> 1);
+				even[0] += odd[even.Length - 1];
+				for (int i = 1; i < even.Length; i++)
+				{
+					//+Predict
+					even[i] += (sbyte)((odd[i] + odd[i + 1]) >> 1);
 				}
 			}
 		}
@@ -352,7 +448,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<System.Single> even, in Span<System.Single> odd)
+		private static void CDF53Internal(in Span<float> even, in Span<float> odd)
 		{
 			unchecked
 			{
@@ -376,7 +472,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<System.Single> even, in Span<System.Single> odd)
+		private static void CDF53InverseInternal(in Span<float> even, in Span<float> odd)
 		{
 			unchecked
 			{
@@ -400,7 +496,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<System.Double> even, in Span<System.Double> odd)
+		private static void CDF53Internal(in Span<double> even, in Span<double> odd)
 		{
 			unchecked
 			{
@@ -424,7 +520,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<System.Double> even, in Span<System.Double> odd)
+		private static void CDF53InverseInternal(in Span<double> even, in Span<double> odd)
 		{
 			unchecked
 			{

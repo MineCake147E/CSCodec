@@ -3,9 +3,9 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# Type[] typegenSigned = new Type[]{typeof(int), typeof(short), typeof(sbyte), typeof(float), typeof(double)}; #>
-<# Type[] typegenCasted = new Type[]{typeof(short), typeof(sbyte)}; #>
-<# Type[] typegenCastless = new Type[]{typeof(int), typeof(float), typeof(double)}; #>
+<# string[] typegenSigned = new string[]{"int", "Int24", "short", "sbyte", "float", "double"}; #>
+<# string[] typegenCasted = new string[]{"Int24", "short", "sbyte"}; #>
+<# string[] typegenCastless = new string[]{"int", "float", "double"}; #>
 <#@ output extension=".cs" #>
 using System;
 using System.Collections.Generic;
