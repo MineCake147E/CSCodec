@@ -1,23 +1,24 @@
 # CSCodec - .NET Standard Codec Development Library #
-CSCodec is an open-source codec development library that has many features supporting development of your (original) encoder and/or decoder.
+CSCodec is an open-source Codec development library that has many features supporting development of your decoder and/or encoder for both your original or well-known formats.
 
 ### Currently Supported Features: ###
-- **LICENSED UNDER __Apache-2.0__** (won't entire project).
+- **Core Project is LICENSED UNDER __[Apache-2.0](https://github.com/MineCake147E/CSCodec/blob/master/LICENSE.md)__**
   - This means that you can use this library **without any copy-left**.
 - `Span<T>` Based APIs
   - Many APIs depends on `Span<T>`.
 - 24Bit Signed Integer Structure `Int24`
-- An original **Apache-2.0 licensed Fast Fourier Transform (FFT) implementation** for `System.Numerics.Complex` arrays.
-  - Looks like there's only implementations licensed under *LGPL* or *Ms-PL*, but we implemented for Apache-2.0 users.
-- A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT
+- An original **Fully Managed Fast Fourier Transform (FFT) implementation** for `System.Numerics.Complex` arrays.
+  - Looks like there's only implementations licensed under [LGPL](https://github.com/accord-net/framework/blob/development/LICENSE) or [Ms-PL](https://github.com/naudio/NAudio/blob/master/license.txt), but it is implemented under Apache-2.0.
+- A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT which is described above
 - Wavelet Transform(Haar and CDF 5/3 Wavelets for now) for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - Hardware-Accelerated Add, Subtract, and Scalar Multiply for Arrays using `System.Numerics.Vector<T>`
 
 ### Features Under Development: ###
+- BitReader reads bitwise encoded binary data
+- Better Documentations for existing APIs
 
 ### Features In Future: ###
-- BitReader reads bitwise encoded binary data
 - CDF 9/7 wavelets
 - ID3 Tags Support
 
