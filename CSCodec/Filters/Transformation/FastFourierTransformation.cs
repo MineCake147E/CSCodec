@@ -53,7 +53,6 @@ namespace CSCodec.Filters.Transformation
 					for (int j = 0; j < mHalf; j++)
 					{
 						index = k + j;
-						//omega乗算関連を消去するとHaarウェーブレット変換になる?
 						t = omega * span[index + mHalf];
 						u = span[index];
 						span[index] = u + t;
@@ -65,12 +64,11 @@ namespace CSCodec.Filters.Transformation
 		}
 
 		/// <summary>
-		/// FFTs the specified span.
+		/// Transforms the specified span using Cooley-Tukey algorithm.
 		/// </summary>
-		/// <param name="span">The span.</param>
+		/// <param name="span">The buffer.</param>
 		/// <param name="mode">The FFT's Mode.</param>
 		/// <exception cref="ArgumentException">The length of span must be power of 2! - span</exception>
-		/// TODO Edit XML Comment Template for FFT
 		public static void FFT(Span<Complex> span, FftMode mode = FftMode.Forward)
 		{
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));

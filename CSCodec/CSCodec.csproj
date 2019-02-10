@@ -28,6 +28,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Filters\Transformation\TDACTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TDACTypes.tt</DependentUpon>
+    </None>
     <None Include="Filters\Transformation\WaveletCDF53Types.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -44,6 +49,10 @@
     <None Update="ArrayCalcSimdTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ArrayCalcSimdTypes.cs</LastGenOutput>
+    </None>
+    <None Update="Filters\Transformation\TDACTypes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>TDACTypes.cs</LastGenOutput>
     </None>
     <None Update="Filters\Transformation\WaveletCDF53Types.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -68,6 +77,11 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>ArrayCalcSimdTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Filters\Transformation\TDACTypes.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TDACTypes.tt</DependentUpon>
     </Compile>
     <Compile Update="Filters\Transformation\WaveletCDF53Types.cs">
       <DesignTime>True</DesignTime>

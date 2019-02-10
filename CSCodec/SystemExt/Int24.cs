@@ -127,6 +127,24 @@ namespace System
 		public static explicit operator Int24(int v) => new Int24(v << 8);
 
 		/// <summary>
+		/// Performs an explicit conversion from <see cref="Int24"/> to <see cref="float"/>.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns>
+		/// The result of the conversion.
+		/// </returns>
+		public static explicit operator Int24(float value) => (Int24)(int)value;
+
+		/// <summary>
+		/// Performs an explicit conversion from <see cref="System.Double"/> to <see cref="Int24"/>.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns>
+		/// The result of the conversion.
+		/// </returns>
+		public static explicit operator Int24(double value) => (Int24)(int)value;
+
+		/// <summary>
 		/// Implements the operator +.
 		/// </summary>
 		/// <param name="a">a.</param>
