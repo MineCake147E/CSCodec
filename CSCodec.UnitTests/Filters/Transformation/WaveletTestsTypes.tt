@@ -36,12 +36,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<<#= type #>> span = new Span<<#= type #>>(array);
 
 			WaveletTransformation.HaarMultiLevel(span);
+
+			Span<<#= type #>> transformed = stackalloc <#= type #>[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.HaarInverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -57,12 +58,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<<#= type #>> span = new Span<<#= type #>>(array);
 
 			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<<#= type #>> transformed = stackalloc <#= type #>[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.CDF53InverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 		<#}#>
 		<#foreach(var type in typegenFloat){#>

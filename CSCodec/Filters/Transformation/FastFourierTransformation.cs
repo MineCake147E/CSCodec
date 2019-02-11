@@ -22,11 +22,12 @@ namespace CSCodec.Filters.Transformation
 
 		private static void ReverseInternal(Span<Complex> span)
 		{
-			int width = 32 - CodecMathHelper.CountBits((uint)span.Length);
-			for (int i = 0; i < span.Length >> 1; i++)
+			int width = 33 - CodecMathHelper.CountBits((uint)span.Length);
+			for (int i = 0; i < span.Length; i++)
 			{
+				int index = (int)CodecMathHelper.ReverseBits((uint)i << width);
+				if (index < i) continue;
 				var v = span[i];
-				int index = (int)(CodecMathHelper.ReverseBits((uint)i << width));
 				span[i] = span[index];
 				span[index] = v;
 			}
@@ -42,7 +43,7 @@ namespace CSCodec.Filters.Transformation
 			double thetaBase = 2 * Math.PI * (mode == FftMode.Forward ? -1 : 1);
 			int index;
 			Complex t, u, omega, omegaM;
-			for (int m = 1; m < span.Length; m <<= 1)
+			for (int m = 2; m <= span.Length; m <<= 1)
 			{
 				double theta = thetaBase / m;
 				omegaM = Complex.FromPolarCoordinates(1, theta);

@@ -25,12 +25,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<Int24> span = new Span<Int24>(array);
 
 			WaveletTransformation.HaarMultiLevel(span);
+
+			Span<Int24> transformed = stackalloc Int24[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.HaarInverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -46,12 +47,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<Int24> span = new Span<Int24>(array);
 
 			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<Int24> transformed = stackalloc Int24[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.CDF53InverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 				[TestCase]
 		public void TestHaarReversiblityInt16()
@@ -67,12 +69,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<Int16> span = new Span<Int16>(array);
 
 			WaveletTransformation.HaarMultiLevel(span);
+
+			Span<Int16> transformed = stackalloc Int16[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.HaarInverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -88,12 +91,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<Int16> span = new Span<Int16>(array);
 
 			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<Int16> transformed = stackalloc Int16[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.CDF53InverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 				[TestCase]
 		public void TestHaarReversiblitySByte()
@@ -109,12 +113,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<SByte> span = new Span<SByte>(array);
 
 			WaveletTransformation.HaarMultiLevel(span);
+
+			Span<SByte> transformed = stackalloc SByte[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.HaarInverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -130,12 +135,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<SByte> span = new Span<SByte>(array);
 
 			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<SByte> transformed = stackalloc SByte[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.CDF53InverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 				
 		[TestCase]

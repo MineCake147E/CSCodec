@@ -25,12 +25,12 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<int> span = new Span<int>(array);
 
 			WaveletTransformation.HaarMultiLevel(span);
-			WaveletTransformation.HaarInverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			Span<int> transformed = stackalloc int[array.Length];
+			span.CopyTo(transformed);
+
+			WaveletTransformation.HaarInverseMultiLevel(span);
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -46,12 +46,13 @@ namespace CSCodec.UnitTests.Filters.Transformation
 			Span<int> span = new Span<int>(array);
 
 			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<int> transformed = stackalloc int[array.Length];
+			span.CopyTo(transformed);
+
 			WaveletTransformation.CDF53InverseMultiLevel(span);
 
-			for (int i = 0; i < array.Length; i++)
-			{
-				Assert.AreEqual(copy[i], array[i]);
-			}
+			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
 
 		[TestCase]
@@ -121,6 +122,31 @@ namespace CSCodec.UnitTests.Filters.Transformation
 				for (int i = 0; i < array.Length; i++)
 				{
 					Assert.AreEqual(copy[i], array[i], -1.0 / int.MinValue);
+				}
+				Console.WriteLine("Source,Transformed");
+				for (int i = 0; i < array.Length; i++)
+				{
+					Console.WriteLine($"{copy[i]}, {transformed[i]}");
+				}
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("Expected,Actual");
+				for (int i = 0; i < array.Length; i++)
+				{
+					Console.WriteLine($"{copy[i]}, {array[i]}");
+				}
+				throw;
+			}
+		}
+
+		private static void AssertEqualityAndDumpInt<T>(T[] array, T[] copy, Span<T> transformed)
+		{
+			try
+			{
+				for (int i = 0; i < array.Length; i++)
+				{
+					Assert.AreEqual(copy[i], array[i]);
 				}
 				Console.WriteLine("Source,Transformed");
 				for (int i = 0; i < array.Length; i++)
