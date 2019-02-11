@@ -3,7 +3,6 @@ CSCodec is an open-source Codec development library that has many features suppo
 
 ### Currently Supported Features: ###
 - **Core Project is LICENSED UNDER __[Apache-2.0](https://github.com/MineCake147E/CSCodec/blob/master/LICENSE.md)__**
-  - This means that you can use this library **without any copy-left**.
 - `Span<T>` Based APIs
   - Many APIs depends on `Span<T>`.
 - 24Bit Signed Integer Structure `Int24`
@@ -25,4 +24,4 @@ CSCodec is an open-source Codec development library that has many features suppo
 ### Project Goals: ###
 - .NET Standard/Core/Frameworks, Mono, and **Xamarin** Support
 - Inter-operation with [CSCore](https://github.com/filoe/cscore), [NAudio](https://github.com/naudio/NAudio), [MonoGame](https://github.com/MonoGame/MonoGame), etc...(*these parts will be licensed under Ms-PL*)
-- Reference Implementations of cross-platform Apache-2.0 licensed FLAC Decoder and **Encoder** for both Samples and Uses.
+- Reference Implementations of cross-platform FLAC Decoder and **Encoder** for both Samples and Uses.

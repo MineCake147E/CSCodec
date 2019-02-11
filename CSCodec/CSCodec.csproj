@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Binary\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="Filters\Transformation\TDACTypes.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
