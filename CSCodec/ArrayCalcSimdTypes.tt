@@ -20,32 +20,6 @@ using System.Runtime.CompilerServices;
 namespace CSCodec{
 	public static partial class ArrayCalculationExtensions
 	{
-	<#foreach(var type in typegenMul){#>
-
-		/// <summary>
-		/// Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-		/// </summary>
-		/// <param name="buffer">The array to scale.</param>
-		/// <param name="offset">The offset to scale.</param>
-		/// <param name="count">The count of element.</param>
-		/// <param name="scale">The scale.</param>
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		[DebuggerNonUserCode()]
-		public static void ScaleArray(this <#= type #>[] buffer, int offset, int count, <#= type #> scale)
-		{
-			int procCountFinal = count % Vector<<#= type #>>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
-			{
-				(new Vector<<#= type #>>(buffer, i) * scale).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] *= scale;
-			}
-		}
-	<#}#>
 	<#foreach(var type in typegenAddSub){#>
 		/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.

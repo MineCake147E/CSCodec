@@ -22,8 +22,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -37,13 +39,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -57,6 +60,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		/// <summary>
 		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
@@ -70,8 +74,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -85,13 +91,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -105,6 +112,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		/// <summary>
 		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
@@ -118,8 +126,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -133,13 +143,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -153,6 +164,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		/// <summary>
 		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
@@ -166,8 +178,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -181,13 +195,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -201,6 +216,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		/// <summary>
 		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
@@ -214,8 +230,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -229,13 +247,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -249,6 +268,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		/// <summary>
 		/// Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
@@ -262,8 +282,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				CDF53Internal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			CDF53Internal(even, odd);	//Last Loop is equivalent to Haar transform
 		}
 
 		/// <summary>
@@ -277,13 +299,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
-					CDF53InverseInternal(even2, odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
+					CDF53InverseInternal(even2, odd2);	//Last Loop is equivalent to Haar transform
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				CDF53InverseMultiLevelInternal(even);
-				CDF53InverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				CDF53InverseMultiLevelInternal(front);
+				CDF53InverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -297,6 +320,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			CDF53InverseMultiLevelInternal(span);
 		}
+
 		
 		
 		/// <summary>
@@ -332,18 +356,18 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
-				{
-					//-Update
-					odd[i] -= (Int24)((even[i - 1] + even[i] + 2) >> 2);
-				}
-				odd[odd.Length - 1] -= (Int24)((even[0] + 1) >> 1);
-				even[0] += odd[even.Length - 1];
+				even[0] -= (Int24)((odd[0] + 1) >> 1);
 				for (int i = 1; i < even.Length; i++)
 				{
-					//+Predict
-					even[i] += (Int24)((odd[i] + odd[i + 1]) >> 1);
+					//-Update
+					even[i] -= (Int24)((odd[i - 1] + odd[i] + 2) >> 2);
 				}
+				for (int i = 0; i < even.Length - 1; i++)
+				{
+					//+Predict
+					odd[i] += (Int24)((even[i] + even[i + 1]) >> 1);
+				}
+				odd[odd.Length - 1] += even[even.Length - 1];
 			}
 		}
 		
@@ -380,18 +404,18 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
-				{
-					//-Update
-					odd[i] -= (short)((even[i - 1] + even[i] + 2) >> 2);
-				}
-				odd[odd.Length - 1] -= (short)((even[0] + 1) >> 1);
-				even[0] += odd[even.Length - 1];
+				even[0] -= (short)((odd[0] + 1) >> 1);
 				for (int i = 1; i < even.Length; i++)
 				{
-					//+Predict
-					even[i] += (short)((odd[i] + odd[i + 1]) >> 1);
+					//-Update
+					even[i] -= (short)((odd[i - 1] + odd[i] + 2) >> 2);
 				}
+				for (int i = 0; i < even.Length - 1; i++)
+				{
+					//+Predict
+					odd[i] += (short)((even[i] + even[i + 1]) >> 1);
+				}
+				odd[odd.Length - 1] += even[even.Length - 1];
 			}
 		}
 		
@@ -428,18 +452,18 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
-				{
-					//-Update
-					odd[i] -= (sbyte)((even[i - 1] + even[i] + 2) >> 2);
-				}
-				odd[odd.Length - 1] -= (sbyte)((even[0] + 1) >> 1);
-				even[0] += odd[even.Length - 1];
+				even[0] -= (sbyte)((odd[0] + 1) >> 1);
 				for (int i = 1; i < even.Length; i++)
 				{
-					//+Predict
-					even[i] += (sbyte)((odd[i] + odd[i + 1]) >> 1);
+					//-Update
+					even[i] -= (sbyte)((odd[i - 1] + odd[i] + 2) >> 2);
 				}
+				for (int i = 0; i < even.Length - 1; i++)
+				{
+					//+Predict
+					odd[i] += (sbyte)((even[i] + even[i + 1]) >> 1);
+				}
+				odd[odd.Length - 1] += even[even.Length - 1];
 			}
 		}
 				
@@ -452,14 +476,16 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
+				int i;
+				for (i = 0; i < odd.Length - 1; i++)
 				{
 					//-Predict
 					odd[i] -= 0.5f * (even[i] + even[i + 1]);
 				}
-				odd[odd.Length - 1] -= even[even.Length - 1];
+				odd[i] -= even[i];
+
 				even[0] += 0.5f * odd[0];
-				for (int i = 1; i < even.Length; i++)
+				for (i = 1; i < even.Length; i++)
 				{
 					//+Update
 					even[i] += 0.25f * (odd[i - 1] + odd[i]);
@@ -476,18 +502,20 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
+				int i;
+				even[0] -= 0.5f * odd[0];
+				for (i = 1; i < odd.Length; i++)
 				{
 					//-Update
-					odd[i] -= 0.25f * (even[i - 1] + even[i]);
+					even[i] -= 0.25f * (odd[i - 1] + odd[i]);
 				}
-				odd[odd.Length - 1] -= 0.5f * even[0];
-				even[0] += odd[even.Length - 1];
-				for (int i = 1; i < even.Length; i++)
+
+				for (i = 0; i < even.Length - 1; i++)
 				{
 					//+Predict
-					even[i] += 0.5f * (odd[i] + odd[i + 1]);
+					odd[i] += 0.5f * (even[i] + even[i + 1]);
 				}
+				odd[i] += even[i];
 			}
 		}
 		
@@ -500,14 +528,16 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
+				int i;
+				for (i = 0; i < odd.Length - 1; i++)
 				{
 					//-Predict
 					odd[i] -= 0.5f * (even[i] + even[i + 1]);
 				}
-				odd[odd.Length - 1] -= even[even.Length - 1];
+				odd[i] -= even[i];
+
 				even[0] += 0.5f * odd[0];
-				for (int i = 1; i < even.Length; i++)
+				for (i = 1; i < even.Length; i++)
 				{
 					//+Update
 					even[i] += 0.25f * (odd[i - 1] + odd[i]);
@@ -524,18 +554,20 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
+				int i;
+				even[0] -= 0.5f * odd[0];
+				for (i = 1; i < odd.Length; i++)
 				{
 					//-Update
-					odd[i] -= 0.25f * (even[i - 1] + even[i]);
+					even[i] -= 0.25f * (odd[i - 1] + odd[i]);
 				}
-				odd[odd.Length - 1] -= 0.5f * even[0];
-				even[0] += odd[even.Length - 1];
-				for (int i = 1; i < even.Length; i++)
+
+				for (i = 0; i < even.Length - 1; i++)
 				{
 					//+Predict
-					even[i] += 0.5f * (odd[i] + odd[i + 1]);
+					odd[i] += 0.5f * (even[i] + even[i + 1]);
 				}
+				odd[i] += even[i];
 			}
 		}
 		

@@ -50,17 +50,17 @@ namespace CSCodec.Filters.Transformation
 		{
 			unchecked
 			{
-				for (int i = 0; i < odd.Length - 1; i++)
+				even[0] -= (int)((odd[0] + 1L) >> 1);
+				for (int i = 1; i < odd.Length; i++)
 				{
 					//-Update
-					odd[i] -= (int)((2L + even[i - 1] + even[i]) >> 2);
+					even[i] -= (int)((2L + odd[i - 1] + odd[i]) >> 2);
 				}
-				odd[odd.Length - 1] -= (int)((even[0] + 1L) >> 1);
-				even[0] += odd[even.Length - 1];
-				for (int i = 1; i < even.Length; i++)
+				odd[odd.Length - 1] += even[even.Length - 1];
+				for (int i = 0; i < even.Length - 1; i++)
 				{
 					//+Predict
-					even[i] += (int)(((long)odd[i] + odd[i + 1]) >> 1);
+					odd[i] += (int)(((long)even[i] + even[i + 1]) >> 1);
 				}
 			}
 		}

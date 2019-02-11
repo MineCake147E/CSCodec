@@ -55,6 +55,66 @@ namespace CSCodec.Filters.Transformation
 			}
 			//temp gets released here
 		}
+
+		/// <summary>Splits the specified array to front and back halfs.</summary>
+		/// <param name="source">The source.</param>
+		/// <param name="front">The front elements.</param>
+		/// <param name="back">The back elements.</param>
+		/// <exception cref="ArgumentException">The source's length was odd.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void SplitHalf(Span<<#= type #>> source, out Span<<#= type #>> front, out Span<<#= type #>> back)
+		{
+			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
+			source.SplitHalfInternal(out front, out back);
+		}
+
+		/// <summary>Splits the specified array to front and back halfs.</summary>
+		/// <param name="source">The source.</param>
+		/// <param name="front">The front elements.</param>
+		/// <param name="back">The back elements.</param>
+		[DebuggerNonUserCode()]
+		private static void SplitHalfInternal(this in Span<<#= type #>> source, out Span<<#= type #>> front, out Span<<#= type #>> back)
+		{
+			front = source.Slice(0, source.Length >> 1);
+			back = source.Slice(front.Length, front.Length);
+		}
+
+		/// <summary>Splits the specified array to odd even index.</summary>
+		/// <param name="destination">The destination.</param>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		/// <exception cref="ArgumentException">The source's length was odd.</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		[DebuggerNonUserCode()]
+		public static void MergeOddEven(Span<<#= type #>> destination, out Span<<#= type #>> even, out Span<<#= type #>> odd)
+		{
+			if ((destination.Length & 1) == 1) throw new ArgumentException($"The {nameof(destination)}'s length must be even!");
+			destination.MergeOddEvenInternal(out even, out odd);
+		}
+
+		/// <summary>Splits the specified array to odd even index.</summary>
+		/// <param name="destination">The destination.</param>
+		/// <param name="even">The even elements.</param>
+		/// <param name="odd">The odd elements.</param>
+		[DebuggerNonUserCode()]
+		private static void MergeOddEvenInternal(this in Span<<#= type #>> destination, out Span<<#= type #>> even, out Span<<#= type #>> odd)
+		{
+			even = destination.Slice(0, destination.Length >> 1);
+			Span<<#= type #>> temp = stackalloc <#= type #>[even.Length];
+			odd = destination.Slice(even.Length, even.Length);
+			even.CopyTo(temp);
+			int j = 0;
+			unchecked
+			{
+				for (int i = 0; i < even.Length; i++, j += 2)
+				{
+					destination[j] = temp[i];
+					destination[j | 1] = odd[i];
+				}
+			}
+			//temp gets released here
+		}
 	<#}#>
 
 	}

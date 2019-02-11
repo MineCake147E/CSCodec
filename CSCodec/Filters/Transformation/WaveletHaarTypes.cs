@@ -22,8 +22,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -37,13 +39,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -70,8 +73,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -85,13 +90,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -118,8 +124,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -133,13 +141,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -166,8 +175,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -181,13 +192,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -214,8 +226,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -229,13 +243,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 
@@ -262,8 +277,10 @@ namespace CSCodec.Filters.Transformation
 			do
 			{
 				HaarInternal(even, odd);
-				even.ArrangeOddEven(out even, out odd);
+				even.ArrangeOddEven(out var newEven, out odd);
+				even = newEven;
 			} while (even.Length > 1);
+			HaarInternal(even, odd);
 		}
 
 		/// <summary>
@@ -277,13 +294,14 @@ namespace CSCodec.Filters.Transformation
 			{
 				if (span.Length == 2)
 				{
-					span.ArrangeOddEven(out var even2, out var odd2);
+					span.SplitHalfInternal(out var even2, out var odd2);
 					HaarInverseInternal(even2, odd2);
 					return;
 				}
-				span.ArrangeOddEven(out var even, out var odd);
-				HaarInverseMultiLevelInternal(even);
-				HaarInverseInternal(even, odd);
+				span.SplitHalfInternal(out var front, out var back);
+				HaarInverseMultiLevelInternal(front);
+				HaarInverseInternal(front, back);
+				span.MergeOddEvenInternal(out var even, out var odd);
 			}
 		}
 

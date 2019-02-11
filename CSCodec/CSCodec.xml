@@ -9,42 +9,6 @@
             Hardware-Accelerated (or not) array manipulation.
             </summary>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int32[],System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int32,System.Int32,System.Int16)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Int32,System.Int32,System.Single)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Int32,System.Int32,System.Double)">
-            <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="buffer">The array to scale.</param>
-            <param name="offset">The offset to scale.</param>
-            <param name="count">The count of element.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int32[],System.Int32,System.Int32[],System.Int32,System.Int32)">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
@@ -329,6 +293,222 @@
             <param name="destination">The destination.</param>
             <exception cref="T:System.ArgumentException">complices' length and destination's must be same!!!</exception>
         </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int32[],System.Int32)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int16)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Single)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Double)">
+            <summary>
+            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="buffer">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="T:CSCodec.Binary.BitReader">
+            <summary>
+            Reads data in bit.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.BitReader.disposedValue">
+            <summary>
+            The value which indicates whether this instance is disposed or not.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Binary.BitReader.ByteOrder">
+            <summary>
+            Gets or sets the byte order for reading integers larger than 8bit.
+            </summary>
+            <value>
+            The byte order.
+            </value>
+        </member>
+        <member name="F:CSCodec.Binary.BitReader.BaseStream">
+            <summary>
+            The base stream
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.BitReader.buffer">
+            <summary>
+            The buffer
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.#ctor(System.IO.Stream,System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.BitReader"/> class.
+            </summary>
+            <param name="BaseStream">The base stream.</param>
+            <param name="bufferSize">The internal buffer's size in bytes.</param>
+            <exception cref="T:System.ArgumentNullException">BaseStream</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">BufferWidth - BufferWidth must be equal or greater than 16!</exception>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBit">
+            <summary>
+            Reads the next bit.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadByte">
+            <summary>
+            Reads the next byte value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadSignedByte">
+            <summary>
+            Reads the next signed byte value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadUInt16">
+            <summary>
+            Reads the next UInt16 value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadInt16">
+            <summary>
+            Reads the next Int16 value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadUInt32">
+            <summary>
+            Reads the next UInt32 value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadInt32">
+            <summary>
+            Reads the next Int32 value.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadUInt64">
+            <summary>
+            Reads the next UInt64 value.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBytes(System.Memory{System.Byte})">
+            <summary>
+            Reads the bytes from this stream.
+            </summary>
+            <param name="outBuffer">The buffer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadEnum``1">
+            <summary>
+            Reads the next specified N-bit enum from current stream.
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum"/> type that has <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> attribute.</typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBits(System.Int32)">
+            <summary>
+            Reads the next specified N-bit stream from current stream.
+            </summary>
+            <param name="size">The number of bits read.</param>
+            <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBitsShorterThan64(System.Int32)">
+            <summary>
+            Reads the next specified N-bit stream from current stream.
+            </summary>
+            <param name="size">The number of bits read.</param>
+            <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">size - Size must be smaller than 64 and larger than 0!</exception>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadRemainingBitsInIntermediateBuffer(System.Byte@,System.Int32@)">
+            <summary>
+            Reads the remaining bits in intermediate buffer.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:CSCodec.Binary.BitUtils">
+             <summary>
+            
+             </summary>
+             TODO Edit XML Comment Template for BitUtils
+        </member>
+        <member name="M:CSCodec.Binary.BitUtils.Read(System.Span{System.Byte})">
+            <summary>
+            Reads the specified buffer.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">buffer should be longer than 4 bytes. - buffer</exception>
+        </member>
+        <member name="T:CSCodec.Binary.ByteOrder">
+            <summary>
+            Represents ByteOrder
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.ByteOrder.LittleEndian">
+            <summary>
+            Little Endian(0x01234567 => 0x67 0x45 0x23 0x01)
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.ByteOrder.BigEndian">
+            <summary>
+            Big Endian(0x01234567 => 0x01 0x23 0x45 0x67)
+            </summary>
+        </member>
+        <member name="T:CSCodec.Binary.CustomCoderBase">
+             <summary>
+            
+             </summary>
+             TODO Edit XML Comment Template for CustomCoderBase
+        </member>
+        <member name="T:CSCodec.Binary.EnumBitWidthAttribute">
+            <summary>
+            An attribute that explains how many bits the Enum spends for recording.
+            BitReader and BitWriter assumes the specified Enum has the specified width.
+            </summary>
+            <seealso cref="T:System.Attribute" />
+        </member>
+        <member name="P:CSCodec.Binary.EnumBitWidthAttribute.BitWidth">
+            <summary>
+            Gets the Width of the Enum in bits.
+            </summary>
+            <value>
+            The Width of the Enum in bits.
+            </value>
+        </member>
+        <member name="M:CSCodec.Binary.EnumBitWidthAttribute.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> class.
+            </summary>
+            <param name="BitWidth">Width of the Enum in bits.</param>
+        </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
             Audio encoding.
@@ -439,6 +619,19 @@
             The size of the extra.
             </value>
         </member>
+        <member name="T:CSCodec.Debug.DebugUtils">
+            <summary>
+            Debugging utilities
+            </summary>
+        </member>
+        <member name="M:CSCodec.Debug.DebugUtils.DumpArray``1(System.Span{``0},System.String)">
+            <summary>
+            Dumps the array to the Console.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array">The array.</param>
+            <param name="format">The formatting codes.</param>
+        </member>
         <member name="T:CSCodec.DecoderBase">
             <summary>
             The Base class for Codecs.
@@ -537,22 +730,6 @@
             In fact, not only DCT-IV, any reversible transform (e.g. wavelet transform) can be applied for TDAC.
             </summary>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int24}@,System.Span{System.Int24}@)">
-            <summary>
-            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int24}@,System.Span{System.Int24}@)">
-            <summary>
-            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
-        </member>
         <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int32}@,System.Span{System.Int32}@)">
             <summary>
             Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
@@ -578,6 +755,22 @@
             <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
         </member>
         <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>
+            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>
+            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
+            </summary>
+            <param name="input">The input buffer.</param>
+            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
+            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int24}@,System.Span{System.Int24}@)">
             <summary>
             Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
             </summary>
@@ -1021,6 +1214,32 @@
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Int32},System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Int32}@,System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Int32},System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Int32}@,System.Span{System.Int32}@,System.Span{System.Int32}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
@@ -1031,6 +1250,32 @@
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
@@ -1047,6 +1292,32 @@
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Int16},System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Int16}@,System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Int16},System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Int16}@,System.Span{System.Int16}@,System.Span{System.Int16}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.SByte},System.Span{System.SByte}@,System.Span{System.SByte}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
@@ -1057,6 +1328,32 @@
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.SByte}@,System.Span{System.SByte}@,System.Span{System.SByte}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.SByte},System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.SByte}@,System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.SByte},System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.SByte}@,System.Span{System.SByte}@,System.Span{System.SByte}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
@@ -1073,6 +1370,32 @@
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Single},System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Single}@,System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Single},System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Single}@,System.Span{System.Single}@,System.Span{System.Single}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Double},System.Span{System.Double}@,System.Span{System.Double}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
@@ -1083,6 +1406,32 @@
         <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Double}@,System.Span{System.Double}@,System.Span{System.Double}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Double},System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Double}@,System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Double},System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Double}@,System.Span{System.Double}@,System.Span{System.Double}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <param name="destination">The destination.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
@@ -1145,31 +1494,172 @@
               <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="F:CSCodec.FunctionValueType.Raster">
+        <member name="T:CSCodec.Utils.LambdaStream">
             <summary>
-            サンプル
+            Lambda-Expression Specified Stream
+            </summary>
+            <seealso cref="T:System.IO.Stream" />
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.#ctor(System.Func{System.Byte[],System.Int32,System.Int32,System.Int32},System.Func{System.Int64,System.IO.SeekOrigin,System.Int64},System.Action,System.Action{System.Byte[],System.Int32,System.Int32},System.Func{System.Int64},System.Action{System.Int64},System.Func{System.Int64},System.Action{System.Int64})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Utils.LambdaStream"/> class.
+            </summary>
+            <param name="readFunction">The read function.</param>
+            <param name="seekFunction">The seek function.</param>
+            <param name="flushFunction">The flush function.</param>
+            <param name="writeFunction">The write function.</param>
+            <param name="lengthGetFunction">The length get function.</param>
+            <param name="setLengthFunction">The set length function.</param>
+            <param name="positionGetFunction">The position get function.</param>
+            <param name="positionSetFunction">The position set function.</param>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.ReadFunction">
+            <summary>
+            Gets the <see cref="M:CSCodec.Utils.LambdaStream.Read(System.Byte[],System.Int32,System.Int32)"/> function.
+            </summary>
+            <value>
+            The read function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.SeekFunction">
+            <summary>
+            Gets the <see cref="M:CSCodec.Utils.LambdaStream.Seek(System.Int64,System.IO.SeekOrigin)"/> function.
+            </summary>
+            <value>
+            The seek function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.FlushFunction">
+            <summary>
+            Gets the <see cref="M:CSCodec.Utils.LambdaStream.Flush"/> function.
+            </summary>
+            <value>
+            The flush function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.WriteFunction">
+            <summary>
+            Gets the <see cref="M:CSCodec.Utils.LambdaStream.Write(System.Byte[],System.Int32,System.Int32)"/> function.
+            </summary>
+            <value>
+            The write function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.LengthGetFunction">
+            <summary>
+            Gets the <see cref="P:CSCodec.Utils.LambdaStream.Length"/> get function.
+            </summary>
+            <value>
+            The length get function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.SetLengthFunction">
+            <summary>
+            Gets the <see cref="M:CSCodec.Utils.LambdaStream.SetLength(System.Int64)"/> function.
+            </summary>
+            <value>
+            The set length function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.PositionGetFunction">
+            <summary>
+            Gets the <see cref="P:CSCodec.Utils.LambdaStream.Position"/> get function.
+            </summary>
+            <value>
+            The position get function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.PositionSetFunction">
+            <summary>
+            Gets the <see cref="P:CSCodec.Utils.LambdaStream.Position"/> set function.
+            </summary>
+            <value>
+            The position set function.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.CanRead">
+            <summary>
+            Gets a value indicating whether the current stream supports reading.
             </summary>
         </member>
-        <member name="F:CSCodec.FunctionValueType.Vector">
+        <member name="P:CSCodec.Utils.LambdaStream.CanSeek">
             <summary>
-            ブロック
+            Gets a value indicating whether the current stream supports seeking.
             </summary>
         </member>
-        <member name="F:CSCodec.FunctionValueType.RasterBit">
+        <member name="P:CSCodec.Utils.LambdaStream.CanWrite">
             <summary>
-            ビット
+            Gets a value indicating whether the current stream supports writing.
             </summary>
         </member>
-        <member name="F:CSCodec.FunctionValueType.ByteArray">
+        <member name="P:CSCodec.Utils.LambdaStream.Length">
             <summary>
-            バイト列
+            Gets the length in bytes of the stream.
             </summary>
+        </member>
+        <member name="P:CSCodec.Utils.LambdaStream.Position">
+            <summary>
+            Gets or sets the position within the current stream.
+            </summary>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.Flush">
+            <summary>
+            Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between offset and (offset + count - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the origin parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"></see> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.SetLength(System.Int64)">
+            <summary>
+            Sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+        </member>
+        <member name="M:CSCodec.Utils.LambdaStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies count bytes from buffer to the current stream.</param>
+            <param name="offset">The zero-based byte offset in buffer at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
         </member>
         <member name="T:System.Int24">
             <summary>
             An simple representation of 24bit signed integer.
             </summary>
             <seealso cref="T:System.IEquatable`1" />
+        </member>
+        <member name="F:System.Int24.MaxValue">
+            <summary>
+            Represents the largest possible value of an System.Int24. This field is constant.
+            </summary>
+        </member>
+        <member name="F:System.Int24.MinValue">
+            <summary>
+            Represents the smallest possible value of System.Int24. This field is constant.
+            </summary>
         </member>
         <member name="M:System.Int24.#ctor(System.Byte,System.Byte,System.Byte)">
             <summary>
@@ -1258,61 +1748,6 @@
             The result of the conversion.
             </returns>
         </member>
-        <member name="M:System.Int24.op_Addition(System.Int24,System.Int24)">
-            <summary>
-            Implements the operator +.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-        </member>
-        <member name="M:System.Int24.op_Subtraction(System.Int24,System.Int24)">
-            <summary>
-            Implements the operator -.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-            TODO Edit XML Comment Template for -
-        </member>
-        <member name="M:System.Int24.op_Multiply(System.Int24,System.Int24)">
-            <summary>
-            Implements the operator *.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-            TODO Edit XML Comment Template for *
-        </member>
-        <member name="M:System.Int24.op_Division(System.Int24,System.Int24)">
-            <summary>
-            Implements the operator /.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-            TODO Edit XML Comment Template for /
-        </member>
-        <member name="M:System.Int24.op_RightShift(System.Int24,System.Int32)">
-            <summary>
-            Performs an right-shift operation and returns to specified value.
-            </summary>
-            <param name="a">a.</param>
-            <param name="b">The b.</param>
-            <returns>
-            The result of the operator.
-            </returns>
-            TODO Edit XML Comment Template for >>
-        </member>
-        <!-- 正しくない形式の XML コメントがメンバー "M:System.Int24.op_LeftShift(System.Int24,System.Int32)" で無視されました -->
         <member name="M:System.Int24.op_Equality(System.Int24,System.Int24)">
             <summary>
             Indicates whether the values of two specified <see cref="T:System.Int24"/> objects are equal.

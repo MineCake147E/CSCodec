@@ -5,8 +5,8 @@
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <# string[] typegenSigned = new string[]{"int", "Int24", "short", "sbyte", "float"}; #>
-<# string[] typegenCasted = new string[]{"short", "sbyte"}; #>
-<# string[] typegenCastless = new string[]{"Int24", "int", "float"}; #>
+<# string[] typegenCasted = new string[]{"Int24", "short", "sbyte"}; #>
+<# string[] typegenCastless = new string[]{"int", "float"}; #>
 <# string[] typegenFloat = new string[]{"float"}; #>
 <#@ output extension=".cs" #>
 using System;

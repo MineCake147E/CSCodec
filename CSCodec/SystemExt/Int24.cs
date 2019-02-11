@@ -22,6 +22,16 @@ namespace System
 		private readonly byte head;
 
 		/// <summary>
+		/// Represents the largest possible value of an System.Int24. This field is constant.
+		/// </summary>
+		public static readonly Int24 MaxValue = (Int24)8388607;
+
+		/// <summary>
+		/// Represents the smallest possible value of System.Int24. This field is constant.
+		/// </summary>
+		public static readonly Int24 MinValue = (Int24)(-8388608);
+
+		/// <summary>
 		/// Initializes a new instance of the <see cref="Int24"/> struct.
 		/// </summary>
 		/// <param name="tail">The tail.</param>
@@ -102,7 +112,7 @@ namespace System
 		/// </returns>
 		public static implicit operator int(Int24 v)
 		{
-			return ((v.tail << 8) | (v.middle << 16) | (v.head << 24)) >> 8;
+			return (int)(((long)v.tail << 8) | ((long)v.middle << 16) | ((long)v.head << 24)) >> 8;
 		}
 
 		/// <summary>
@@ -124,7 +134,7 @@ namespace System
 		/// <returns>
 		/// The result of the conversion.
 		/// </returns>
-		public static explicit operator Int24(int v) => new Int24(v << 8);
+		public static explicit operator Int24(int v) => new Int24((int)((long)v << 8));
 
 		/// <summary>
 		/// Performs an explicit conversion from <see cref="Int24"/> to <see cref="float"/>.
@@ -143,89 +153,6 @@ namespace System
 		/// The result of the conversion.
 		/// </returns>
 		public static explicit operator Int24(double value) => (Int24)(int)value;
-
-		/// <summary>
-		/// Implements the operator +.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		public static Int24 operator +(Int24 a, Int24 b)
-		{
-			return new Int24((int)a + b);
-		}
-
-		/// <summary>
-		/// Implements the operator -.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		/// TODO Edit XML Comment Template for -
-		public static Int24 operator -(Int24 a, Int24 b)
-		{
-			return (Int24)((int)a - b);
-		}
-
-		/// <summary>
-		/// Implements the operator *.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		/// TODO Edit XML Comment Template for *
-		public static Int24 operator *(Int24 a, Int24 b)
-		{
-			return (Int24)((int)a * b);
-		}
-
-		/// <summary>
-		/// Implements the operator /.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		/// TODO Edit XML Comment Template for /
-		public static Int24 operator /(Int24 a, Int24 b)
-		{
-			return (Int24)((int)a + b);
-		}
-
-		/// <summary>
-		/// Performs an right-shift operation and returns to specified value.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		/// TODO Edit XML Comment Template for >>
-		public static Int24 operator >>(Int24 a, int b)
-		{
-			return (Int24)((int)a >> b);
-		}
-
-		/// <summary>
-		/// Implements the operator &lt;&lt;.
-		/// </summary>
-		/// <param name="a">a.</param>
-		/// <param name="b">The b.</param>
-		/// <returns>
-		/// The result of the operator.
-		/// </returns>
-		/// TODO Edit XML Comment Template for <<
-		public static Int24 operator <<(Int24 a, int b)
-		{
-			return (Int24)((int)a << b);
-		}
 
 		/// <summary>
 		/// Indicates whether the values of two specified <see cref="Int24"/> objects are equal.
