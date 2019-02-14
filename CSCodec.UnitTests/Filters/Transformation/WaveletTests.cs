@@ -164,5 +164,31 @@ namespace CSCodec.UnitTests.Filters.Transformation
 				throw;
 			}
 		}
+
+		[TestCase]
+		public void Test1()
+		{
+			double[] array = new double[2048];
+			for (int i = 0; i < array.Length; i++)
+			{
+				array[i] = Math.Sign(Math.Sin(2.0 * Math.PI * (i + 0.5) / array.Length));
+			}
+			double[] copy = new double[array.Length];
+			Array.Copy(array, copy, array.Length);
+
+			Span<double> span = new Span<double>(array);
+
+			WaveletTransformation.CDF53MultiLevel(span);
+
+			Span<double> transformed = stackalloc double[array.Length];
+			span.CopyTo(transformed);
+
+			Console.WriteLine("Source,Transformed");
+			for (int i = 0; i < array.Length; i++)
+			{
+				Console.WriteLine($"{copy[i]}, {transformed[i]}");
+			}
+			Assert.AreEqual(0, 0);
+		}
 	}
 }

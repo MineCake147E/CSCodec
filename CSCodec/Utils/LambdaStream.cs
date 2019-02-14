@@ -9,7 +9,7 @@ namespace CSCodec.Utils
 	/// Lambda-Expression Specified Stream
 	/// </summary>
 	/// <seealso cref="Stream" />
-	public sealed class LambdaStream : Stream
+	public sealed partial class LambdaStream : Stream
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="LambdaStream"/> class.

@@ -8,7 +8,7 @@ CSCodec is an open-source Codec development library that has many features suppo
 - 24Bit Signed Integer Structure `Int24`
 - An original **Fully Managed Fast Fourier Transform (FFT) implementation** for `System.Numerics.Complex` arrays.
   - Looks like there's only implementations licensed under [LGPL](https://www.gnu.org/licenses/lgpl-3.0.en.html) or [Ms-PL](https://github.com/MineCake147E/MonoGame.TexturedGeometry2D/blob/master/LICENSE.md), but it is implemented under Apache-2.0.
-- A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT which is described above
+- A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT
 - Wavelet Transform(Haar and CDF 5/3 Wavelets for now) for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - Hardware-Accelerated Add, Subtract, and Scalar Multiply for Arrays using `System.Numerics.Vector<T>`

@@ -14,7 +14,7 @@ namespace CSCodec.Binary
 	/// <summary>
 	/// Reads data in bit.
 	/// </summary>
-	public partial class BitReader
+	public partial class BitReader : IDisposable
 	{
 		/// <summary>
 		/// The value which indicates whether this instance is disposed or not.
@@ -43,9 +43,23 @@ namespace CSCodec.Binary
 		/// <summary>
 		/// The buffer
 		/// </summary>
-		private byte buffer;
+		private byte internalCache;
 
 		private int currentIndex;
+
+		/// <summary>
+		/// Gets the number of bits remaining. Equivalent to 8 - <see cref="currentIndex"/>.
+		/// </summary>
+		/// <value>
+		/// The number of bits remaining.
+		/// </value>
+		private int BitsRemaining
+		{
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			get => 8 - currentIndex;
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			set => currentIndex = 8 - value;
+		}
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BitReader"/> class.
@@ -57,26 +71,34 @@ namespace CSCodec.Binary
 		public BitReader(Stream BaseStream, int bufferSize = 256)
 		{
 			this.BaseStream = BaseStream ?? throw new ArgumentNullException(nameof(BaseStream));
-			bufferedStream = new BufferedStream(BaseStream);
+			bufferedStream = new BufferedStream(BaseStream, bufferSize);
 			reader = new BinaryReader(bufferedStream);
-			currentIndex = 0;
-			buffer = reader.ReadByte();
+			BitsRemaining = 8;
+			AdvanceBuffer();
 		}
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void AdvanceBuffer()
 		{
 			currentIndex = 0;
-			buffer = reader.ReadByte();
+			FillBuffer();
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		private void FillBuffer()
+		{
+			internalCache = reader.ReadByte();
 		}
 
 		/// <summary>
 		/// Reads the next bit.
 		/// </summary>
 		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public bool ReadBit()
 		{
-			bool value = (buffer & HSBMask) == HSBMask;
-			buffer <<= 1;
+			bool value = (internalCache & HSBMask) == HSBMask;
+			internalCache <<= 1;
 			currentIndex++;
 			if (currentIndex == 8)
 			{
@@ -89,39 +111,50 @@ namespace CSCodec.Binary
 		/// Reads the next byte value.
 		/// </summary>
 		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public byte ReadByte()
 		{
-			byte value = buffer;
-			AdvanceBuffer();
-			if (currentIndex == 0) return value;
-			value |= (byte)(buffer >> currentIndex);
-			return value;
+			byte value = internalCache; // Obtaining ab###### (#: invalid)
+			FillBuffer();   //Read new 0bABCDEFGH
+			if (currentIndex == 0) return value;    //Means internalCache(abcdefgh) was all valid
+			value |= (byte)(internalCache >> BitsRemaining);    //now we need 0b00ABCDEF
+			internalCache <<= currentIndex; //Assigning 0bGH######
+			return value;   //returning abCDEFGH(0bxxxxxxxx) is all valid
 		}
 
 		/// <summary>
 		/// Reads the next signed byte value.
 		/// </summary>
 		/// <returns></returns>
-		public sbyte ReadSignedByte() => (sbyte)ReadByte();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public sbyte ReadSignedByte() => unchecked((sbyte)ReadByte());
 
 		/// <summary>
 		/// Reads the next UInt16 value.
 		/// </summary>
 		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ushort ReadUInt16()
 		{
-			ushort a = ReadByte();
-			ushort b = ReadByte();
-			switch (ByteOrder)
+			if (currentIndex == 0)
 			{
-				case ByteOrder.LittleEndian:
-					return (ushort)((b << 8) | a);
-
-				case ByteOrder.BigEndian:
-					return (ushort)((a << 8) | b);
-
-				default:
-					throw new InvalidOperationException();
+				ushort value = (ushort)(internalCache << 8);    //Obtaining abcdefgh ########
+				FillBuffer();   //Read new ABCDEFGH
+				value |= internalCache; //Now value became abcdefgh ABCDEFGH
+				FillBuffer();   //Fill buffer for next read
+				if (ByteOrder != ByteOrder.BigEndian) return BinaryPrimitives.ReverseEndianness(value); //Read as Big-Endianed so needs reversal
+				return value;
+			}
+			else
+			{
+				ushort value = (ushort)(internalCache << 8);    //Obtaining ab###### ########
+				FillBuffer();   //Read new ABCDEFGH
+				value |= (ushort)(internalCache << BitsRemaining);  //Now value became abABCDEF GH######
+				FillBuffer();   //Read new STUVWXYZ
+				value |= (ushort)(internalCache >> currentIndex);   //Now value became abABCDEF GHSTUVWX
+				internalCache <<= currentIndex; //Assigning 0bYZ######
+				if (ByteOrder != ByteOrder.BigEndian) return BinaryPrimitives.ReverseEndianness(value); //Read as Big-Endianed so needs reversal
+				return value;
 			}
 		}
 
@@ -129,26 +162,25 @@ namespace CSCodec.Binary
 		/// Reads the next Int16 value.
 		/// </summary>
 		/// <returns></returns>
-		public short ReadInt16() => (short)ReadUInt16();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public short ReadInt16() => unchecked((short)ReadUInt16());
 
 		/// <summary>
 		/// Reads the next UInt32 value.
 		/// </summary>
 		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public uint ReadUInt32()
 		{
-			uint a = ReadUInt16();
-			uint b = ReadUInt16();
-			switch (ByteOrder)
+			unchecked
 			{
-				case ByteOrder.LittleEndian:
-					return (b << 16) | a;
-
-				case ByteOrder.BigEndian:
-					return (a << 16) | b;
-
-				default:
-					throw new InvalidOperationException();
+				var end = ByteOrder;
+				ByteOrder = ByteOrder.LittleEndian;
+				uint value = ReadUInt16();
+				value |= (uint)(ReadUInt16() << 16);
+				ByteOrder = end;
+				if (end != ByteOrder.LittleEndian) return BinaryPrimitives.ReverseEndianness(value); //Read as Little-Endianed so needs reversal
+				return value;
 			}
 		}
 
@@ -156,13 +188,15 @@ namespace CSCodec.Binary
 		/// Reads the next Int32 value.
 		/// </summary>
 		/// <returns></returns>
-		public int ReadInt32() => (int)ReadUInt32();
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public int ReadInt32() => unchecked((int)ReadUInt32());
 
 		/// <summary>
 		/// Reads the next UInt64 value.
 		/// </summary>
 		/// <returns></returns>
 		/// <exception cref="InvalidOperationException"></exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public ulong ReadUInt64()
 		{
 			ulong a = ReadUInt32();
@@ -181,70 +215,107 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
+		/// Reads the next Int64 value.
+		/// </summary>
+		/// <returns></returns>
+		/// <exception cref="InvalidOperationException"></exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public long ReadInt64() => unchecked((long)ReadUInt64());
+
+		/// <summary>
 		/// Reads the bytes from this stream.
 		/// </summary>
 		/// <param name="outBuffer">The buffer.</param>
 		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public int ReadBytes(Memory<byte> outBuffer)
 		{
-			if (currentIndex == 0)
+			for (int i = 0; i < outBuffer.Length; i++)
 			{
-				outBuffer.Span[0] = buffer;
-				unsafe
-				{
-					byte[] inbuf = new byte[outBuffer.Length - 1];
-					int read = reader.Read(inbuf, 0, inbuf.Length);
-					Memory<byte> memory = inbuf;
-					memory.CopyTo(outBuffer.Slice(1));
-					AdvanceBuffer();
-					return read;
-				}
+				outBuffer.Span[i] = ReadByte();
+			}
+			return outBuffer.Length;
+		}
+
+		/// <summary>
+		/// Reads the next specified N-bit enum from current stream(Higher-bits first).
+		/// </summary>
+		/// <typeparam name="T">The <see cref="Enum"/> type in specified bit width.</typeparam>
+		/// <param name="width">The number of bits to read.
+		/// 0 means that <see cref="ReadEnumHighToLow{T}(int)"/> reads the <see cref="EnumBitWidthAttribute.BitWidth"/> for reading.</param>
+		/// <returns></returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public T ReadEnumHighToLow<T>(int width = 0) where T : unmanaged, Enum, IConvertible
+		{
+			if (width == 0)
+			{
+				var U = typeof(T);
+				if (!(Attribute.GetCustomAttribute(U, typeof(EnumBitWidthAttribute)) is EnumBitWidthAttribute attr)) throw new ArgumentException("The specified enum has no EnumBitWidthAttribute definition!");
+				ulong value = ReadBitsHighToLowShorterThan64(attr.BitWidth);
+				return (T)Enum.ToObject(U, value);  //Boxing and Unboxing so that may be slow: BETTER SOLUTION NEEDED
 			}
 			else
 			{
-				byte[] inbuf = new byte[outBuffer.Length];
-				inbuf[0] = (byte)(buffer >> currentIndex);
-				int read = reader.Read(inbuf, 1, inbuf.Length - 1);
-				int indInv = 8 - currentIndex;
-				for (int i = 0; i < outBuffer.Span.Length - 1; i++)
-				{
-					outBuffer.Span[i] = (byte)((inbuf[i] << currentIndex) | (inbuf[i + 1] >> indInv));
-				}
-				buffer = reader.ReadByte();
-				outBuffer.Span[outBuffer.Length - 1] = (byte)(inbuf[inbuf.Length - 1] << currentIndex | buffer >> indInv);
-				buffer <<= currentIndex;
-				return read;
+				ulong value = ReadBitsHighToLowShorterThan64(width);
+				return (T)Enum.ToObject(typeof(T), value);  //Boxing and Unboxing so that may be slow: BETTER SOLUTION NEEDED
 			}
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit enum from current stream.
+		/// Reads the next specified N-bit enum from current stream(Lower-bits first).
 		/// </summary>
-		/// <typeparam name="T">The <see cref="Enum"/> type that has <see cref="EnumBitWidthAttribute"/> attribute.</typeparam>
+		/// <typeparam name="T">The <see cref="Enum"/> type in specified bit width.</typeparam>
+		/// <param name="width">The number of bits to read.
+		/// 0 means that <see cref="ReadEnumHighToLow{T}(int)"/> reads the <see cref="EnumBitWidthAttribute.BitWidth"/> for reading.</param>
 		/// <returns></returns>
-		public T ReadEnum<T>() where T : unmanaged, Enum, IConvertible
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public T ReadEnumLowToHigh<T>(int width = 0) where T : unmanaged, Enum, IConvertible
 		{
-			var U = typeof(T);
-			var attr = Attribute.GetCustomAttribute(U, typeof(EnumBitWidthAttribute)) as EnumBitWidthAttribute;
-			if (attr == null) throw new ArgumentException("The specified enum has no EnumBitWidthAttribute definition!");
-			ulong value = 0;    //Big Endianed bit stream =>unsigned 64bit integer
-			for (int i = 0; i < attr.BitWidth; i++)
+			if (width == 0)
 			{
-				value <<= 1;
-				value |= ReadBit() ? 1UL : 0UL;
+				var U = typeof(T);
+				if (!(Attribute.GetCustomAttribute(U, typeof(EnumBitWidthAttribute)) is EnumBitWidthAttribute attr)) throw new ArgumentException("The specified enum has no EnumBitWidthAttribute definition!");
+				ulong value = ReadBitsLowToHighShorterThan64(attr.BitWidth);
+				return (T)Enum.ToObject(U, value);  //Boxing and Unboxing so that may be slow: BETTER SOLUTION NEEDED
 			}
-			return (T)Enum.ToObject(U, value);  //Boxing and Unboxing so that may be slow: BETTER SOLUTION NEEDED
+			else
+			{
+				ulong value = ReadBitsLowToHighShorterThan64(width);
+				return (T)Enum.ToObject(typeof(T), value);  //Boxing and Unboxing so that may be slow: BETTER SOLUTION NEEDED
+			}
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream.
+		/// Reads the next specified N-bit stream from current stream(Higher-bits first).
 		/// </summary>
-		/// <param name="size">The number of bits read.</param>
+		/// <param name="size">The number of bits to read.</param>
 		/// <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
-		public BigInteger ReadBits(int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public BigInteger ReadBitsHighToLow(int size)
 		{
-			BigInteger inbuf = 0ul;
-			for (int i = 0; i < size; i++)
+			BigInteger inbuf = internalCache >> currentIndex;
+			if (size < BitsRemaining)
+			{
+				currentIndex += size;
+				inbuf >>= BitsRemaining - size;
+				internalCache <<= size;
+				return inbuf;
+			}
+			else if (size == BitsRemaining)
+			{
+				AdvanceBuffer();
+				return inbuf;
+			}
+			size -= BitsRemaining;
+			AdvanceBuffer();
+			int bytes = size - (size % 8);
+			int i;
+			for (i = 0; i < bytes; i += 8)
+			{
+				inbuf <<= 8;
+				inbuf |= ReadByte();
+			}
+			for (; i < size; i++)
 			{
 				inbuf <<= 1;
 				inbuf |= ReadBit() ? 1 : 0;
@@ -253,12 +324,31 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream.
+		/// Reads the next specified N-bit stream from current stream(Lower-bits first).
 		/// </summary>
-		/// <param name="size">The number of bits read.</param>
+		/// <param name="size">The number of bits to read.</param>
+		/// <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public BigInteger ReadBitsLowToHigh(int size)
+		{
+			BigInteger inbuf = 0;
+			BigInteger mask = 1 << size;
+			do
+			{
+				inbuf |= ReadBit() ? mask : 0;
+				mask >>= 1;
+			} while (mask > 0);
+			return inbuf;
+		}
+
+		/// <summary>
+		/// Reads the next specified N-bit stream from current stream(Higher-bits first).
+		/// </summary>
+		/// <param name="size">The number of bits to read.</param>
 		/// <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
 		/// <exception cref="ArgumentOutOfRangeException">size - Size must be smaller than 64 and larger than 0!</exception>
-		public ulong ReadBitsShorterThan64(int size)
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ulong ReadBitsHighToLowShorterThan64(int size)
 		{
 			if (size > 64 || size <= 0) throw new ArgumentOutOfRangeException(nameof(size), "Size must be smaller than 64 and larger than 0!");
 			ulong inbuf = 0ul;
@@ -271,14 +361,69 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the remaining bits in intermediate buffer.
+		/// Reads the next specified N-bit stream from current stream(Lower-bits first).
 		/// </summary>
-		/// <returns></returns>
+		/// <param name="size">The number of bits to read.</param>
+		/// <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
+		/// <exception cref="ArgumentOutOfRangeException">size - Size must be smaller than 64 and larger than 0!</exception>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public ulong ReadBitsLowToHighShorterThan64(int size)
+		{
+			if (size > 64 || size <= 0) throw new ArgumentOutOfRangeException(nameof(size), "Size must be smaller than 64 and larger than 0!");
+			ulong inbuf = 0ul;
+			ulong mask = 1ul << size;
+			do
+			{
+				inbuf |= ReadBit() ? mask : 0ul;
+				mask >>= 1;
+			} while (mask > 0);
+			return inbuf;
+		}
+
+		/// <summary>
+		/// Reads the remaining bits in intermediate buffer.
+		/// Can be used for skipping aligning zeros.
+		/// </summary>
+		/// <param name="value"></param>
+		/// <param name="length"></param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public void ReadRemainingBitsInIntermediateBuffer(out byte value, out int length)
 		{
-			value = (byte)(buffer >> currentIndex);
+			value = (byte)(internalCache >> currentIndex);
 			length = 8 - currentIndex;
 			AdvanceBuffer();
 		}
+
+		#region IDisposable Support
+
+		/// <summary>
+		/// Releases unmanaged and - optionally - managed resources.
+		/// </summary>
+		/// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+		protected virtual void Dispose(bool disposing)
+		{
+			if (!disposedValue)
+			{
+				if (disposing)
+				{
+					reader.Dispose();
+					bufferedStream.Dispose();
+					BaseStream.Dispose();
+				}
+				disposedValue = true;
+			}
+		}
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+		/// </summary>
+		public void Dispose()
+		{
+			Dispose(true);
+			//It seems necessary even without a finalizer.
+			GC.SuppressFinalize(this);
+		}
+
+		#endregion IDisposable Support
 	}
 }

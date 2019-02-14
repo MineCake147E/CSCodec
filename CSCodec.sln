@@ -7,10 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCodec", "CSCodec\CSCodec.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5FDCF39A-BED4-4A0D-B9E0-593B4A57A283}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCodec.UnitTests", "CSCodec.UnitTests\CSCodec.UnitTests.csproj", "{98D2C2B3-1DD0-4DB2-A4BA-61514605CF12}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCodec.UnitTests", "CSCodec.UnitTests\CSCodec.UnitTests.csproj", "{98D2C2B3-1DD0-4DB2-A4BA-61514605CF12}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
