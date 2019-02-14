@@ -27,6 +27,7 @@ namespace CSCodec.Binary
 		public EnumBitWidthAttribute(int BitWidth)
 		{
 			if (BitWidth <= 0) throw new ArgumentOutOfRangeException(nameof(BitWidth), "BitWidth must be grater than 0!");
+			this.BitWidth = BitWidth;
 		}
 	}
 }

@@ -41,6 +41,14 @@ namespace CSCodec.Binary
 		private readonly BinaryReader reader;
 
 		/// <summary>
+		/// Gets a value indicating whether this instance is EOF.
+		/// </summary>
+		/// <value>
+		///   <c>true</c> if this instance is EOF; otherwise, <c>false</c>.
+		/// </value>
+		public bool IsEOF { get; private set; } = false;
+
+		/// <summary>
 		/// The buffer
 		/// </summary>
 		private byte internalCache;
@@ -87,7 +95,14 @@ namespace CSCodec.Binary
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		private void FillBuffer()
 		{
-			internalCache = reader.ReadByte();
+			try
+			{
+				internalCache = reader.ReadByte();
+			}
+			catch (EndOfStreamException)
+			{
+				IsEOF = true;
+			}
 		}
 
 		/// <summary>
@@ -262,7 +277,7 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit enum from current stream(Lower-bits first).
+		/// Reads the next specified N-bit unsigned enum from current stream(Lower-bits first).
 		/// </summary>
 		/// <typeparam name="T">The <see cref="Enum"/> type in specified bit width.</typeparam>
 		/// <param name="width">The number of bits to read.
@@ -286,36 +301,15 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream(Higher-bits first).
+		/// Reads the next specified N-bit unsigned stream from current stream(Higher-bits first).
 		/// </summary>
 		/// <param name="size">The number of bits to read.</param>
 		/// <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public BigInteger ReadBitsHighToLow(int size)
 		{
-			BigInteger inbuf = internalCache >> currentIndex;
-			if (size < BitsRemaining)
-			{
-				currentIndex += size;
-				inbuf >>= BitsRemaining - size;
-				internalCache <<= size;
-				return inbuf;
-			}
-			else if (size == BitsRemaining)
-			{
-				AdvanceBuffer();
-				return inbuf;
-			}
-			size -= BitsRemaining;
-			AdvanceBuffer();
-			int bytes = size - (size % 8);
-			int i;
-			for (i = 0; i < bytes; i += 8)
-			{
-				inbuf <<= 8;
-				inbuf |= ReadByte();
-			}
-			for (; i < size; i++)
+			BigInteger inbuf = 0;
+			for (int i = 0; i < size; i++)
 			{
 				inbuf <<= 1;
 				inbuf |= ReadBit() ? 1 : 0;
@@ -324,7 +318,7 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream(Lower-bits first).
+		/// Reads the next specified N-bit unsigned stream from current stream(Lower-bits first).
 		/// </summary>
 		/// <param name="size">The number of bits to read.</param>
 		/// <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
@@ -332,7 +326,7 @@ namespace CSCodec.Binary
 		public BigInteger ReadBitsLowToHigh(int size)
 		{
 			BigInteger inbuf = 0;
-			BigInteger mask = 1 << size;
+			BigInteger mask = BigInteger.One << (size - 1);
 			do
 			{
 				inbuf |= ReadBit() ? mask : 0;
@@ -342,7 +336,7 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream(Higher-bits first).
+		/// Reads the next specified N-bit unsigned stream from current stream(Higher-bits first).
 		/// </summary>
 		/// <param name="size">The number of bits to read.</param>
 		/// <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
@@ -361,7 +355,7 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Reads the next specified N-bit stream from current stream(Lower-bits first).
+		/// Reads the next specified N-bit unsigned stream from current stream(Lower-bits first).
 		/// </summary>
 		/// <param name="size">The number of bits to read.</param>
 		/// <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
@@ -371,7 +365,7 @@ namespace CSCodec.Binary
 		{
 			if (size > 64 || size <= 0) throw new ArgumentOutOfRangeException(nameof(size), "Size must be smaller than 64 and larger than 0!");
 			ulong inbuf = 0ul;
-			ulong mask = 1ul << size;
+			ulong mask = 1ul << (size - 1);
 			do
 			{
 				inbuf |= ReadBit() ? mask : 0ul;

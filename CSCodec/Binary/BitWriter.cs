@@ -71,7 +71,7 @@ namespace CSCodec.Binary
 		/// </summary>
 		private int Position = 0;
 
-		private int Cache = 0;
+		private uint Cache = 0;
 
 		/// <summary>
 		/// The location of cache in bits.
@@ -95,7 +95,7 @@ namespace CSCodec.Binary
 		private void FlushCache()
 		{
 			location = 32;
-			BinaryPrimitives.WriteInt32BigEndian(ConversionBuffer.Span, Cache);  //Force Big-Endianed
+			BinaryPrimitives.WriteUInt32BigEndian(ConversionBuffer.Span, Cache);  //Force Big-Endianed
 			if (InternalBuffer.Length - Position < sizeof(int))
 			{
 				int lenFlush = InternalBuffer.Length - Position;
@@ -113,6 +113,7 @@ namespace CSCodec.Binary
 					FlushInternalBuffer();
 				}
 			}
+			Cache = 0;
 			ConversionBuffer.Span.Fill(0);
 		}
 
@@ -120,6 +121,45 @@ namespace CSCodec.Binary
 		private void FlushInternalBuffer()
 		{
 			BaseStream.Write(PrimitiveBuffer, 0, PrimitiveBuffer.Length);
+			InternalBuffer.Span.Fill(0);
+			Position = 0;
+		}
+
+		/// <summary>
+		///  Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+		/// </summary>
+		public void Flush()
+		{
+			AlignInBytes();
+			if (location == 0) FlushCache();
+			else
+			{
+				var bytesToWrite = (32 - location) / 8;
+				if (bytesToWrite > 0)
+				{
+					location = 32;
+					BinaryPrimitives.WriteUInt32BigEndian(ConversionBuffer.Span, Cache);  //Force Big-Endianed
+					if (InternalBuffer.Length - Position < bytesToWrite)
+					{
+						int lenFlush = InternalBuffer.Length - Position;
+						ConversionBuffer.Span.Slice(0, lenFlush).CopyTo(PositionedBuffer.Span);
+						FlushInternalBuffer();
+						ConversionBuffer.Span.Slice(lenFlush, bytesToWrite - lenFlush).CopyTo(InternalBuffer.Span);
+						Position += bytesToWrite - lenFlush;
+					}
+					else
+					{
+						ConversionBuffer.Span.CopyTo(PositionedBuffer.Span);
+						Position += bytesToWrite;
+						if (Position >= InternalBuffer.Length)
+						{
+							FlushInternalBuffer();
+						}
+					}
+				}
+				ConversionBuffer.Span.Fill(0);
+			}
+			BaseStream.Write(PrimitiveBuffer, 0, Position);
 			InternalBuffer.Span.Fill(0);
 			Position = 0;
 		}
@@ -134,7 +174,7 @@ namespace CSCodec.Binary
 			location--;
 			if (value)
 			{
-				Cache |= 1 << location;
+				Cache |= 1u << location;
 			}
 			if (location == 0) FlushCache();
 		}
@@ -148,16 +188,16 @@ namespace CSCodec.Binary
 			if (location > 8)
 			{
 				location -= 8;
-				Cache |= value << location;
+				Cache |= (uint)value << location;
 			}
 			else
 			{
 				var shift = 8 - location;
-				Cache |= value >> shift;
+				Cache |= (uint)value >> shift;
 				FlushCache();
 				if (shift == 0) return;
 				location -= shift;
-				Cache |= value << location;
+				Cache |= (uint)value << location;
 			}
 		}
 
@@ -177,16 +217,16 @@ namespace CSCodec.Binary
 			if (location > 16)
 			{
 				location -= 16;
-				Cache |= value << location;
+				Cache |= (uint)value << location;
 			}
 			else
 			{
 				var shift = 16 - location;
-				Cache |= value >> shift;
+				Cache |= (uint)value >> shift;
 				FlushCache();
 				if (shift == 0) return;
 				location -= shift;
-				Cache |= value << location;
+				Cache |= (uint)value << location;
 			}
 		}
 
@@ -206,11 +246,11 @@ namespace CSCodec.Binary
 			unchecked
 			{
 				var shift = 32 - location;
-				Cache |= (int)(value >> shift);
+				Cache |= value >> shift;
 				FlushCache();
 				if (shift == 0) return;
 				location -= shift;
-				Cache |= (int)(value << location);
+				Cache |= value << location;
 			}
 		}
 
@@ -241,13 +281,13 @@ namespace CSCodec.Binary
 		public void WriteInt64(long value) => WriteUInt64(unchecked((ulong)value));
 
 		/// <summary>
-		/// Writes the specified <see cref="BigInteger"/> value(Higher-bits first).
+		/// Writes the specified unsigned <see cref="BigInteger"/> value(Higher-bits first).
 		/// </summary>
 		/// <param name="value">The value to write.</param>
 		/// <param name="width">The number of bits to write.</param>
 		public void WriteBitsHighToLow(BigInteger value, int width)
 		{
-			BigInteger mask = (BigInteger)1 << width;
+			BigInteger mask = (BigInteger)1 << (width - 1);
 			do
 			{
 				WriteBit((value & mask) == mask);
@@ -256,22 +296,22 @@ namespace CSCodec.Binary
 		}
 
 		/// <summary>
-		/// Writes the specified <see cref="BigInteger"/> value(Lower-bits first).
+		/// Writes the specified unsigned <see cref="BigInteger"/> value(Lower-bits first).
 		/// </summary>
 		/// <param name="value">The value to write.</param>
 		/// <param name="width">The number of bits to write.</param>
 		public void WriteBitsLowToHigh(BigInteger value, int width)
 		{
-			BigInteger mask = 1;
+			BigInteger mask = BigInteger.One << (width - 1);
 			do
 			{
 				WriteBit((value & mask) == mask);
-				mask <<= 1;
-			} while (mask < 2 << width);
+				mask >>= 1;
+			} while (mask > 0);
 		}
 
 		/// <summary>
-		/// Writes the specified <see cref="BigInteger"/> value(Higher-bits first).
+		/// Writes the specified unsigned <see cref="BigInteger"/> value(Higher-bits first).
 		/// </summary>
 		/// <param name="value">The value to write.</param>
 		/// <param name="width">The number of bits to write.
@@ -280,11 +320,17 @@ namespace CSCodec.Binary
 		public void WriteEnumHighToLow<T>(T value, int width = 0) where T : unmanaged, Enum, IConvertible
 		{
 			ulong valueToWrite = Convert.ToUInt64(Convert.ChangeType(value, value.GetTypeCode()));
+			if (width == 0)
+			{
+				var U = typeof(T);
+				if (!(Attribute.GetCustomAttribute(U, typeof(EnumBitWidthAttribute)) is EnumBitWidthAttribute attr)) throw new ArgumentException("The specified enum has no EnumBitWidthAttribute definition!");
+				width = attr.BitWidth;
+			}
 			WriteBitsHighToLow(valueToWrite, width);
 		}
 
 		/// <summary>
-		/// Writes the specified <see cref="BigInteger"/> value(Lower-bits first).
+		/// Writes the specified unsigned <see cref="BigInteger"/> value(Lower-bits first).
 		/// </summary>
 		/// <param name="value">The value to write.</param>
 		/// <param name="width">The number of bits to write.

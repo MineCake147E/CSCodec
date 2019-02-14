@@ -52,8 +52,4 @@
 	    <DependentUpon>WaveletTestsTypes.tt</DependentUpon>
 	  </Compile>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Binary\" />
-	</ItemGroup>
 </Project>

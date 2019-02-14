@@ -344,6 +344,14 @@
             The base stream
             </summary>
         </member>
+        <member name="P:CSCodec.Binary.BitReader.IsEOF">
+            <summary>
+            Gets a value indicating whether this instance is EOF.
+            </summary>
+            <value>
+              <c>true</c> if this instance is EOF; otherwise, <c>false</c>.
+            </value>
+        </member>
         <member name="F:CSCodec.Binary.BitReader.internalCache">
             <summary>
             The buffer
@@ -415,6 +423,13 @@
             <returns></returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadInt64">
+            <summary>
+            Reads the next Int64 value.
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
         <member name="M:CSCodec.Binary.BitReader.ReadBytes(System.Memory{System.Byte})">
             <summary>
             Reads the bytes from this stream.
@@ -422,23 +437,49 @@
             <param name="outBuffer">The buffer.</param>
             <returns></returns>
         </member>
-        <member name="M:CSCodec.Binary.BitReader.ReadEnum``1">
+        <member name="M:CSCodec.Binary.BitReader.ReadEnumHighToLow``1(System.Int32)">
             <summary>
-            Reads the next specified N-bit enum from current stream.
+            Reads the next specified N-bit enum from current stream(Higher-bits first).
             </summary>
-            <typeparam name="T">The <see cref="T:System.Enum"/> type that has <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> attribute.</typeparam>
+            <typeparam name="T">The <see cref="T:System.Enum"/> type in specified bit width.</typeparam>
+            <param name="width">The number of bits to read.
+            0 means that <see cref="M:CSCodec.Binary.BitReader.ReadEnumHighToLow``1(System.Int32)"/> reads the <see cref="P:CSCodec.Binary.EnumBitWidthAttribute.BitWidth"/> for reading.</param>
             <returns></returns>
         </member>
-        <member name="M:CSCodec.Binary.BitReader.ReadBits(System.Int32)">
+        <member name="M:CSCodec.Binary.BitReader.ReadEnumLowToHigh``1(System.Int32)">
             <summary>
-            Reads the next specified N-bit stream from current stream(Big-Endianed only).
+            Reads the next specified N-bit unsigned enum from current stream(Lower-bits first).
+            </summary>
+            <typeparam name="T">The <see cref="T:System.Enum"/> type in specified bit width.</typeparam>
+            <param name="width">The number of bits to read.
+            0 means that <see cref="M:CSCodec.Binary.BitReader.ReadEnumHighToLow``1(System.Int32)"/> reads the <see cref="P:CSCodec.Binary.EnumBitWidthAttribute.BitWidth"/> for reading.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBitsHighToLow(System.Int32)">
+            <summary>
+            Reads the next specified N-bit unsigned stream from current stream(Higher-bits first).
             </summary>
             <param name="size">The number of bits to read.</param>
             <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
         </member>
-        <member name="M:CSCodec.Binary.BitReader.ReadBitsShorterThan64(System.Int32)">
+        <member name="M:CSCodec.Binary.BitReader.ReadBitsLowToHigh(System.Int32)">
             <summary>
-            Reads the next specified N-bit stream from current stream(Big-Endianed only).
+            Reads the next specified N-bit unsigned stream from current stream(Lower-bits first).
+            </summary>
+            <param name="size">The number of bits to read.</param>
+            <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBitsHighToLowShorterThan64(System.Int32)">
+            <summary>
+            Reads the next specified N-bit unsigned stream from current stream(Higher-bits first).
+            </summary>
+            <param name="size">The number of bits to read.</param>
+            <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">size - Size must be smaller than 64 and larger than 0!</exception>
+        </member>
+        <member name="M:CSCodec.Binary.BitReader.ReadBitsLowToHighShorterThan64(System.Int32)">
+            <summary>
+            Reads the next specified N-bit unsigned stream from current stream(Lower-bits first).
             </summary>
             <param name="size">The number of bits to read.</param>
             <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
@@ -447,6 +488,7 @@
         <member name="M:CSCodec.Binary.BitReader.ReadRemainingBitsInIntermediateBuffer(System.Byte@,System.Int32@)">
             <summary>
             Reads the remaining bits in intermediate buffer.
+            Can be used for skipping aligning zeros.
             </summary>
             <param name="value"></param>
             <param name="length"></param>
@@ -475,11 +517,6 @@
         <member name="F:CSCodec.Binary.BitWriter.BaseStream">
             <summary>
             The base stream
-            </summary>
-        </member>
-        <member name="F:CSCodec.Binary.BitWriter.bufferedStream">
-            <summary>
-            The buffered stream
             </summary>
         </member>
         <member name="P:CSCodec.Binary.BitWriter.ByteOrder">
@@ -534,29 +571,131 @@
             <param name="bufferSize">Size of the buffer divided by <c>sizeof(int)</c>.</param>
             <exception cref="T:System.ArgumentNullException">BaseStream</exception>
         </member>
+        <member name="M:CSCodec.Binary.BitWriter.Flush">
+            <summary>
+             Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+        </member>
         <member name="M:CSCodec.Binary.BitWriter.WriteBit(System.Boolean)">
             <summary>
-            Writes the bit.
+            Writes the specified single bit.
             </summary>
             <param name="value">The bit value to write. 1 when <c>true</c>, 0 when <c>false</c>.</param>
         </member>
         <member name="M:CSCodec.Binary.BitWriter.WriteByte(System.Byte)">
             <summary>
-            Writes the specified byte value.
+            Writes the specified <see cref="T:System.Byte"/> value.
             </summary>
             <param name="value">The value to write.</param>
         </member>
         <member name="M:CSCodec.Binary.BitWriter.WriteSignedByte(System.SByte)">
             <summary>
-            Writes the specified sbyte value.
+            Writes the specified <see cref="T:System.SByte"/> value.
             </summary>
             <param name="value">The value.</param>
         </member>
         <member name="M:CSCodec.Binary.BitWriter.WriteUInt16(System.UInt16)">
             <summary>
-            Writes the specified ushort value.
+            Writes the specified <see cref="T:System.UInt16"/> value.
             </summary>
             <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteInt16(System.Int16)">
+            <summary>
+            Writes the specified <see cref="T:System.Int16"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteUInt32(System.UInt32)">
+            <summary>
+            Writes the specified <see cref="T:System.UInt32"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteInt32(System.Int32)">
+            <summary>
+            Writes the specified <see cref="T:System.Int32"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteUInt64(System.UInt64)">
+            <summary>
+            Writes the specified <see cref="T:System.UInt64"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteInt64(System.Int64)">
+            <summary>
+            Writes the specified <see cref="T:System.Int64"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteBitsHighToLow(System.Numerics.BigInteger,System.Int32)">
+            <summary>
+            Writes the specified unsigned <see cref="T:System.Numerics.BigInteger"/> value(Higher-bits first).
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="width">The number of bits to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteBitsLowToHigh(System.Numerics.BigInteger,System.Int32)">
+            <summary>
+            Writes the specified unsigned <see cref="T:System.Numerics.BigInteger"/> value(Lower-bits first).
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="width">The number of bits to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteEnumHighToLow``1(``0,System.Int32)">
+            <summary>
+            Writes the specified unsigned <see cref="T:System.Numerics.BigInteger"/> value(Higher-bits first).
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="width">The number of bits to write.
+            0 means that <see cref="M:CSCodec.Binary.BitWriter.WriteEnumHighToLow``1(``0,System.Int32)"/> reads the <see cref="P:CSCodec.Binary.EnumBitWidthAttribute.BitWidth"/> for writing.</param>
+            <typeparam name="T">The Enum definition to write.</typeparam>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteEnumLowToHigh``1(``0,System.Int32)">
+            <summary>
+            Writes the specified unsigned <see cref="T:System.Numerics.BigInteger"/> value(Lower-bits first).
+            </summary>
+            <param name="value">The value to write.</param>
+            <param name="width">The number of bits to write.
+            0 means that <see cref="M:CSCodec.Binary.BitWriter.WriteEnumLowToHigh``1(``0,System.Int32)"/> reads the <see cref="P:CSCodec.Binary.EnumBitWidthAttribute.BitWidth"/> for writing.</param>
+            <typeparam name="T">The Enum definition to write.</typeparam>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.AlignInBytes(System.Boolean)">
+            <summary>
+            Aligns the in bytes.
+            </summary>
+            <param name="defaultValue">The bit value to write for padding. 1 when <c>true</c>, 0 when <c>false</c>.</param>
+            <returns>The number of bits written.</returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.ReverseEndianessIfNessesary(System.UInt64)">
+            <summary>
+            Reverses the endianess if nessesary.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.ReverseEndianessIfNessesary(System.UInt32)">
+            <summary>
+            Reverses the endianess if nessesary.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.ReverseEndianessIfNessesary(System.UInt16)">
+            <summary>
+            Reverses the endianess if nessesary.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.ReverseEndianessIfNessesary(System.Numerics.BigInteger)">
+            <summary>
+            Reverses the endianess if nessesary.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
         </member>
         <member name="M:CSCodec.Binary.BitWriter.Dispose(System.Boolean)">
             <summary>
@@ -610,103 +749,6 @@
             Initializes a new instance of the <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> class.
             </summary>
             <param name="BitWidth">Width of the Enum in bits.</param>
-        </member>
-        <member name="T:CSCodec.Binary.IBitReader">
-            <summary>
-            Determines the base interface of BitReader.
-            </summary>
-        </member>
-        <member name="P:CSCodec.Binary.IBitReader.ByteOrder">
-            <summary>
-            Gets or sets the byte order for reading integers larger than 8bit.
-            </summary>
-            <value>
-            The byte order.
-            </value>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadBit">
-            <summary>
-            Reads the next bit.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadBits(System.Int32)">
-            <summary>
-            Reads the next specified N-bit stream from current stream.
-            </summary>
-            <param name="size">The number of bits read.</param>
-            <returns>Little-Endianed(Probably) BigInteger value that contains <paramref name="size"/> bits unsigned integer.</returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadBitsShorterThan64(System.Int32)">
-            <summary>
-            Reads the next specified N-bit stream from current stream.
-            </summary>
-            <param name="size">The number of bits read.</param>
-            <returns>UInt64 value that contains <paramref name="size"/> bits unsigned integer.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">size - Size must be smaller than 64 and larger than 0!</exception>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadByte">
-            <summary>
-            Reads the next byte value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadBytes(System.Memory{System.Byte})">
-            <summary>
-            Reads the bytes from this stream.
-            </summary>
-            <param name="outBuffer">The buffer.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadEnum``1">
-            <summary>
-            Reads the next specified N-bit enum from current stream.
-            </summary>
-            <typeparam name="T">The <see cref="T:System.Enum"/> type that has <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> attribute.</typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadInt16">
-            <summary>
-            Reads the next Int16 value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadInt32">
-            <summary>
-            Reads the next UInt32 value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadRemainingBitsInIntermediateBuffer(System.Byte@,System.Int32@)">
-            <summary>
-            Reads the remaining bits in intermediate buffer.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadSignedByte">
-            <summary>
-            Reads the next signed byte value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadUInt16">
-            /// <summary>
-            Reads the next UInt16 value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadUInt32">
-            <summary>
-            Reads the next Int32 value.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.Binary.IBitReader.ReadUInt64">
-            <summary>
-            Reads the next UInt64 value.
-            </summary>
-            <returns></returns>
-            <exception cref="T:System.InvalidOperationException"></exception>
         </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
@@ -830,32 +872,6 @@
             <typeparam name="T"></typeparam>
             <param name="array">The array.</param>
             <param name="format">The formatting codes.</param>
-        </member>
-        <member name="T:CSCodec.DecoderBase">
-            <summary>
-            The Base class for Codecs.
-            </summary>
-        </member>
-        <member name="M:CSCodec.DecoderBase.#ctor(CSCodec.Core.WaveFormat)">
-            <summary>
-            Initializes a new instance of the <see cref="T:CSCodec.DecoderBase"/> class.
-            </summary>
-            <param name="format">The format.</param>
-            <exception cref="T:System.ArgumentNullException">format</exception>
-        </member>
-        <member name="P:CSCodec.DecoderBase.Format">
-            <summary>
-            Gets the format.
-            </summary>
-            <value>
-            The format.
-            </value>
-        </member>
-        <member name="M:CSCodec.DecoderBase.Read(System.Span{System.Byte})">
-            <summary>
-            Reads the stream to the specified buffer.
-            </summary>
-            <param name="buffer">The buffer.</param>
         </member>
         <member name="T:CSCodec.Filters.Transformation.DiscreteCosineTransformation">
             <summary>
@@ -1692,6 +1708,101 @@
             <returns>
               <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
+        </member>
+        <member name="T:CSCodec.Utils.ArrayReadStream">
+            <summary>
+            A Stream that reads data from sprcified <see cref="T:System.Byte"/> array.
+            </summary>
+            <seealso cref="T:System.IO.Stream" />
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.#ctor(System.Memory{System.Byte})">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Utils.ArrayReadStream"/> class.
+            </summary>
+            <param name="buffer">The buffer.</param>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.Buffer">
+            <summary>
+            Gets or sets the memory to read.
+            </summary>
+            <value>
+            The memory.
+            </value>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.CanRead">
+            <summary>
+            Gets a value indicating whether the current stream supports reading.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.CanSeek">
+            <summary>
+            Gets a value indicating whether the current stream supports seeking.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.CanWrite">
+            <summary>
+            Gets a value indicating whether the current stream supports writing.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.Length">
+            <summary>
+            Gets the length in bytes of the stream.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Utils.ArrayReadStream.Position">
+            <summary>
+            Gets or sets the position within the current stream.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException">value - Value must be between 0 and Memory's Length!</exception>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.Flush">
+            <summary>
+            Clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <param name="buffer">An array of bytes. When this method returns, the buffer contains the specified byte array with the values between offset and (offset + count - 1) replaced by the bytes read from the current source.</param>
+            <param name="offset">The zero-based byte offset in buffer at which to begin storing the data read from the current stream.</param>
+            <param name="count">The maximum number of bytes to be read from the current stream.</param>
+            <returns>
+            The total number of bytes read into the buffer. This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            Sets the position within the current stream.
+            </summary>
+            <param name="offset">A byte offset relative to the origin parameter.</param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"></see> indicating the reference point used to obtain the new position.</param>
+            <returns>
+            The new position within the current stream.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.SetLength(System.Int64)">
+            <summary>
+            Not Supported. Sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Not Supported. Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies count bytes from buffer to the current stream.</param>
+            <param name="offset">The zero-based byte offset in buffer at which to begin copying bytes to the current stream.</param>
+            <param name="count">The number of bytes to be written to the current stream.</param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:CSCodec.Utils.ArrayReadStream.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.IO.Stream"></see> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         </member>
         <member name="T:CSCodec.Utils.LambdaStream">
             <summary>

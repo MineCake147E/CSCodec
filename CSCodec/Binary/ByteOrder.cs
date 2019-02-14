@@ -7,6 +7,7 @@ namespace CSCodec.Binary
 	/// <summary>
 	/// Represents ByteOrder
 	/// </summary>
+	[EnumBitWidth(1)]
 	public enum ByteOrder
 	{
 		/// <summary>
