@@ -12,9 +12,10 @@ CSCodec is an open-source Codec development library that has many features suppo
 - Wavelet Transform(Haar and CDF 5/3 Wavelets for now) for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - Hardware-Accelerated Add, Subtract, and Scalar Multiply for Arrays using `System.Numerics.Vector<T>`
+- BitReader reads bitwise encoded binary data
+- BitWriter writes bitwise encoded binary data
 
 ### Features Under Development: ###
-- BitReader reads bitwise encoded binary data
 - Better Documentations for existing APIs
 
 ### Features In Future: ###
