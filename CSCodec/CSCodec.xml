@@ -750,6 +750,24 @@
             </summary>
             <param name="BitWidth">Width of the Enum in bits.</param>
         </member>
+        <member name="T:CSCodec.Checksum.CrcBase`1">
+            <summary>
+            A Base Class for Implementations of Cyclic Redundancy Check
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CSCodec.Checksum.CrcBase`1.Append(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Checksum.CrcBase`1.Aquire">
+            <summary>
+            Aquires this instance's current CRC Sum.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
             Audio encoding.
@@ -1684,11 +1702,32 @@
             <param name="width">The width in bits.</param>
             <returns></returns>
         </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt64)">
+            <summary>
+            Reverses the bits of the specified value in 32bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
         <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32)">
             <summary>
             Reverses the bits of the specified value in 32bit.
             </summary>
-            <param name="i">The i.</param>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt16)">
+            <summary>
+            Reverses the bits of the specified value in 16bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.Byte)">
+            <summary>
+            Reverses the bits of the specified value in 32bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
             <returns></returns>
         </member>
         <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.UInt32)">

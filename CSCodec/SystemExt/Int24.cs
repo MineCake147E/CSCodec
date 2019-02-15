@@ -162,7 +162,6 @@ namespace System
 		/// <returns>
 		///   <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
 		/// </returns>
-		/// TODO Edit XML Comment Template for ==
 		public static bool operator ==(Int24 int1, Int24 int2)
 		{
 			return int1.Equals(int2);
@@ -176,7 +175,6 @@ namespace System
 		/// <returns>
 		///   <c>true</c> if int1 and int2 are not equal; otherwise, <c>false</c>.
 		/// </returns>
-		/// TODO Edit XML Comment Template for !=
 		public static bool operator !=(Int24 int1, Int24 int2)
 		{
 			return !(int1 == int2);
@@ -229,7 +227,6 @@ namespace System
 		/// <returns>
 		///   <c>true</c> if the specified <see cref="object" /> is equal to this instance; otherwise, <c>false</c>.
 		/// </returns>
-		/// TODO Edit XML Comment Template for Equals
 		public override bool Equals(object obj)
 		{
 			return obj is Int24 && Equals((Int24)obj);
@@ -242,7 +239,6 @@ namespace System
 		/// <returns>
 		/// true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
 		/// </returns>
-		/// TODO Edit XML Comment Template for Equals
 		public bool Equals(Int24 other)
 		{
 			return tail == other.tail &&
@@ -256,7 +252,6 @@ namespace System
 		/// <returns>
 		/// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
 		/// </returns>
-		/// TODO Edit XML Comment Template for GetHashCode
 		public override int GetHashCode()
 		{
 			var hashCode = -428595538;

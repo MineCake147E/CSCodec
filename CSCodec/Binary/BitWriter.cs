@@ -339,6 +339,12 @@ namespace CSCodec.Binary
 		public void WriteEnumLowToHigh<T>(T value, int width = 0) where T : unmanaged, Enum, IConvertible
 		{
 			ulong valueToWrite = Convert.ToUInt64(Convert.ChangeType(value, value.GetTypeCode()));
+			if (width == 0)
+			{
+				var U = typeof(T);
+				if (!(Attribute.GetCustomAttribute(U, typeof(EnumBitWidthAttribute)) is EnumBitWidthAttribute attr)) throw new ArgumentException("The specified enum has no EnumBitWidthAttribute definition!");
+				width = attr.BitWidth;
+			}
 			WriteBitsLowToHigh(valueToWrite, width);
 		}
 

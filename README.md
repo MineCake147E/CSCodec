@@ -16,6 +16,8 @@ CSCodec is an open-source Codec development library that has many features suppo
 - BitWriter writes bitwise encoded binary data
 
 ### Features Under Development: ###
+- CRC8,16,32 Support
+- Unit Testing for existing APIs
 - Better Documentations for existing APIs
 
 ### Features In Future: ###

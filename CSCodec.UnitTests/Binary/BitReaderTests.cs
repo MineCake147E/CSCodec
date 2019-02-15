@@ -204,5 +204,27 @@ namespace CSCodec.UnitTests.Binary
 				}
 			}
 		}
+
+		[TestCase]
+		public void ReadEnumLHTest()
+		{
+			using (MemoryStream memory = new MemoryStream())
+			using (BitWriter writer = new BitWriter(memory))
+			{
+				writer.WriteEnumLowToHigh(TestEnum.Value0);
+				writer.WriteEnumLowToHigh(TestEnum.Value1);
+				writer.WriteEnumLowToHigh(TestEnum.Value2);
+				writer.WriteEnumLowToHigh(TestEnum.Value3);
+				writer.Flush();
+				memory.Seek(0, SeekOrigin.Begin);
+				using (var reader = new BitReader(memory))
+				{
+					Assert.AreEqual(TestEnum.Value0, reader.ReadEnumLowToHigh<TestEnum>());
+					Assert.AreEqual(TestEnum.Value1, reader.ReadEnumLowToHigh<TestEnum>());
+					Assert.AreEqual(TestEnum.Value2, reader.ReadEnumLowToHigh<TestEnum>());
+					Assert.AreEqual(TestEnum.Value3, reader.ReadEnumLowToHigh<TestEnum>());
+				}
+			}
+		}
 	}
 }

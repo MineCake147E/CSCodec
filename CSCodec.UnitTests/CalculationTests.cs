@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using NUnit.Framework;
+using Math = System.Math;
 
 namespace CSCodec.UnitTests
 {

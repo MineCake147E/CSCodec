@@ -8,10 +8,9 @@ using CSCodec.Debug;
 
 namespace CSCodec.UnitTests.Filters.Transformation
 {
-
 	public partial class WaveletTests
 	{
-				[TestCase]
+		[TestCase]
 		public void TestHaarReversiblityInt24()
 		{
 			Int24[] array = new Int24[2048];
@@ -55,7 +54,8 @@ namespace CSCodec.UnitTests.Filters.Transformation
 
 			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
-				[TestCase]
+
+		[TestCase]
 		public void TestHaarReversiblityInt16()
 		{
 			Int16[] array = new Int16[2048];
@@ -99,7 +99,8 @@ namespace CSCodec.UnitTests.Filters.Transformation
 
 			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
-				[TestCase]
+
+		[TestCase]
 		public void TestHaarReversiblitySByte()
 		{
 			SByte[] array = new SByte[2048];
@@ -143,7 +144,7 @@ namespace CSCodec.UnitTests.Filters.Transformation
 
 			AssertEqualityAndDumpInt(array, copy, transformed);
 		}
-				
+
 		[TestCase]
 		public void TestHaarReversiblitySingle()
 		{
@@ -228,5 +229,5 @@ namespace CSCodec.UnitTests.Filters.Transformation
 				throw;
 			}
 		}
-			}
+	}
 }

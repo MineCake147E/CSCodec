@@ -107,4 +107,8 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SystemExt\Int24Utils\" />
+  </ItemGroup>
+
 </Project>
