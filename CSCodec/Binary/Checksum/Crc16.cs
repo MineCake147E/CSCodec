@@ -23,7 +23,7 @@ namespace CSCodec.Binary.Checksum
 		/// <value>
 		/// The current output.
 		/// </value>
-		public override ushort CurrentOutput => unchecked((ushort)(InitialState ^ XorOutput));
+		public override ushort CurrentOutput => unchecked((ushort)(InternalState ^ XorOutput));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Crc16"/> class.
@@ -43,7 +43,7 @@ namespace CSCodec.Binary.Checksum
 		protected override void InitializeTable()
 		{
 			table = new ushort[256];
-			for (byte i = 0; i < table.Length; i++)
+			for (ushort i = 0; i < table.Length; i++)
 			{
 				ushort value = i;
 				if (ReverseInput) value = value.ReverseBits();

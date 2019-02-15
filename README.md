@@ -14,9 +14,9 @@ CSCodec is an open-source Codec development library that has many features suppo
 - Hardware-Accelerated Add, Subtract, and Scalar Multiply for Arrays using `System.Numerics.Vector<T>`
 - BitReader reads bitwise encoded binary data
 - BitWriter writes bitwise encoded binary data
+- Cyclic Redundancy Check(CRC) of 8bits, 16bits, 32bits Support(Tested with some polynomials)
 
 ### Features Under Development: ###
-- CRC8,16,32 Support
 - Unit Testing for existing APIs
 - Better Documentations for existing APIs
 

@@ -23,7 +23,7 @@ namespace CSCodec.Binary.Checksum
 		/// <value>
 		/// The current output.
 		/// </value>
-		public override byte CurrentOutput => unchecked((byte)(InitialState ^ XorOutput));
+		public override byte CurrentOutput => unchecked((byte)((uint)InternalState ^ XorOutput));
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Crc8"/> class.
@@ -43,9 +43,9 @@ namespace CSCodec.Binary.Checksum
 		protected override void InitializeTable()
 		{
 			table = new byte[256];
-			for (byte i = 0; i < table.Length; i++)
+			for (ushort i = 0; i < table.Length; i++)
 			{
-				byte value = i;
+				byte value = (byte)i;
 				if (ReverseInput) value = value.ReverseBits();
 				for (int j = 0; j < 8; j++)
 				{

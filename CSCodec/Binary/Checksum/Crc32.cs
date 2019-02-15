@@ -38,7 +38,7 @@ namespace CSCodec.Binary.Checksum
 		protected override void InitializeTable()
 		{
 			table = new uint[256];
-			for (byte i = 0; i < table.Length; i++)
+			for (ushort i = 0; i < table.Length; i++)
 			{
 				uint value = i;
 				if (ReverseInput) value = value.ReverseBits();

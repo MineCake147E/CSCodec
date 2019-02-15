@@ -321,6 +321,21 @@
             <param name="buffer">The array to scale.</param>
             <param name="scale">The scale.</param>
         </member>
+        <member name="T:CSCodec.Binary.BitOrder">
+            <summary>
+            Represents Bit Order
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.BitOrder.HighFirst">
+            <summary>
+            Higher-bit first(MSB is head)
+            </summary>
+        </member>
+        <member name="F:CSCodec.Binary.BitOrder.LowFirst">
+            <summary>
+            Lower-bit first(LSB is head)
+            </summary>
+        </member>
         <member name="T:CSCodec.Binary.BitReader">
             <summary>
             Reads data in bit.
@@ -723,6 +738,272 @@
             Big Endian(0x01234567 => 0x01 0x23 0x45 0x67)
             </summary>
         </member>
+        <member name="T:CSCodec.Binary.Checksum.Crc16">
+            <summary>
+            An Implementation of 16bit Cyclic Redundancy Check
+            </summary>
+            <seealso cref="T:CSCodec.Binary.Checksum.CrcBase`1" />
+        </member>
+        <member name="F:CSCodec.Binary.Checksum.Crc16.PolynomialCRC16IBM">
+            <summary>
+            The polynomial CRC-16 IBM x^16 + x^15 + x^2 + 1
+            </summary>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.Crc16.CurrentOutput">
+            <summary>
+            Gets the current output.
+            </summary>
+            <value>
+            The current output.
+            </value>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc16.#ctor(System.UInt16,System.UInt16,System.UInt16,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.Checksum.Crc16"/> class.
+            </summary>
+            <param name="polynomial">The polynomial.</param>
+            <param name="initialState">Initial internal state.</param>
+            <param name="xorOutput">The xor output.</param>
+            <param name="reverseInput">if set to <c>true</c> this instance have to reverse input.</param>
+            <param name="reverseOutput">if set to <c>true</c> this instance have to reverse output.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc16.InitializeTable">
+            <summary>
+            Initializes the Crc Table.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc16.CalculateNext(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc16.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc16.Reverse(System.UInt16)">
+            <summary>
+            Reverses the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSCodec.Binary.Checksum.Crc32">
+            <summary>
+            An Implementation of 32bit Cyclic Redundancy Check
+            </summary>
+            <seealso cref="T:CSCodec.Binary.Checksum.CrcBase`1" />
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.Crc32.CurrentOutput">
+            <summary>
+            Gets the current output.
+            </summary>
+            <value>
+            The current output.
+            </value>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc32.#ctor(System.UInt32,System.UInt32,System.UInt32,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.Checksum.Crc32"/> class.
+            </summary>
+            <param name="polynomial">The polynomial.</param>
+            <param name="initialState">Initial internal state.</param>
+            <param name="xorOutput">The xor output.</param>
+            <param name="reverseInput">if set to <c>true</c> this instance have to reverse input.</param>
+            <param name="reverseOutput">if set to <c>true</c> this instance have to reverse output.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc32.InitializeTable">
+            <summary>
+            Initializes the Crc Table.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc32.CalculateNext(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc32.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc32.Reverse(System.UInt32)">
+            <summary>
+            Reverses the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSCodec.Binary.Checksum.Crc8">
+            <summary>
+            An Implementation of 8bit Cyclic Redundancy Check
+            </summary>
+            <seealso cref="T:CSCodec.Binary.Checksum.CrcBase`1" />
+        </member>
+        <member name="F:CSCodec.Binary.Checksum.Crc8.PolynomialCRC8CCITT">
+            <summary>
+            The polynomial of CRC-8-CCITT x^8 + x^2 + x^1 + 1
+            </summary>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.Crc8.CurrentOutput">
+            <summary>
+            Gets the current output.
+            </summary>
+            <value>
+            The current output.
+            </value>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc8.#ctor(System.Byte,System.Byte,System.Byte,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.Checksum.Crc8"/> class.
+            </summary>
+            <param name="polynomial">The polynomial.</param>
+            <param name="initialState">Initial internal state.</param>
+            <param name="xorOutput">The xor output.</param>
+            <param name="reverseInput">if set to <c>true</c> this instance have to reverse input.</param>
+            <param name="reverseOutput">if set to <c>true</c> this instance have to reverse output.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc8.InitializeTable">
+            <summary>
+            Initializes the table using specified polynomial.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc8.CalculateNext(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc8.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.Crc8.Reverse(System.Byte)">
+            <summary>
+            Reverses the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSCodec.Binary.Checksum.CrcBase`1">
+            <summary>
+            A Base Class for Implementations of Cyclic Redundancy Check
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.Polynomial">
+            <summary>
+            Gets or sets the polynomial for this CRC Instance.
+            </summary>
+            <value>
+            The polynomial.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.InternalState">
+            <summary>
+            Gets or sets the internal state.
+            </summary>
+            <value>
+            The internal state.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.CurrentOutput">
+            <summary>
+            Gets the current output.
+            </summary>
+            <value>
+            The current output.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.InitialState">
+            <summary>
+            Gets the initial state.
+            </summary>
+            <value>
+            The initial state.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.XorOutput">
+            <summary>
+            Gets or sets the value to xor output.
+            </summary>
+            <value>
+            The xor output.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.ReverseInput">
+            <summary>
+            Gets or sets a value indicating whether to reverse input.
+            </summary>
+            <value>
+              <c>true</c> if this instance have to reverse input; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:CSCodec.Binary.Checksum.CrcBase`1.ReverseOutput">
+            <summary>
+            Gets or sets a value indicating whether to reverse output.
+            </summary>
+            <value>
+              <c>true</c> if this instance have to reverse output; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.CalculateNext(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.InitializeTable">
+            <summary>
+            Initializes the Crc Table.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.Reverse(`0)">
+            <summary>
+            Reverses the specified value.
+            </summary>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.Append(System.Byte)">
+            <summary>
+            Appends the specified value.
+            </summary>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.#ctor(`0,`0,`0,System.Boolean,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Binary.Checksum.CrcBase`1"/> class.
+            </summary>
+            <param name="polynomial">The polynomial.</param>
+            <param name="initialState">Initial internal state.</param>
+            <param name="xorOutput">The xor output.</param>
+            <param name="reverseInput">if set to <c>true</c> this instance have to reverse input.</param>
+            <param name="reverseOutput">if set to <c>true</c> this instance have to reverse output.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.Initialize">
+            <summary>
+            Initializes this instance.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Binary.Checksum.CrcBase`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
         <member name="T:CSCodec.Binary.CustomCoderBase">
              <summary>
             
@@ -749,24 +1030,6 @@
             Initializes a new instance of the <see cref="T:CSCodec.Binary.EnumBitWidthAttribute"/> class.
             </summary>
             <param name="BitWidth">Width of the Enum in bits.</param>
-        </member>
-        <member name="T:CSCodec.Checksum.CrcBase`1">
-            <summary>
-            A Base Class for Implementations of Cyclic Redundancy Check
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:CSCodec.Checksum.CrcBase`1.Append(System.Byte)">
-            <summary>
-            Appends the specified value.
-            </summary>
-            <param name="value">The value.</param>
-        </member>
-        <member name="M:CSCodec.Checksum.CrcBase`1.Aquire">
-            <summary>
-            Aquires this instance's current CRC Sum.
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
@@ -1704,7 +1967,7 @@
         </member>
         <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt64)">
             <summary>
-            Reverses the bits of the specified value in 32bit.
+            Reverses the bits of the specified value in 64bit.
             </summary>
             <param name="i">The value to reverse bit order.</param>
             <returns></returns>
@@ -1725,7 +1988,7 @@
         </member>
         <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.Byte)">
             <summary>
-            Reverses the bits of the specified value in 32bit.
+            Reverses the bits of the specified value in 8bit.
             </summary>
             <param name="i">The value to reverse bit order.</param>
             <returns></returns>
@@ -1747,6 +2010,62 @@
             <returns>
               <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int64)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1L => 0xFFFFFFFFFFFFFFFFUL without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int32)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int16)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 65535 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.SByte)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 255 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt64)">
+            <summary>
+            Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt32)">
+            <summary>
+            Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt16)">
+            <summary>
+            Converts to signed integer bitwisely(65535 => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.Byte)">
+            <summary>
+            Converts to signed integer bitwisely(255 => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
         <member name="T:CSCodec.Utils.ArrayReadStream">
             <summary>
@@ -2124,7 +2443,6 @@
             <returns>
               <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
             </returns>
-            TODO Edit XML Comment Template for ==
         </member>
         <member name="M:System.Int24.op_Inequality(System.Int24,System.Int24)">
             <summary>
@@ -2135,7 +2453,6 @@
             <returns>
               <c>true</c> if int1 and int2 are not equal; otherwise, <c>false</c>.
             </returns>
-            TODO Edit XML Comment Template for !=
         </member>
         <member name="M:System.Int24.op_LessThan(System.Int24,System.Int24)">
             <summary>
@@ -2185,7 +2502,6 @@
             <returns>
               <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
             </returns>
-            TODO Edit XML Comment Template for Equals
         </member>
         <member name="M:System.Int24.Equals(System.Int24)">
             <summary>
@@ -2195,7 +2511,6 @@
             <returns>
             true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
             </returns>
-            TODO Edit XML Comment Template for Equals
         </member>
         <member name="M:System.Int24.GetHashCode">
             <summary>
@@ -2204,7 +2519,6 @@
             <returns>
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
             </returns>
-            TODO Edit XML Comment Template for GetHashCode
         </member>
         <member name="M:System.Int24.CompareTo(System.Int24)">
             <summary>
