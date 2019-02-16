@@ -6,8 +6,8 @@ CSCodec is an open-source Codec development library that has many features suppo
 - `Span<T>` Based APIs
   - Many APIs depends on `Span<T>`.
 - 24Bit Signed Integer Structure `Int24`
-- An original **Fully Managed Fast Fourier Transform (FFT) implementation** for `System.Numerics.Complex` arrays.
-  - Looks like there's only implementations licensed under [LGPL](https://www.gnu.org/licenses/lgpl-3.0.en.html) or [Ms-PL](https://github.com/MineCake147E/MonoGame.TexturedGeometry2D/blob/master/LICENSE.md), but it is implemented under Apache-2.0.
+- An original **Fast Fourier Transform (FFT) IMPLEMENTATION** for `System.Numerics.Complex` arrays.
+  - Looks like there's only implementations licensed under LGPL or Ms-PL, but it is implemented under Apache-2.0.
 - A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT
 - Wavelet Transform(Haar and CDF 5/3 Wavelets for now) for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
 - A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
@@ -15,12 +15,14 @@ CSCodec is an open-source Codec development library that has many features suppo
 - BitReader reads bitwise encoded binary data
 - BitWriter writes bitwise encoded binary data
 - Cyclic Redundancy Check(CRC) of 8bits, 16bits, 32bits Support(Tested with some polynomials)
+- Linear Prediction support for `double` using FFT when possible
 
 ### Features Under Development: ###
-- Unit Testing for existing APIs
+- Unit Tests for existing APIs
 - Better Documentations for existing APIs
 
 ### Features In Future: ###
+- Linear Prediction support for `float`, `int`, `Int24`, `short`, `sbyte`
 - CDF 9/7 wavelets
 - ID3 Tags Support
 

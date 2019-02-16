@@ -1031,6 +1031,141 @@
             </summary>
             <param name="BitWidth">Width of the Enum in bits.</param>
         </member>
+        <member name="T:CSCodec.CodecMathHelper">
+            <summary>
+            Supports some bit arithmetics.
+            </summary>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.CountBits(System.UInt32)">
+            <summary>
+            same as floor(log2(i))
+            </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
+            <summary>
+            Reverses the bits of the specified value in specified width.
+            </summary>
+            <param name="i">The value.</param>
+            <param name="width">The width in bits.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt64)">
+            <summary>
+            Reverses the bits of the specified value in 64bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32)">
+            <summary>
+            Reverses the bits of the specified value in 32bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt16)">
+            <summary>
+            Reverses the bits of the specified value in 16bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.Byte)">
+            <summary>
+            Reverses the bits of the specified value in 8bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
+            <summary>
+            Determines whether the specified <paramref name="i"/> is power of two.
+            </summary>
+            <param name="i">The value.</param>
+            <returns>
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.Int32)">
+            <summary>
+            Determines whether the specified <paramref name="i"/> is power of two.
+            </summary>
+            <param name="i">The value.</param>
+            <returns>
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int64)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1L => 0xFFFFFFFFFFFFFFFFUL without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int32)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int16)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 65535 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.SByte)">
+            <summary>
+            Converts to unsigned integer bitwisely(-1 => 255 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt64)">
+            <summary>
+            Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt32)">
+            <summary>
+            Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt16)">
+            <summary>
+            Converts to signed integer bitwisely(65535 => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.Byte)">
+            <summary>
+            Converts to signed integer bitwisely(255 => -1 without exception).
+            </summary>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSCodec.IntegerMath">
+            <summary>
+            Arithmetic utilities for integral types.
+            </summary>
+        </member>
+        <member name="M:CSCodec.IntegerMath.Average(System.Int32,System.Int32)">
+            <summary>
+            Calculates Average for the specified values.
+            </summary>
+            <param name="left">The left value.</param>
+            <param name="right">The right value.</param>
+            <returns></returns>
+        </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
             Audio encoding.
@@ -1153,6 +1288,148 @@
             <typeparam name="T"></typeparam>
             <param name="array">The array.</param>
             <param name="format">The formatting codes.</param>
+        </member>
+        <member name="T:CSCodec.Filters.Prediction.IPredictor`1">
+            <summary>
+            Basic Definitions for Predictors.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{System.Double}@)">
+            <summary>
+            Initializes the Predictor using specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="Order">The order of predictor.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Predict(System.ReadOnlySpan{`0}@,System.Span{`0})">
+            <summary>
+            Predicts outputs from the specified first data.
+            </summary>
+            <param name="first">The first data.</param>
+            <param name="output">The prediction output without overlapping <paramref name="first"/>. <paramref name="first"/> will be copied first.</param>
+        </member>
+        <member name="T:CSCodec.Filters.Prediction.LinearPredictorBase`1">
+            <summary>
+            Base Definition of Linear Prediction.
+            </summary>
+            <typeparam name="T">Type to predict.</typeparam>
+        </member>
+        <member name="F:CSCodec.Filters.Prediction.LinearPredictorBase`1.disposed">
+            <summary>
+            The value which indicates whether this instance is disposed or not.
+            </summary>
+        </member>
+        <member name="P:CSCodec.Filters.Prediction.LinearPredictorBase`1.Coefficients">
+            <summary>
+            Gets the coefficients.
+            </summary>
+            <value>
+            The coefficients.
+            </value>
+        </member>
+        <member name="P:CSCodec.Filters.Prediction.LinearPredictorBase`1.Order">
+            <summary>
+            Gets the order of this instance.
+            </summary>
+            <value>
+            The order.
+            </value>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{System.Double}@)">
+            <summary>
+            Initializes the Linear Predictor using specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="Order">The order of predictor.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(System.ReadOnlySpan{`0}@)">
+            <summary>
+            Resets this instance using specified coefficents.
+            </summary>
+            <param name="coefficents">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(`0@)">
+            <summary>
+            Resets this instance using specified global coefficient.
+            </summary>
+            <param name="fill">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Predict(System.ReadOnlySpan{`0}@,System.Span{`0})">
+            <summary>
+            Predicts outputs from the specified first data.
+            </summary>
+            <param name="first">The first data.</param>
+            <param name="output">The prediction output without overlapping <paramref name="first"/>. <paramref name="first"/> will be copied first.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="T:CSCodec.Filters.Prediction.LinearPredictorDouble">
+            <summary>
+            Implementation of double-precision Linear Predictor.
+            </summary>
+            <seealso cref="T:CSCodec.Filters.Prediction.LinearPredictorBase`1" />
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Initialize(System.ReadOnlySpan{System.Double}@,System.Int32,System.Span{System.Double}@)">
+            <summary>
+            Initializes the Linear Predictor using specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="Order">The order of predictor.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Predict(System.ReadOnlySpan{System.Double}@,System.Span{System.Double})">
+            <summary>
+            Predicts the specified first.
+            </summary>
+            <param name="first">The first data.</param>
+            <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first"/> will be copied first.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.LevinsonDurbinRecursion(System.Span{System.Double}@,System.ReadOnlySpan{System.Double}@,System.Int32@,System.Span{System.Double}@)">
+            <summary>
+            Levinson durbin recursion calculation.
+            </summary>
+            <param name="coeff">The coeff.</param>
+            <param name="acorr">The acorr.</param>
+            <param name="order">The order.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.CalculateAutoCorrelation(System.ReadOnlySpan{System.Double}@,System.Span{System.Double}@,System.Int32)">
+            <summary>
+            Calculates the automatic correlation.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="acorr">The acorr.</param>
+            <param name="order">The order.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.ReadOnlySpan{System.Double}@)">
+            <summary>
+            Resets this instance using specified coefficents.
+            </summary>
+            <param name="coefficents">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.Double@)">
+            <summary>
+            Resets this instance using specified global coefficient.
+            </summary>
+            <param name="fill">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         </member>
         <member name="T:CSCodec.Filters.Transformation.DiscreteCosineTransformation">
             <summary>
@@ -1945,128 +2222,6 @@
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="T:CSCodec.CodecMathHelper">
-            <summary>
-            Supports some bit arithmetics.
-            </summary>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.CountBits(System.UInt32)">
-            <summary>
-            same as floor(log2(i))
-            </summary>
-            <param name="i"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
-            <summary>
-            Reverses the bits of the specified value in specified width.
-            </summary>
-            <param name="i">The value.</param>
-            <param name="width">The width in bits.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt64)">
-            <summary>
-            Reverses the bits of the specified value in 64bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32)">
-            <summary>
-            Reverses the bits of the specified value in 32bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt16)">
-            <summary>
-            Reverses the bits of the specified value in 16bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.Byte)">
-            <summary>
-            Reverses the bits of the specified value in 8bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
-            <summary>
-            Determines whether the specified <paramref name="i"/> is power of two.
-            </summary>
-            <param name="i">The value.</param>
-            <returns>
-              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.Int32)">
-            <summary>
-            Determines whether the specified <paramref name="i"/> is power of two.
-            </summary>
-            <param name="i">The value.</param>
-            <returns>
-              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int64)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1L => 0xFFFFFFFFFFFFFFFFUL without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int32)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int16)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 65535 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.SByte)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 255 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt64)">
-            <summary>
-            Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt32)">
-            <summary>
-            Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt16)">
-            <summary>
-            Converts to signed integer bitwisely(65535 => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.Byte)">
-            <summary>
-            Converts to signed integer bitwisely(255 => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
         <member name="T:CSCodec.Utils.ArrayReadStream">
             <summary>
             A Stream that reads data from sprcified <see cref="T:System.Byte"/> array.
@@ -2528,6 +2683,65 @@
             <returns>
             A signed number indicating the relative values of this instance and the other parameter.
             </returns>
+        </member>
+        <member name="T:System.SpanUtils">
+            <summary>
+            Utility for <see cref="T:System.Span`1"/>s.
+            </summary>
+        </member>
+        <member name="M:System.SpanUtils.SplitHalf``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:System.SpanUtils.SplitHalfInternal``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array to front and back halfs.</summary>
+            <param name="source">The source.</param>
+            <param name="front">The front elements.</param>
+            <param name="back">The back elements.</param>
+        </member>
+        <member name="M:System.SpanUtils.SplitQuarter``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>
+            Splits the specified array to 1-4 quarters.
+            </summary>
+            <typeparam name="T">Type of Span</typeparam>
+            <param name="source">The source.</param>
+            <param name="head">The head.</param>
+            <param name="q2">The q2.</param>
+            <param name="q3">The q3.</param>
+            <param name="tail">The tail.</param>
+        </member>
+        <member name="M:System.SpanUtils.SplitOddEven``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <typeparam name="T">Type of Span</typeparam>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:System.SpanUtils.SplitOddEvenSlim``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array of <c>unmanaged</c> type to odd even index.</summary>
+            <typeparam name="T">Type of Span that can <c>stackalloc</c>.</typeparam>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+            <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
+        </member>
+        <member name="M:System.SpanUtils.ArrangeOddEven``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <typeparam name="T">Type of Span</typeparam>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
+        </member>
+        <member name="M:System.SpanUtils.ArrangeOddEvenUnmanaged``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+            <summary>Splits the specified array to odd even index.</summary>
+            <typeparam name="T">Type of Span</typeparam>
+            <param name="source">The source.</param>
+            <param name="even">The even elements.</param>
+            <param name="odd">The odd elements.</param>
         </member>
     </members>
 </doc>
