@@ -8,7 +8,7 @@ CSCodec is an open-source Codec development library that has many features suppo
 - An original **Fast Fourier Transform (FFT) IMPLEMENTATION** for `System.Numerics.Complex` arrays.
 - A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT
 - Wavelet Transform(Haar and CDF 5/3 Wavelets for now) for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
-- A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`, `int`, `Int24`, `short`, `sbyte`)
+- A Time-Domain Aliasing Cancellation (like in MDCT) support for some types(`double`, `float`)
 - Hardware-Accelerated Add, Subtract, and Scalar Multiply for Arrays using `System.Numerics.Vector<T>`
 - Bit Encoded Binary Data I/O
   - BitReader and BitWriter supports I/O of bit encoded binary data
@@ -16,6 +16,7 @@ CSCodec is an open-source Codec development library that has many features suppo
 - Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
+- TDAC for `int`, `Int24`, `short`, `sbyte`
 - Unit Tests for existing APIs
 - Better Documentations for existing APIs
 
