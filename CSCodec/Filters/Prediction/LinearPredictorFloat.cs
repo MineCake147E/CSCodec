@@ -1,21 +1,19 @@
-﻿using CSCodec.Filters.Transformation;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Numerics;
 using System.Text;
 
 namespace CSCodec.Filters.Prediction
 {
 	/// <summary>
-	///	Implementation of double-precision Linear Predictor.
+	///	Implementation of single-precision Linear Predictor.
 	/// </summary>
 	/// <seealso cref="Prediction.LinearPredictorBase{T}" />
-	public sealed class LinearPredictorDouble : LinearPredictorBase<double>
+	public sealed class LinearPredictorFloat : LinearPredictorBase<float>
 	{
 		/// <summary>
-		/// The machine epsilon for <see cref="double"/>
+		/// The machine epsilon for <see cref="float"/>
 		/// </summary>
-		private static readonly double CEpsilon = BitConverter.Int64BitsToDouble(0x3CB0000000000000);
+		private static readonly float CEpsilon = BitConverter.ToSingle(new byte[] { 0, 0, 0, 0x34 }, 0);
 
 		/// <summary>
 		/// Initializes the Linear Predictor using specified data.
@@ -23,31 +21,11 @@ namespace CSCodec.Filters.Prediction
 		/// <param name="data">The data.</param>
 		/// <param name="Order">The order of predictor.</param>
 		/// <param name="errors">The errors.</param>
-		public override void Initialize(in ReadOnlySpan<double> data, int Order, out Span<double> errors)
+		public override void Initialize(in ReadOnlySpan<float> data, int Order, out Span<float> errors)
 		{
 			Autocorrelation.CalculateAutocorrelation(data, out var acorr, Order, true);
-			Coefficients = new double[Order];
+			Coefficients = new float[Order];
 			LevinsonDurbinRecursion(Coefficients.AsSpan(), acorr, Order, out errors);
-		}
-
-		/// <summary>
-		/// Predicts the specified first.
-		/// </summary>
-		/// <param name="first">The first data.</param>
-		/// <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first"/> will be copied first.</param>
-		public override void Predict(in ReadOnlySpan<double> first, Span<double> output)
-		{
-			var predata = first.Slice(0, Math.Min(Order, first.Length));
-			output.Slice(predata.Length).Fill(0);
-			predata.CopyTo(output.Slice(0, predata.Length));
-			for (int i = first.Length; i < output.Length; i++)
-			{
-				for (int delayIndex = 0; delayIndex < Order; delayIndex++)
-				{
-					if (i - delayIndex - 1 < 0) continue;
-					output[i] -= Coefficients[delayIndex] * output[i - delayIndex - 1];
-				}
-			}
 		}
 
 		/// <summary>
@@ -57,27 +35,27 @@ namespace CSCodec.Filters.Prediction
 		/// <param name="acorr">The acorr.</param>
 		/// <param name="order">The order.</param>
 		/// <param name="errors">The errors.</param>
-		private static void LevinsonDurbinRecursion(in Span<double> coeff, in ReadOnlySpan<double> acorr, in int order, out Span<double> errors)
+		private static void LevinsonDurbinRecursion(in Span<float> coeff, in ReadOnlySpan<float> acorr, in int order, out Span<float> errors)
 		{
 			int delay, index;
-			double lambda;
-			errors = new double[order];
+			float lambda;
+			errors = new float[order];
 			if (Math.Abs(acorr[0]) < CEpsilon)  //Needs no Prediction
 			{
 				coeff.Fill(0);
 				errors.Fill(0);
 				return;
 			}
-			Span<double> VecA = stackalloc double[order + 2];
-			Span<double> VecE = stackalloc double[order + 2];
-			Span<double> VecU = stackalloc double[order + 2];
-			Span<double> VecV = stackalloc double[order + 2];
+			Span<float> VecA = stackalloc float[order + 2];
+			Span<float> VecE = stackalloc float[order + 2];
+			Span<float> VecU = stackalloc float[order + 2];
+			Span<float> VecV = stackalloc float[order + 2];
 			VecA.Fill(0);
 			VecU.Fill(0);
 			VecV.Fill(0);
 
 			//First step
-			VecA[0] = VecE[0] = VecU[0] = VecV[1] = 1;
+			VecA[0] = VecE[0] = VecU[0] = VecV[1] = 1f;
 			VecA[1] = -acorr[1] / acorr[0];
 			VecE[1] = acorr[0] + acorr[1] * VecA[1];
 
@@ -114,10 +92,30 @@ namespace CSCodec.Filters.Prediction
 		}
 
 		/// <summary>
+		/// Predicts outputs from the specified first data.
+		/// </summary>
+		/// <param name="first">The first data.</param>
+		/// <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first" /> will be copied first.</param>
+		public override void Predict(in ReadOnlySpan<float> first, Span<float> output)
+		{
+			var predata = first.Slice(0, Math.Min(Order, first.Length));
+			output.Slice(predata.Length).Fill(0);
+			predata.CopyTo(output.Slice(0, predata.Length));
+			for (int i = first.Length; i < output.Length; i++)
+			{
+				for (int delayIndex = 0; delayIndex < Order; delayIndex++)
+				{
+					if (i - delayIndex - 1 < 0) continue;
+					output[i] -= Coefficients[delayIndex] * output[i - delayIndex - 1];
+				}
+			}
+		}
+
+		/// <summary>
 		/// Resets this instance using specified coefficents.
 		/// </summary>
 		/// <param name="coefficents">The coefficents to be set.</param>
-		public override void Reset(in ReadOnlySpan<double> coefficents)
+		public override void Reset(in ReadOnlySpan<float> coefficents)
 		{
 			coefficents.CopyTo(Coefficients);
 		}
@@ -126,7 +124,7 @@ namespace CSCodec.Filters.Prediction
 		/// Resets this instance using specified global coefficient.
 		/// </summary>
 		/// <param name="fill">The coefficents to be set.</param>
-		public override void Reset(in double fill)
+		public override void Reset(in float fill)
 		{
 			Coefficients.AsSpan().Fill(fill);
 		}

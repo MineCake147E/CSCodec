@@ -13,14 +13,14 @@ CSCodec is an open-source Codec development library that has many features suppo
 - Bit Encoded Binary Data I/O
   - BitReader and BitWriter supports I/O of bit encoded binary data
 - Cyclic Redundancy Check(CRC) of 8bits, 16bits, 32bits Support(Tested with some polynomials)
-- Linear Prediction support for `double` using FFT when possible
+- Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
 - Unit Tests for existing APIs
 - Better Documentations for existing APIs
 
 ### Features In Future: ###
-- Linear Prediction support for `float`, `int`, `Int24`, `short`, `sbyte`
+- Linear Prediction support for `int`, `Int24`, `short`, `sbyte` in order to implement FLAC Encoder and Decoder
 - CDF 9/7 wavelets
 - ID3 Tags Support
 

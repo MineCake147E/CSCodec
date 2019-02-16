@@ -37,7 +37,7 @@ namespace CSCodec.Filters.Prediction
 		/// <param name="data">The data.</param>
 		/// <param name="Order">The order of predictor.</param>
 		/// <param name="errors">The errors.</param>
-		public abstract void Initialize(in ReadOnlySpan<T> data, int Order, out Span<double> errors);
+		public abstract void Initialize(in ReadOnlySpan<T> data, int Order, out Span<T> errors);
 
 		/// <summary>
 		/// Resets this instance using specified coefficents.

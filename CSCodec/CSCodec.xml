@@ -1158,14 +1158,6 @@
             Arithmetic utilities for integral types.
             </summary>
         </member>
-        <member name="M:CSCodec.IntegerMath.Average(System.Int32,System.Int32)">
-            <summary>
-            Calculates Average for the specified values.
-            </summary>
-            <param name="left">The left value.</param>
-            <param name="right">The right value.</param>
-            <returns></returns>
-        </member>
         <member name="T:CSCodec.Core.AudioEncoding">
             <summary>
             Audio encoding.
@@ -1289,13 +1281,36 @@
             <param name="array">The array.</param>
             <param name="format">The formatting codes.</param>
         </member>
+        <member name="T:CSCodec.Filters.Prediction.Autocorrelation">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Double}@,System.Span{System.Double}@,System.Int32,System.Boolean)">
+            <summary>
+            Calculates the autocorrelation of specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="acorr">The resulting autocorrelation.</param>
+            <param name="order">The order.</param>
+            <param name="useFftIfPossible">if set to <c>true</c> it uses FFT if possible.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Single}@,System.Span{System.Single}@,System.Int32,System.Boolean)">
+            <summary>
+            Calculates the autocorrelation of specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="acorr">The resulting autocorrelation.</param>
+            <param name="order">The order.</param>
+            <param name="useFftIfPossible">if set to <c>true</c> it uses FFT if possible.</param>
+        </member>
         <member name="T:CSCodec.Filters.Prediction.IPredictor`1">
             <summary>
             Basic Definitions for Predictors.
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{`0}@)">
             <summary>
             Initializes the Predictor using specified data.
             </summary>
@@ -1337,7 +1352,7 @@
             The order.
             </value>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{`0}@)">
             <summary>
             Initializes the Linear Predictor using specified data.
             </summary>
@@ -1381,6 +1396,11 @@
             </summary>
             <seealso cref="T:CSCodec.Filters.Prediction.LinearPredictorBase`1" />
         </member>
+        <member name="F:CSCodec.Filters.Prediction.LinearPredictorDouble.CEpsilon">
+            <summary>
+            The machine epsilon for <see cref="T:System.Double"/>
+            </summary>
+        </member>
         <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Initialize(System.ReadOnlySpan{System.Double}@,System.Int32,System.Span{System.Double}@)">
             <summary>
             Initializes the Linear Predictor using specified data.
@@ -1405,14 +1425,6 @@
             <param name="order">The order.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.CalculateAutoCorrelation(System.ReadOnlySpan{System.Double}@,System.Span{System.Double}@,System.Int32)">
-            <summary>
-            Calculates the automatic correlation.
-            </summary>
-            <param name="data">The data.</param>
-            <param name="acorr">The acorr.</param>
-            <param name="order">The order.</param>
-        </member>
         <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.ReadOnlySpan{System.Double}@)">
             <summary>
             Resets this instance using specified coefficents.
@@ -1426,6 +1438,59 @@
             <param name="fill">The coefficents to be set.</param>
         </member>
         <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Dispose(System.Boolean)">
+            <summary>
+            Releases unmanaged and - optionally - managed resources.
+            </summary>
+            <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        </member>
+        <member name="T:CSCodec.Filters.Prediction.LinearPredictorFloat">
+            <summary>
+            Implementation of single-precision Linear Predictor.
+            </summary>
+            <seealso cref="T:CSCodec.Filters.Prediction.LinearPredictorBase`1" />
+        </member>
+        <member name="F:CSCodec.Filters.Prediction.LinearPredictorFloat.CEpsilon">
+            <summary>
+            The machine epsilon for <see cref="T:System.Single"/>
+            </summary>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Initialize(System.ReadOnlySpan{System.Single}@,System.Int32,System.Span{System.Single}@)">
+            <summary>
+            Initializes the Linear Predictor using specified data.
+            </summary>
+            <param name="data">The data.</param>
+            <param name="Order">The order of predictor.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.LevinsonDurbinRecursion(System.Span{System.Single}@,System.ReadOnlySpan{System.Single}@,System.Int32@,System.Span{System.Single}@)">
+            <summary>
+            Levinson durbin recursion calculation.
+            </summary>
+            <param name="coeff">The coeff.</param>
+            <param name="acorr">The acorr.</param>
+            <param name="order">The order.</param>
+            <param name="errors">The errors.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Predict(System.ReadOnlySpan{System.Single}@,System.Span{System.Single})">
+            <summary>
+            Predicts outputs from the specified first data.
+            </summary>
+            <param name="first">The first data.</param>
+            <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first" /> will be copied first.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.ReadOnlySpan{System.Single}@)">
+            <summary>
+            Resets this instance using specified coefficents.
+            </summary>
+            <param name="coefficents">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.Single@)">
+            <summary>
+            Resets this instance using specified global coefficient.
+            </summary>
+            <param name="fill">The coefficents to be set.</param>
+        </member>
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Dispose(System.Boolean)">
             <summary>
             Releases unmanaged and - optionally - managed resources.
             </summary>
