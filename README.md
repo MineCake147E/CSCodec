@@ -16,12 +16,11 @@ CSCodec is an open-source Audio Codec development library that has many features
 - Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
-- Unit Tests for existing APIs
-- Better Documentations for existing APIs
-- Change underlying structure of `Int24` from three `byte`s to single `int`
+- [ ] Unit Tests for existing APIs
+- [ ] Better Documentations for existing APIs
 
 ### Features In Future: ###
-- Linear Prediction support for `int`, `Int24`, `short`, and `sbyte` in order to implement FLAC Encoder and Decoder
+- Linear Prediction support for `int` and `long` in order to implement FLAC Encoder and Decoder
 - Binary Compression
   - Rice Coding
   - Huffman Coding
@@ -30,17 +29,8 @@ CSCodec is an open-source Audio Codec development library that has many features
 - new type `SingleComplex` that supports `float` based Complex calculation
   - FFT for `SingleComplex`
 - `Parallel`ization for existing apis where possible and appropriate
-- `decimal` supports below if possible, needed, and appropriate
-  - new type `DecimalComplex`
-    - FFT
-    - DCT-IV
-  - Haar and CDF 5/7 wavelets
-  - Array Calculation but not Hardware-Accelerated maybe
-  - BitReader/BitWriter
-  - LinearPredictor
 - Unrounded Irreversible CDF 9/7 wavelet transform for `double`, `float`
-- Unrounded Irreversible CDF 9/7 wavelet transform for `decimal` if possible
-- Rounded CDF 9/7 wavelet transform for `int`, `Int24`, `short`, and `sbyte` if possible
+- Rounded CDF 9/7 wavelet transform for `int`, `Int24`, `short`, and `sbyte` if possible and needed
 - ID3 Tags Support
 
 ### Project Goals: ###

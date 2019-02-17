@@ -2844,29 +2844,11 @@
             Represents the smallest possible value of System.Int24. This field is constant.
             </summary>
         </member>
-        <member name="M:System.Int24.#ctor(System.Byte,System.Byte,System.Byte)">
-            <summary>
-            Initializes a new instance of the <see cref="T:System.Int24"/> struct.
-            </summary>
-            <param name="tail">The tail.</param>
-            <param name="middle">The middle.</param>
-            <param name="head">The head.</param>
-        </member>
         <member name="M:System.Int24.#ctor(System.Int32)">
             <summary>
             Initializes a new instance of the <see cref="T:System.Int24"/> struct.
             </summary>
             <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
-        </member>
-        <member name="M:System.Int24.FromBytes(System.Byte[],System.Int32,System.Int24[],System.Int32,System.Int32)">
-            <summary>
-            Constructs new <see cref="T:System.Int24"/> instances from the specified bytes.
-            </summary>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="outbuf">The output buffer.</param>
-            <param name="dstoffset">The destination offset.</param>
-            <param name="dstcount">The destination count.</param>
         </member>
         <member name="M:System.Int24.ToBytes(System.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
             <summary>

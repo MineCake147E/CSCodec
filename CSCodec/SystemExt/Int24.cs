@@ -12,6 +12,11 @@ namespace System
 	[StructLayout(LayoutKind.Explicit)]
 	public readonly struct Int24 : IEquatable<Int24>, IComparable<Int24>
 	{
+		private const int Mask = -256;
+
+		[FieldOffset(0)]
+		private readonly int value;
+
 		[FieldOffset(0)]
 		private readonly byte tail;
 
@@ -34,42 +39,11 @@ namespace System
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Int24"/> struct.
 		/// </summary>
-		/// <param name="tail">The tail.</param>
-		/// <param name="middle">The middle.</param>
-		/// <param name="head">The head.</param>
-		public Int24(byte tail, byte middle, byte head)
-		{
-			this.tail = tail;
-			this.middle = middle;
-			this.head = head;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="Int24"/> struct.
-		/// </summary>
 		/// <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
 		public Int24(int shiftedValue)
 		{
-			tail = (byte)(shiftedValue >> 8);
-			middle = (byte)(shiftedValue >> 16);
-			head = (byte)(shiftedValue >> 24);
-		}
-
-		/// <summary>
-		/// Constructs new <see cref="Int24"/> instances from the specified bytes.
-		/// </summary>
-		/// <param name="buffer">The buffer.</param>
-		/// <param name="offset">The offset.</param>
-		/// <param name="outbuf">The output buffer.</param>
-		/// <param name="dstoffset">The destination offset.</param>
-		/// <param name="dstcount">The destination count.</param>
-		public static void FromBytes(byte[] buffer, int offset, Int24[] outbuf, int dstoffset, int dstcount)
-		{
-			int y = dstoffset;
-			for (int i = offset; i < offset + dstcount * 3; i += 3, y++)
-			{
-				outbuf[y] = new Int24(buffer[i], buffer[i + 1], buffer[i + 2]);
-			}
+			tail = middle = head = 0;
+			value = shiftedValue & Mask;
 		}
 
 		/// <summary>
@@ -110,10 +84,7 @@ namespace System
 		/// <returns>
 		/// The result of the conversion.
 		/// </returns>
-		public static implicit operator int(Int24 v)
-		{
-			return (int)(((long)v.tail << 8) | ((long)v.middle << 16) | ((long)v.head << 24)) >> 8;
-		}
+		public static implicit operator int(Int24 v) => v.value >> 8;
 
 		/// <summary>
 		/// Negates a specified <see cref="Int24"/> value.
@@ -124,7 +95,7 @@ namespace System
 		/// </returns>
 		public static Int24 operator -(Int24 value)
 		{
-			return (Int24)(-(int)value);
+			return new Int24(-(value.value & Mask));
 		}
 
 		/// <summary>
@@ -134,7 +105,7 @@ namespace System
 		/// <returns>
 		/// The result of the conversion.
 		/// </returns>
-		public static explicit operator Int24(int v) => new Int24((int)((long)v << 8));
+		public static explicit operator Int24(int v) => new Int24(v << 8);
 
 		/// <summary>
 		/// Performs an explicit conversion from <see cref="Int24"/> to <see cref="float"/>.
@@ -146,7 +117,7 @@ namespace System
 		public static explicit operator Int24(float value) => (Int24)(int)value;
 
 		/// <summary>
-		/// Performs an explicit conversion from <see cref="System.Double"/> to <see cref="Int24"/>.
+		/// Performs an explicit conversion from <see cref="double"/> to <see cref="Int24"/>.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns>
@@ -241,9 +212,7 @@ namespace System
 		/// </returns>
 		public bool Equals(Int24 other)
 		{
-			return tail == other.tail &&
-				   middle == other.middle &&
-				   head == other.head;
+			return (value & Mask) == (other.value & Mask);
 		}
 
 		/// <summary>
