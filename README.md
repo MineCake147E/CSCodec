@@ -1,9 +1,9 @@
-# CSCodec - .NET Standard Codec Development Library #
-CSCodec is an open-source Codec development library that has many features supporting development of your decoder and/or encoder for both your original or well-known formats.
+# CSCodec - .NET Standard Audio Codec Development Library #
+CSCodec is an open-source Audio Codec development library that has many features supporting development of your decoder and/or encoder for both your original or well-known formats.
 
 ### Currently Supported Features: ###
 - **Core Project is LICENSED UNDER __[Apache-2.0](https://github.com/MineCake147E/CSCodec/blob/master/LICENSE.md)__**
-- Many `Span<T>` Based APIs
+- A lot of `Span<T>` Based APIs
 - 24Bit Signed Integer Structure `Int24`
 - An original **Fast Fourier Transform (FFT) IMPLEMENTATION** for `System.Numerics.Complex` arrays.
 - A Discrete Cosine Transform (DCT) Type-IV for `double` and `float` based on FFT
@@ -16,13 +16,33 @@ CSCodec is an open-source Codec development library that has many features suppo
 - Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
-- TDAC for `int`, `Int24`, `short`, `sbyte`
+- TDAC test and debug for `int`, `Int24`, `short`, and `sbyte`
 - Unit Tests for existing APIs
 - Better Documentations for existing APIs
+- Change underlying structure of `Int24` from three `byte`s to single `int`
 
 ### Features In Future: ###
-- Linear Prediction support for `int`, `Int24`, `short`, `sbyte` in order to implement FLAC Encoder and Decoder
-- CDF 9/7 wavelets
+- Linear Prediction support for `int`, `Int24`, `short`, and `sbyte` in order to implement FLAC Encoder and Decoder
+- Binary Compression
+  - Rice Coding
+  - Huffman Coding
+  - Arithmetic Coding without patents
+    - Range Coder
+- new type `SingleComplex` that supports `float` based Complex calculation
+  - FFT for `SingleComplex`
+- `Parallel`ization for existing apis where possible and appropriate
+- `decimal` supports below if possible, needed, and appropriate
+  - new type `DecimalComplex`
+    - FFT
+    - DCT-IV
+  - Haar and CDF 5/7 wavelets
+  - TDAC
+  - Array Calculation but not Hardware-Accelerated maybe
+  - BitReader/BitWriter
+  - LinearPredictor
+- Unrounded Irreversible CDF 9/7 wavelet transform for `double`, `float`
+- Unrounded Irreversible CDF 9/7 wavelet transform for `decimal` if possible
+- Rounded CDF 9/7 wavelet transform for `int`, `Int24`, `short`, and `sbyte` if possible
 - ID3 Tags Support
 
 ### Project Goals: ###

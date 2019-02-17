@@ -63,7 +63,7 @@ namespace System
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEven<T>(this in Span<T> source, out Span<T> even, out Span<T> odd)
+		public static void SplitOddEven<T>(this Span<T> source, out Span<T> even, out Span<T> odd)
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEven(out even, out odd);
@@ -77,7 +77,7 @@ namespace System
 		/// <exception cref="ArgumentException">The source's length was odd.</exception>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SplitOddEvenSlim<T>(this in Span<T> source, out Span<T> even, out Span<T> odd) where T : unmanaged
+		public static void SplitOddEvenSlim<T>(this Span<T> source, out Span<T> even, out Span<T> odd) where T : unmanaged
 		{
 			if ((source.Length & 1) == 1) throw new ArgumentException($"The {nameof(source)}'s length must be even!");
 			source.ArrangeOddEvenUnmanaged(out even, out odd);
@@ -90,7 +90,7 @@ namespace System
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEven<T>(this in Span<T> source, out Span<T> even, out Span<T> odd)
+		private static void ArrangeOddEven<T>(this Span<T> source, out Span<T> even, out Span<T> odd)
 		{
 			Span<T> temp = new T[source.Length];
 			source.CopyTo(temp);
@@ -115,7 +115,7 @@ namespace System
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void ArrangeOddEvenUnmanaged<T>(this in Span<T> source, out Span<T> even, out Span<T> odd) where T : unmanaged
+		private static void ArrangeOddEvenUnmanaged<T>(this Span<T> source, out Span<T> even, out Span<T> odd) where T : unmanaged
 		{
 			Span<T> temp = stackalloc T[source.Length];
 			source.CopyTo(temp);
