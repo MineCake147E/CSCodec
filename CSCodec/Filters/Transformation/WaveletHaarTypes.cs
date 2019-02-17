@@ -5,11 +5,11 @@ using System.Xml;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+
 namespace CSCodec.Filters.Transformation
 {
 	public static partial class WaveletTransformation
 	{
-		
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -60,7 +60,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-		
+
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -111,7 +111,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-		
+
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -162,7 +162,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-		
+
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -213,7 +213,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-		
+
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -264,7 +264,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-		
+
 		/// <summary>
 		/// Performs The Multi-Level Haar Transform to the specified elements.
 		/// </summary>
@@ -315,7 +315,7 @@ namespace CSCodec.Filters.Transformation
 			if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
 			HaarInverseMultiLevelInternal(span);
 		}
-				
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -363,7 +363,7 @@ namespace CSCodec.Filters.Transformation
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -411,7 +411,7 @@ namespace CSCodec.Filters.Transformation
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -459,7 +459,7 @@ namespace CSCodec.Filters.Transformation
 				}
 			}
 		}
-				
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -503,11 +503,11 @@ namespace CSCodec.Filters.Transformation
 				for (int i = 0; i < even.Length; i++)
 				{
 					//+Update
-					even[i] += odd[i] / 2;
+					even[i] += odd[i] / 2;  //even = (even + odd) / 2
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -555,7 +555,7 @@ namespace CSCodec.Filters.Transformation
 				}
 			}
 		}
-		
+
 		/// <summary>
 		/// Performs The 1-level Inverse Haar Transform to the specified elements.
 		/// </summary>
@@ -603,6 +603,5 @@ namespace CSCodec.Filters.Transformation
 				}
 			}
 		}
-		
 	}
 }

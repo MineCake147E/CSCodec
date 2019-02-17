@@ -28,7 +28,7 @@ namespace CSCodec.Filters.Transformation
 			for (int n = 0; n < d4N; n++)
 			{
 				int nR = d4N - n - 1;
-				front[n] = -C[nR] - D[n];
+				front[n] = -(C[nR] + D[n]);
 				back[n] = A[n] - B[nR];
 			}
 		}

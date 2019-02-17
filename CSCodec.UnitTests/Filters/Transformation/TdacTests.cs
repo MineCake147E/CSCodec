@@ -3,11 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CSCodec.Filters.Transformation;
+using CSCodec.Debug;
 
 namespace CSCodec.UnitTests.Filters.Transformation
 {
 	[TestFixture]
-	public class TdacTests
+	public partial class TdacTests
 	{
 		/// <summary>
 		/// Tests the TDAC for double.

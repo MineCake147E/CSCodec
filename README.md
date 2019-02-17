@@ -16,7 +16,6 @@ CSCodec is an open-source Audio Codec development library that has many features
 - Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
-- TDAC test and debug for `int`, `Int24`, `short`, and `sbyte`
 - Unit Tests for existing APIs
 - Better Documentations for existing APIs
 - Change underlying structure of `Int24` from three `byte`s to single `int`
@@ -36,7 +35,6 @@ CSCodec is an open-source Audio Codec development library that has many features
     - FFT
     - DCT-IV
   - Haar and CDF 5/7 wavelets
-  - TDAC
   - Array Calculation but not Hardware-Accelerated maybe
   - BitReader/BitWriter
   - LinearPredictor

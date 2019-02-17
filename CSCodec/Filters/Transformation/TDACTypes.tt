@@ -4,9 +4,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# string[] typegenSigned = new string[]{"int", "Int24", "short", "sbyte", "float"}; #>
-<# string[] typegenCasted = new string[]{"Int24", "short", "sbyte"}; #>
-<# string[] typegenCastless = new string[]{"int", "float"}; #>
+<# string[] typegenCastless = new string[]{"float"}; #>
 <# string[] typegenFloat = new string[]{"float"}; #>
 <#@ output extension=".cs" #>
 using System;
@@ -39,7 +37,7 @@ namespace CSCodec.Filters.Transformation
 			for (int n = 0; n < d4N; n++)
 			{
 				int nR = d4N - n - 1;
-				front[n] = -C[nR] - D[n];
+				front[n] = -(C[nR] + D[n]);
 				back[n] = A[n] - B[nR];
 			}
 		}
@@ -64,55 +62,6 @@ namespace CSCodec.Filters.Transformation
 				BsAR[n] = -back[nR];
 				CaDR[n] = -front[nR];
 				DaCR[n] = -front[n];
-			}
-		}
-		<#}#>
-		<#foreach(var type in typegenCasted){#>
-
-		/// <summary>
-		/// Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-		/// </summary>
-		/// <param name="input">The input buffer.</param>
-		/// <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-		/// <exception cref="ArgumentException">output must be 1/2 times as long as input.</exception>
-		public static void PrepareInput(in Span<<#= type #>> input, in Span<<#= type #>> output)
-		{
-			if (output.Length != input.Length / 2) throw new ArgumentException("output must be 1/2 times as long as input.");
-			int N = input.Length;
-			int t3d4N = 3 * N / 4;  // N * 3 / 4
-			int d2N = N / 2;        // N / 2
-			int d4N = N / 4;        // N / 4
-			for (int n = 0; n < d4N; n++)
-			{
-				int CRn = t3d4N - n - 1;
-				int Dn = t3d4N + n;
-				output[n] = (<#= type #>)(-input[CRn] - input[Dn]);
-				int An = n;
-				int BRn = d2N - n - 1;
-				output[n + d4N] = (<#= type #>)(input[An] - input[BRn]);
-			}
-		}
-
-		/// <summary>
-		/// Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-		/// </summary>
-		/// <param name="input">The input buffer.</param>
-		/// <param name="output">The output buffer. Must be 2 times as long as input.</param>
-		/// <exception cref="ArgumentException">output must be at least 2 times as long as vs.</exception>
-		public static void PostProcess(in Span<<#= type #>> input, in Span<<#= type #>> output)
-		{
-			int N = input.Length;
-			if (output.Length != N * 2) throw new ArgumentException("output must be at least 2 times as long as vs.");
-			output.SplitQuarter(out var AsBR, out var BsAR, out var CaDR, out var DaCR);
-			input.SplitHalf(out var front, out var back);
-			int d2N = N / 2;
-			for (int n = 0; n < d2N; n++)
-			{
-				int nR = d2N - n - 1;
-				AsBR[n] = back[n];
-				BsAR[n] = (<#= type #>)(-back[nR]);
-				CaDR[n] = (<#= type #>)(-front[nR]);
-				DaCR[n] = (<#= type #>)(-front[n]);
 			}
 		}
 		<#}#>

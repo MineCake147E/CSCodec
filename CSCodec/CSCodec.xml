@@ -1909,22 +1909,6 @@
             In fact, not only DCT-IV, any reversible transform (e.g. wavelet transform) can be applied for TDAC.
             </summary>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int32}@,System.Span{System.Int32}@)">
-            <summary>
-            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int32}@,System.Span{System.Int32}@)">
-            <summary>
-            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
-        </member>
         <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Single}@,System.Span{System.Single}@)">
             <summary>
             Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
@@ -1934,54 +1918,6 @@
             <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
         </member>
         <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Single}@,System.Span{System.Single}@)">
-            <summary>
-            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int24}@,System.Span{System.Int24}@)">
-            <summary>
-            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int24}@,System.Span{System.Int24}@)">
-            <summary>
-            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Int16}@,System.Span{System.Int16}@)">
-            <summary>
-            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Int16}@,System.Span{System.Int16}@)">
-            <summary>
-            Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be at least 2 times as long as vs.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.SByte}@,System.Span{System.SByte}@)">
-            <summary>
-            Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
-            </summary>
-            <param name="input">The input buffer.</param>
-            <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
-            <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.SByte}@,System.Span{System.SByte}@)">
             <summary>
             Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
             </summary>
