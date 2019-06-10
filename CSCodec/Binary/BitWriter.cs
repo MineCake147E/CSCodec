@@ -281,6 +281,52 @@ namespace CSCodec.Binary
 		public void WriteInt64(long value) => WriteUInt64(unchecked((ulong)value));
 
 		/// <summary>
+		/// Writes the specified <see cref="double"/> value.
+		/// </summary>
+		/// <param name="value">The value to write.</param>
+		public void WriteDouble(double value) => WriteInt64(BitConverter.DoubleToInt64Bits(value));
+
+		/// <summary>
+		/// Writes the specified <see cref="float"/> value.
+		/// </summary>
+		/// <param name="value">The value to write.</param>
+		public void WriteFloat(float value) => WriteBytes(BitConverter.GetBytes(value));
+
+		/// <summary>
+		/// Writes the specified <see cref="byte"/> array.
+		/// </summary>
+		/// <param name="values">The values to write.</param>
+		public void WriteBytes(Span<byte> values)
+		{
+			var endian = ByteOrder;
+			ByteOrder = ByteOrder.BigEndian;
+			int i, itr = values.Length - (values.Length % sizeof(uint));
+			for (i = 0; i < itr; i += sizeof(uint)) //Pseudo-Unrolling
+			{
+				WriteUInt32(BinaryPrimitives.ReadUInt32BigEndian(values.Slice(i, sizeof(uint))));
+			}
+			for (; i < values.Length; i++)
+			{
+				WriteByte(values[i]);
+			}
+			ByteOrder = endian;
+		}
+
+		/// <summary>
+		/// Writes the specified <see cref="byte"/> array.
+		/// </summary>
+		/// <param name="values">The values to write.</param>
+		public void WriteBytes(byte[] values) => WriteBytes(values.AsSpan());
+
+		/// <summary>
+		/// Writes the specified <see cref="byte"/> array.
+		/// </summary>
+		/// <param name="values">The values to write.</param>
+		/// <param name="offset">The index to start writing.</param>
+		/// <param name="count">The number of values to write.</param>
+		public void WriteBytes(byte[] values, int offset, int count) => WriteBytes(new Span<byte>(values, offset, count));
+
+		/// <summary>
 		/// Writes the specified unsigned <see cref="BigInteger"/> value(Higher-bits first).
 		/// </summary>
 		/// <param name="value">The value to write.</param>

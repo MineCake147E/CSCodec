@@ -17,7 +17,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="input">The input buffer.</param>
 		/// <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
 		/// <exception cref="ArgumentException">output must be 1/2 times as long as input.</exception>
-		public static void PrepareInput(in Span<float> input, in Span<float> output)
+		public static void PrepareInput(Span<float> input, Span<float> output)
 		{
 			if (output.Length != input.Length / 2) throw new ArgumentException("output must be 1/2 times as long as input.");
 			int N = input.Length;
@@ -38,7 +38,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="input">The input buffer.</param>
 		/// <param name="output">The output buffer. Must be 2 times as long as input.</param>
 		/// <exception cref="ArgumentException">output must be at least 2 times as long as vs.</exception>
-		public static void PostProcess(in Span<float> input, in Span<float> output)
+		public static void PostProcess(Span<float> input, Span<float> output)
 		{
 			int N = input.Length;
 			if (output.Length != N * 2) throw new ArgumentException("output must be at least 2 times as long as vs.");

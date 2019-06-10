@@ -16,8 +16,8 @@ CSCodec is an open-source Audio Codec development library that has many features
 - Linear Prediction support for `double` and `float` using FFT when possible and appropriate
 
 ### Features Under Development: ###
-- [ ] Unit Tests for existing APIs
-- [ ] Better Documentations for existing APIs
+- Unit Tests for existing APIs
+- Better Documentations for existing APIs
 
 ### Features In Future: ###
 - Linear Prediction support for `int` and `long` in order to implement FLAC Encoder and Decoder

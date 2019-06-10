@@ -81,7 +81,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void CDF53Internal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -105,7 +105,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void CDF53InverseInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -131,7 +131,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53Internal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void CDF53Internal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -157,7 +157,7 @@ namespace CSCodec.Filters.Transformation
 		/// </summary>
 		/// <param name="even">The even.</param>
 		/// <param name="odd">The odd.</param>
-		private static void CDF53InverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void CDF53InverseInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{

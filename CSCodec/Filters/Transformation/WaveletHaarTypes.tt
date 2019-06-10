@@ -80,7 +80,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void HaarInverseInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -104,7 +104,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void HaarInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -130,7 +130,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInverseInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void HaarInverseInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
@@ -154,7 +154,7 @@ namespace CSCodec.Filters.Transformation
 		/// <param name="odd">The odd elements.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		private static void HaarInternal(in Span<<#= type #>> even, in Span<<#= type #>> odd)
+		private static void HaarInternal(Span<<#= type #>> even, Span<<#= type #>> odd)
 		{
 			unchecked
 			{
