@@ -645,6 +645,38 @@
             </summary>
             <param name="value">The value to write.</param>
         </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteDouble(System.Double)">
+            <summary>
+            Writes the specified <see cref="T:System.Double"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteFloat(System.Single)">
+            <summary>
+            Writes the specified <see cref="T:System.Single"/> value.
+            </summary>
+            <param name="value">The value to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteBytes(System.Span{System.Byte})">
+            <summary>
+            Writes the specified <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="values">The values to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteBytes(System.Byte[])">
+            <summary>
+            Writes the specified <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="values">The values to write.</param>
+        </member>
+        <member name="M:CSCodec.Binary.BitWriter.WriteBytes(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes the specified <see cref="T:System.Byte"/> array.
+            </summary>
+            <param name="values">The values to write.</param>
+            <param name="offset">The index to start writing.</param>
+            <param name="count">The number of values to write.</param>
+        </member>
         <member name="M:CSCodec.Binary.BitWriter.WriteBitsHighToLow(System.Numerics.BigInteger,System.Int32)">
             <summary>
             Writes the specified unsigned <see cref="T:System.Numerics.BigInteger"/> value(Higher-bits first).
@@ -1909,7 +1941,7 @@
             In fact, not only DCT-IV, any reversible transform (e.g. wavelet transform) can be applied for TDAC.
             </summary>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PrepareInput(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Prepares the specified input for the Time Domain Aliasing Cancellation Calculation.
             </summary>
@@ -1917,7 +1949,7 @@
             <param name="output">The output buffer. Must be 1/2 times as long as input.</param>
             <exception cref="T:System.ArgumentException">output must be 1/2 times as long as input.</exception>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.TimeDomainAliasingCancellation.PostProcess(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Processes the specified input for the Time Domain Aliasing Cancellation Calculation.
             </summary>
@@ -2054,70 +2086,70 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int24},System.Span{System.Int24})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int24},System.Span{System.Int24})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int16},System.Span{System.Int16})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int16},System.Span{System.Int16})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.SByte},System.Span{System.SByte})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.SByte},System.Span{System.SByte})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Double}@,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Double},System.Span{System.Double})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Double},System.Span{System.Double})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
@@ -2232,84 +2264,84 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int24},System.Span{System.Int24})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int24},System.Span{System.Int24})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int16},System.Span{System.Int16})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int16}@,System.Span{System.Int16}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int16},System.Span{System.Int16})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.SByte},System.Span{System.SByte})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.SByte}@,System.Span{System.SByte}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.SByte},System.Span{System.SByte})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int32},System.Span{System.Int32})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int32},System.Span{System.Int32})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Single}@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Single},System.Span{System.Single})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Double},System.Span{System.Double})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Double}@,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Double},System.Span{System.Double})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
@@ -2550,14 +2582,14 @@
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int32},System.Span{System.Int32})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int32}@,System.Span{System.Int32}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int32},System.Span{System.Int32})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
@@ -3013,20 +3045,20 @@
             Utility for <see cref="T:System.Span`1"/>s.
             </summary>
         </member>
-        <member name="M:System.SpanUtils.SplitHalf``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+        <member name="M:System.SpanUtils.SplitHalf``1(System.Span{``0},System.Span{``0}@,System.Span{``0}@)">
             <summary>Splits the specified array to front and back halfs.</summary>
             <param name="source">The source.</param>
             <param name="front">The front elements.</param>
             <param name="back">The back elements.</param>
             <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
         </member>
-        <member name="M:System.SpanUtils.SplitHalfInternal``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+        <member name="M:System.SpanUtils.SplitHalfInternal``1(System.Span{``0},System.Span{``0}@,System.Span{``0}@)">
             <summary>Splits the specified array to front and back halfs.</summary>
             <param name="source">The source.</param>
             <param name="front">The front elements.</param>
             <param name="back">The back elements.</param>
         </member>
-        <member name="M:System.SpanUtils.SplitQuarter``1(System.Span{``0}@,System.Span{``0}@,System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
+        <member name="M:System.SpanUtils.SplitQuarter``1(System.Span{``0},System.Span{``0}@,System.Span{``0}@,System.Span{``0}@,System.Span{``0}@)">
             <summary>
             Splits the specified array to 1-4 quarters.
             </summary>
