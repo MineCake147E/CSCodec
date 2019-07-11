@@ -26,7 +26,7 @@ CSCodec is an open-source Audio Codec development library that has many features
   - Huffman Coding
   - Arithmetic Coding without patents
     - Range Coder
-- new type `SingleComplex` that supports `float` based Complex calculation
+- New type `SingleComplex` that supports `float` based Complex calculation
   - FFT for `SingleComplex`
 - `Parallel`ization for existing apis where possible and appropriate
 - Unrounded Irreversible CDF 9/7 wavelet transform for `double`, `float`
@@ -35,5 +35,6 @@ CSCodec is an open-source Audio Codec development library that has many features
 
 ### Project Goals: ###
 - .NET Standard/Core/Frameworks, Mono, and **Xamarin** Support
+- Inter-operation with [MonoAudio](https://github.com/MineCake147E/MonoAudio)(*this part will be licensed under Ms-PL*)
 - Inter-operation with [CSCore](https://github.com/filoe/cscore), [NAudio](https://github.com/naudio/NAudio), [MonoGame](https://github.com/MonoGame/MonoGame), etc...(*these parts will be licensed under Ms-PL*)
 - Reference Implementations of cross-platform FLAC Decoder and **Encoder** for both Samples and Uses.
