@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CSCodec.Binary.Checksum
 {
-	/// <summary>
-	/// An Implementation of 16bit Cyclic Redundancy Check
-	/// </summary>
-	/// <seealso cref="Checksum.CrcBase{T}" />
-	public sealed class Crc16 : CrcBase<ushort>
+    /// <summary>
+    /// An Implementation of 16bit Cyclic Redundancy Check
+    /// </summary>
+    /// <seealso cref="Checksum.CrcBase{T}" />
+    public sealed class Crc16 : CrcBase<ushort>
 	{
 		/// <summary>
 		/// The polynomial CRC-16 IBM x^16 + x^15 + x^2 + 1

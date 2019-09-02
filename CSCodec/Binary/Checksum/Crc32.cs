@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CSCodec.Binary.Checksum
 {
-	/// <summary>
-	/// An Implementation of 32bit Cyclic Redundancy Check
-	/// </summary>
-	/// <seealso cref="Checksum.CrcBase{T}" />
-	public sealed class Crc32 : CrcBase<uint>
+    /// <summary>
+    /// An Implementation of 32bit Cyclic Redundancy Check
+    /// </summary>
+    /// <seealso cref="Checksum.CrcBase{T}" />
+    public sealed class Crc32 : CrcBase<uint>
 	{
 		private uint[] table;
 

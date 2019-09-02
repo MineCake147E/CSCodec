@@ -7,10 +7,10 @@ using CSCodec.Core;
 
 namespace CSCodec.Filters.Transformation
 {
-	/// <summary>
-	/// Implements Discrete Cosine Transformation(DCT).
-	/// </summary>
-	public static class DiscreteCosineTransformation
+    /// <summary>
+    /// Implements Discrete Cosine Transformation(DCT).
+    /// </summary>
+    public static class DiscreteCosineTransformation
 	{
 		/// <summary>
 		/// Calculates Discrete Cosine Transform Type-IV for real input <paramref name="span"/>.

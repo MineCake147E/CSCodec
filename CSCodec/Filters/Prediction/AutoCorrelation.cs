@@ -7,10 +7,10 @@ using System.Text;
 
 namespace CSCodec.Filters.Prediction
 {
-	/// <summary>
-	///
-	/// </summary>
-	public static class Autocorrelation
+    /// <summary>
+    ///
+    /// </summary>
+    public static class Autocorrelation
 	{
 		/// <summary>
 		/// Calculates the autocorrelation of specified data.
@@ -22,7 +22,7 @@ namespace CSCodec.Filters.Prediction
 		public static void CalculateAutocorrelation(in ReadOnlySpan<double> data, out Span<double> acorr, int order, bool useFftIfPossible = true)
 		{
 			acorr = new double[order + 1];
-			if (useFftIfPossible && data.Length.IsPowerOfTwo() && order + 1 > CodecMathHelper.CountBits((uint)data.Length))
+			if (useFftIfPossible && data.Length.IsPowerOfTwo() && order + 1 > MathB.CountBits((uint)data.Length))
 			{
 				CalculateAutocorrelationUsingFFT(data, ref acorr);
 			}
@@ -74,7 +74,7 @@ namespace CSCodec.Filters.Prediction
 		public static void CalculateAutocorrelation(in ReadOnlySpan<float> data, out Span<float> acorr, int order, bool useFftIfPossible = true)
 		{
 			acorr = new float[order + 1];
-			if (useFftIfPossible && data.Length.IsPowerOfTwo() && order + 1 > CodecMathHelper.CountBits((uint)data.Length))
+			if (useFftIfPossible && data.Length.IsPowerOfTwo() && order + 1 > MathB.CountBits((uint)data.Length))
 			{
 				CalculateAutocorrelationUsingFFT(data, ref acorr);
 			}

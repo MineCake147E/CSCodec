@@ -7,7 +7,7 @@ using System.Numerics;
 using System.Runtime.CompilerServices;
 namespace CSCodec.Filters.Transformation
 {
-	public static partial class WaveletTransformation
+    public static partial class WaveletTransformation
 	{
 		
 		/// <summary>

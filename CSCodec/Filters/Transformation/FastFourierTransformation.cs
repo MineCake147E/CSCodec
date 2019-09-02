@@ -6,10 +6,10 @@ using CSCodec.Core;
 
 namespace CSCodec.Filters.Transformation
 {
-	/// <summary>
-	/// Functions that performs Fast Fourier Transform.
-	/// </summary>
-	public static class FastFourierTransformation
+    /// <summary>
+    /// Functions that performs Fast Fourier Transform.
+    /// </summary>
+    public static class FastFourierTransformation
 	{
 		/// <summary>
 		/// Bit-Reversal
@@ -23,10 +23,10 @@ namespace CSCodec.Filters.Transformation
 
 		private static void ReverseInternal<T>(Span<T> span)
 		{
-			int width = 33 - CodecMathHelper.CountBits((uint)span.Length);
+			int width = 33 - MathB.CountBits((uint)span.Length);
 			for (int i = 0; i < span.Length; i++)
 			{
-				int index = (int)CodecMathHelper.ReverseBits((uint)i << width);
+				int index = (int)MathB.ReverseBits((uint)i << width);
 				if (index < i) continue;
 				var v = span[i];
 				span[i] = span[index];

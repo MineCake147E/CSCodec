@@ -4,11 +4,11 @@ using System.Text;
 
 namespace CSCodec.Binary.Checksum
 {
-	/// <summary>
-	/// An Implementation of 8bit Cyclic Redundancy Check
-	/// </summary>
-	/// <seealso cref="Checksum.CrcBase{T}" />
-	public sealed class Crc8 : CrcBase<byte>
+    /// <summary>
+    /// An Implementation of 8bit Cyclic Redundancy Check
+    /// </summary>
+    /// <seealso cref="Checksum.CrcBase{T}" />
+    public sealed class Crc8 : CrcBase<byte>
 	{
 		/// <summary>
 		/// The polynomial of CRC-8-CCITT x^8 + x^2 + x^1 + 1

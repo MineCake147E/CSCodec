@@ -16,7 +16,7 @@ namespace CSCodec.UnitTests.CodecMath
         [TestCase(0xAAAAAAAA00000000ul, 0x0000000055555555ul)]
         public void BitReverseTestUInt64(ulong valueBefore, ulong valueAfter)
         {
-            Assert.AreEqual(valueAfter, CodecMathHelper.ReverseBits(valueBefore));
+            Assert.AreEqual(valueAfter, MathB.ReverseBits(valueBefore));
         }
 
         [TestCase(0u, 0u)]
@@ -27,7 +27,7 @@ namespace CSCodec.UnitTests.CodecMath
         [TestCase(0xAAAA0000u, 0x00005555u)]
         public void BitReverseTestUInt32(uint valueBefore, uint valueAfter)
         {
-            Assert.AreEqual(valueAfter, CodecMathHelper.ReverseBits(valueBefore));
+            Assert.AreEqual(valueAfter, MathB.ReverseBits(valueBefore));
         }
 
         [TestCase((ushort)0, (ushort)0)]
@@ -38,7 +38,7 @@ namespace CSCodec.UnitTests.CodecMath
         [TestCase((ushort)0xAA00u, (ushort)0x0055u)]
         public void BitReverseTestUInt16(ushort valueBefore, ushort valueAfter)
         {
-            Assert.AreEqual(valueAfter, CodecMathHelper.ReverseBits(valueBefore));
+            Assert.AreEqual(valueAfter, MathB.ReverseBits(valueBefore));
         }
 
         [TestCase((byte)0, (byte)0)]
@@ -49,7 +49,7 @@ namespace CSCodec.UnitTests.CodecMath
         [TestCase((byte)0xA0u, (byte)0x05u)]
         public void BitReverseTestByte(byte valueBefore, byte valueAfter)
         {
-            Assert.AreEqual(valueAfter, CodecMathHelper.ReverseBits(valueBefore));
+            Assert.AreEqual(valueAfter, MathB.ReverseBits(valueBefore));
         }
 
         public static IEnumerable<TestCaseData> PowerOfTwoCheckTestCaseSource
@@ -88,7 +88,7 @@ namespace CSCodec.UnitTests.CodecMath
         [Test, TestCaseSource(nameof(CountBitsTestCaseSource))]
         public void CountBitsTest(uint value, int bits)
         {
-            Assert.AreEqual(bits, CodecMathHelper.CountBits(value));
+            Assert.AreEqual(bits, MathB.CountBits(value));
         }
     }
 }

@@ -1,16 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Buffers.Binary;
 using System.Text;
 
-namespace CSCodec
+namespace System
 {
     /// <summary>
     /// Supports some bit arithmetics.
     /// </summary>
-    public static class CodecMathHelper
+    public static class MathB
     {
+        #region CountBits
+
+        /// <summary>
+        /// same as floor(log2(i))
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int CountBits(ulong i)
+        {
+            // Reference: https://graphics.stanford.edu/~seander/bithacks.html#IntegerLog
+            int r = 0;
+            if ((i & 0xFFFF_FFFF_0000_0000uL) != 0)
+            {
+                i >>= 32;
+                r |= 32;
+            }
+            if ((i & 0xFFFF0000u) != 0)
+            {
+                i >>= 16;
+                r |= 16;
+            }
+            if ((i & 0xFF00) != 0)
+            {
+                i >>= 8;
+                r |= 8;
+            }
+            if ((i & 0xF0) != 0)
+            {
+                i >>= 4;
+                r |= 4;
+            }
+            if ((i & 0xC) != 0)
+            {
+                i >>= 2;
+                r |= 2;
+            }
+            if ((i & 0x2) != 0)
+                r |= 1;
+            return r;
+        }
+
         /// <summary>
         /// same as floor(log2(i))
         /// </summary>
@@ -42,12 +83,66 @@ namespace CSCodec
                 r |= 2;
             }
             if ((i & 0x2) != 0)
-            {
-                //i >>= 1;
                 r |= 1;
-            }
             return r;
         }
+
+        /// <summary>
+        /// same as floor(log2(i))
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int CountBits(ushort i)
+        {
+            // Reference: https://graphics.stanford.edu/~seander/bithacks.html#IntegerLog
+            int r = 0;
+            if ((i & 0xFF00) != 0)
+            {
+                i >>= 8;
+                r |= 8;
+            }
+            if ((i & 0xF0) != 0)
+            {
+                i >>= 4;
+                r |= 4;
+            }
+            if ((i & 0xC) != 0)
+            {
+                i >>= 2;
+                r |= 2;
+            }
+            if ((i & 0x2) != 0)
+                r |= 1;
+            return r;
+        }
+
+        /// <summary>
+        /// same as floor(log2(i))
+        /// </summary>
+        /// <param name="i"></param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int CountBits(byte i)
+        {
+            // Reference: https://graphics.stanford.edu/~seander/bithacks.html#IntegerLog
+            int r = 0;
+            if ((i & 0xF0) != 0)
+            {
+                i >>= 4;
+                r |= 4;
+            }
+            if ((i & 0xC) != 0)
+            {
+                i >>= 2;
+                r |= 2;
+            }
+            if ((i & 0x2) != 0)
+                r |= 1;
+            return r;
+        }
+
+        #endregion CountBits
 
         #region ReverseBits
 
@@ -61,7 +156,7 @@ namespace CSCodec
         public static uint ReverseBits(this uint i, int width)
         {
             int shift = 32 - width;
-            return ReverseBits(i << shift);
+            return (i << shift).ReverseBits();
         }
 
         /// <summary>
@@ -132,7 +227,7 @@ namespace CSCodec
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsPowerOfTwo(this uint i)
         {
-            return i != 0 && ((i & (i - 1)) == 0);
+            return i != 0 && (i & (i - 1)) == 0;
         }
 
         /// <summary>
@@ -145,7 +240,7 @@ namespace CSCodec
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsPowerOfTwo(this int i)
         {
-            return i != 0 && ((i & (i - 1)) == 0);
+            return i != 0 && (i & (i - 1)) == 0;
         }
 
         #region SignedToFromUnsigned
