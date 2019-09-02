@@ -1063,128 +1063,6 @@
             </summary>
             <param name="BitWidth">Width of the Enum in bits.</param>
         </member>
-        <member name="T:CSCodec.CodecMathHelper">
-            <summary>
-            Supports some bit arithmetics.
-            </summary>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.CountBits(System.UInt32)">
-            <summary>
-            same as floor(log2(i))
-            </summary>
-            <param name="i"></param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32,System.Int32)">
-            <summary>
-            Reverses the bits of the specified value in specified width.
-            </summary>
-            <param name="i">The value.</param>
-            <param name="width">The width in bits.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt64)">
-            <summary>
-            Reverses the bits of the specified value in 64bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt32)">
-            <summary>
-            Reverses the bits of the specified value in 32bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.UInt16)">
-            <summary>
-            Reverses the bits of the specified value in 16bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ReverseBits(System.Byte)">
-            <summary>
-            Reverses the bits of the specified value in 8bit.
-            </summary>
-            <param name="i">The value to reverse bit order.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.UInt32)">
-            <summary>
-            Determines whether the specified <paramref name="i"/> is power of two.
-            </summary>
-            <param name="i">The value.</param>
-            <returns>
-              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.IsPowerOfTwo(System.Int32)">
-            <summary>
-            Determines whether the specified <paramref name="i"/> is power of two.
-            </summary>
-            <param name="i">The value.</param>
-            <returns>
-              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int64)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1L => 0xFFFFFFFFFFFFFFFFUL without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int32)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.Int16)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 65535 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToUnsigned(System.SByte)">
-            <summary>
-            Converts to unsigned integer bitwisely(-1 => 255 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt64)">
-            <summary>
-            Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt32)">
-            <summary>
-            Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.UInt16)">
-            <summary>
-            Converts to signed integer bitwisely(65535 => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
-        <member name="M:CSCodec.CodecMathHelper.ToSigned(System.Byte)">
-            <summary>
-            Converts to signed integer bitwisely(255 => -1 without exception).
-            </summary>
-            <param name="value">The value to convert.</param>
-            <returns></returns>
-        </member>
         <member name="T:CSCodec.IntegerMath">
             <summary>
             Arithmetic utilities for integral types.
@@ -1996,19 +1874,19 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53MultiLevel(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevelInternal(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseMultiLevel(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Inverse Cohen–Daubechies–Feauveau (LeGall) 5/3 Wavelet Transform to the specified elements.
             </summary>
@@ -2086,14 +1964,14 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{System.Int24},System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53Internal(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24})">
             <summary>
             Performs The 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{System.Int24},System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.CDF53InverseInternal(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24})">
             <summary>
             Performs The Inverse 1-level Cohen–Daubechies–Feauveau LeGall 5/3 Wavelet Transform to the specified elements.
             </summary>
@@ -2174,19 +2052,19 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarMultiLevel(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Haar Transform to the specified elements.
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevelInternal(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseMultiLevel(System.Span{CSCodec.Int24})">
             <summary>
             Performs The Multi-Level Inverse Haar Transform to the specified elements.
             </summary>
@@ -2264,14 +2142,14 @@
             </summary>
             <param name="span">The Transforming span.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{System.Int24},System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInverseInternal(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24})">
             <summary>
             Performs The 1-level Inverse Haar Transform to the specified elements.
             </summary>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{System.Int24},System.Span{System.Int24})">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.HaarInternal(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24})">
             <summary>
             Performs The 1-level Haar Transform to the specified elements.
             </summary>
@@ -2387,40 +2265,40 @@
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitOddEven(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
             <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.ArrangeOddEven(System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="source">The source.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalf(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to front and back halfs.</summary>
             <param name="source">The source.</param>
             <param name="front">The front elements.</param>
             <param name="back">The back elements.</param>
             <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.SplitHalfInternal(System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to front and back halfs.</summary>
             <param name="source">The source.</param>
             <param name="front">The front elements.</param>
             <param name="back">The back elements.</param>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{System.Int24},System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEven(System.Span{CSCodec.Int24},System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="destination">The destination.</param>
             <param name="even">The even elements.</param>
             <param name="odd">The odd elements.</param>
             <exception cref="T:System.ArgumentException">The source's length was odd.</exception>
         </member>
-        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{System.Int24}@,System.Span{System.Int24}@,System.Span{System.Int24}@)">
+        <member name="M:CSCodec.Filters.Transformation.WaveletTransformation.MergeOddEvenInternal(System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@,System.Span{CSCodec.Int24}@)">
             <summary>Splits the specified array to odd even index.</summary>
             <param name="destination">The destination.</param>
             <param name="even">The even elements.</param>
@@ -2595,6 +2473,186 @@
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
+        </member>
+        <member name="T:CSCodec.Int24">
+            <summary>
+            An simple representation of 24bit signed integer.
+            </summary>
+            <seealso cref="T:System.IEquatable`1" />
+        </member>
+        <member name="F:CSCodec.Int24.MaxValue">
+            <summary>
+            Represents the largest possible value of an System.Int24. This field is constant.
+            </summary>
+        </member>
+        <member name="F:CSCodec.Int24.MinValue">
+            <summary>
+            Represents the smallest possible value of System.Int24. This field is constant.
+            </summary>
+        </member>
+        <member name="M:CSCodec.Int24.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSCodec.Int24"/> struct.
+            </summary>
+            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
+        </member>
+        <member name="M:CSCodec.Int24.ToBytes(CSCodec.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Converts an array of <see cref="T:CSCodec.Int24"/>s to the specified array of bytes.
+            </summary>
+            <param name="buffer">The buffer.</param>
+            <param name="offset">The offset.</param>
+            <param name="outbuf">The output buffer.</param>
+            <param name="dstoffset">The destination offset.</param>
+            <param name="srccount">The source count.</param>
+        </member>
+        <member name="M:CSCodec.Int24.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Implicit(CSCodec.Int24)~System.Int32">
+            <summary>
+            Performs an implicit conversion from <see cref="T:CSCodec.Int24"/> to <see cref="T:System.Int32"/>.
+            </summary>
+            <param name="v">The input value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_UnaryNegation(CSCodec.Int24)">
+            <summary>
+            Negates a specified <see cref="T:CSCodec.Int24"/> value.
+            </summary>
+            <param name="value">The value to negate.</param>
+            <returns>
+            The result of the <paramref name="value"/> parameter multiplied by negative one (-1).
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Explicit(System.Int32)~CSCodec.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:CSCodec.Int24"/>.
+            </summary>
+            <param name="v">The input value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Explicit(System.Single)~CSCodec.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:CSCodec.Int24"/> to <see cref="T:System.Single"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Explicit(System.Double)~CSCodec.Int24">
+            <summary>
+            Performs an explicit conversion from <see cref="T:System.Double"/> to <see cref="T:CSCodec.Int24"/>.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the conversion.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Equality(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Indicates whether the values of two specified <see cref="T:CSCodec.Int24"/> objects are equal.
+            </summary>
+            <param name="int1">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="int2">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_Inequality(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Indicates whether the values of two specified <see cref="T:CSCodec.Int24"/> objects are not equal.
+            </summary>
+            <param name="int1">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="int2">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if int1 and int2 are not equal; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_LessThan(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:CSCodec.Int24"/> is less than another specified <see cref="T:CSCodec.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is less than right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_GreaterThan(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:CSCodec.Int24"/> is greater than another specified <see cref="T:CSCodec.Int24"/> value.
+            </summary>
+            <param name="left">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is greater than right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_LessThanOrEqual(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Returns a value that indicates whether a specified <see cref="T:CSCodec.Int24"/> is less than or equal to another specified <see cref="T:CSCodec.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="right">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if left is less than or equal to right; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_GreaterThanOrEqual(CSCodec.Int24,CSCodec.Int24)">
+            <summary>
+            Determines whether one specified <see cref="T:CSCodec.Int24"/> is greater than or equal to another specified <see cref="T:CSCodec.Int24"/>.
+            </summary>
+            <param name="left">The first <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <param name="right">The second  <see cref="T:CSCodec.Int24"/> to compare.</param>
+            <returns>
+              <c>true</c> if <see cref="T:CSCodec.Int24"/> is greater than or equal to <see cref="T:CSCodec.Int24"/>; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
+            </summary>
+            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
+            <returns>
+              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.Equals(CSCodec.Int24)">
+            <summary>
+            Indicates whether the current object is equal to another object of the same type.
+            </summary>
+            <param name="other">An object to compare with this object.</param>
+            <returns>
+            true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>
+            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.CompareTo(CSCodec.Int24)">
+            <summary>
+            Compares the value of this instance to a specified <see cref="T:CSCodec.Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="T:CSCodec.Int24"/> value.
+            </summary>
+            <param name="other">The <see cref="T:CSCodec.Int24"/> to compare to the current instance.</param>
+            <returns>
+            A signed number indicating the relative values of this instance and the other parameter.
+            </returns>
         </member>
         <member name="T:CSCodec.Utils.ArrayReadStream">
             <summary>
@@ -2860,185 +2918,148 @@
             <param name="offset">The zero-based byte offset in buffer at which to begin copying bytes to the current stream.</param>
             <param name="count">The number of bytes to be written to the current stream.</param>
         </member>
-        <member name="T:System.Int24">
+        <member name="T:System.MathB">
             <summary>
-            An simple representation of 24bit signed integer.
-            </summary>
-            <seealso cref="T:System.IEquatable`1" />
-        </member>
-        <member name="F:System.Int24.MaxValue">
-            <summary>
-            Represents the largest possible value of an System.Int24. This field is constant.
+            Supports some bit arithmetics.
             </summary>
         </member>
-        <member name="F:System.Int24.MinValue">
+        <member name="M:System.MathB.CountBits(System.UInt64)">
             <summary>
-            Represents the smallest possible value of System.Int24. This field is constant.
+            same as floor(log2(i))
             </summary>
+            <param name="i"></param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.#ctor(System.Int32)">
+        <member name="M:System.MathB.CountBits(System.UInt32)">
             <summary>
-            Initializes a new instance of the <see cref="T:System.Int24"/> struct.
+            same as floor(log2(i))
             </summary>
-            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
+            <param name="i"></param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.ToBytes(System.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+        <member name="M:System.MathB.CountBits(System.UInt16)">
             <summary>
-            Converts an array of <see cref="T:System.Int24"/>s to the specified array of bytes.
+            same as floor(log2(i))
             </summary>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="outbuf">The output buffer.</param>
-            <param name="dstoffset">The destination offset.</param>
-            <param name="srccount">The source count.</param>
+            <param name="i"></param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.ToString">
+        <member name="M:System.MathB.CountBits(System.Byte)">
             <summary>
-            Converts to string.
+            same as floor(log2(i))
             </summary>
+            <param name="i"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.ReverseBits(System.UInt32,System.Int32)">
+            <summary>
+            Reverses the bits of the specified value in specified width.
+            </summary>
+            <param name="i">The value.</param>
+            <param name="width">The width in bits.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.ReverseBits(System.UInt64)">
+            <summary>
+            Reverses the bits of the specified value in 64bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.ReverseBits(System.UInt32)">
+            <summary>
+            Reverses the bits of the specified value in 32bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.ReverseBits(System.UInt16)">
+            <summary>
+            Reverses the bits of the specified value in 16bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.ReverseBits(System.Byte)">
+            <summary>
+            Reverses the bits of the specified value in 8bit.
+            </summary>
+            <param name="i">The value to reverse bit order.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.IsPowerOfTwo(System.UInt32)">
+            <summary>
+            Determines whether the specified <paramref name="i"/> is power of two.
+            </summary>
+            <param name="i">The value.</param>
             <returns>
-            A <see cref="T:System.String" /> that represents this instance.
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:System.Int24.op_Implicit(System.Int24)~System.Int32">
+        <member name="M:System.MathB.IsPowerOfTwo(System.Int32)">
             <summary>
-            Performs an implicit conversion from <see cref="T:System.Int24"/> to <see cref="T:System.Int32"/>.
+            Determines whether the specified <paramref name="i"/> is power of two.
             </summary>
-            <param name="v">The input value.</param>
+            <param name="i">The value.</param>
             <returns>
-            The result of the conversion.
+              <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="M:System.Int24.op_UnaryNegation(System.Int24)">
+        <member name="M:System.MathB.ToUnsigned(System.Int64)">
             <summary>
-            Negates a specified <see cref="T:System.Int24"/> value.
+            Converts to unsigned integer bitwisely(-1L => 0xFFFFFFFFFFFFFFFFUL without exception).
             </summary>
-            <param name="value">The value to negate.</param>
-            <returns>
-            The result of the <paramref name="value"/> parameter multiplied by negative one (-1).
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_Explicit(System.Int32)~System.Int24">
+        <member name="M:System.MathB.ToUnsigned(System.Int32)">
             <summary>
-            Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:System.Int24"/>.
+            Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
             </summary>
-            <param name="v">The input value.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_Explicit(System.Single)~System.Int24">
+        <member name="M:System.MathB.ToUnsigned(System.Int16)">
             <summary>
-            Performs an explicit conversion from <see cref="T:System.Int24"/> to <see cref="T:System.Single"/>.
+            Converts to unsigned integer bitwisely(-1 => 65535 without exception).
             </summary>
-            <param name="value">The value.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_Explicit(System.Double)~System.Int24">
+        <member name="M:System.MathB.ToUnsigned(System.SByte)">
             <summary>
-            Performs an explicit conversion from <see cref="T:System.Double"/> to <see cref="T:System.Int24"/>.
+            Converts to unsigned integer bitwisely(-1 => 255 without exception).
             </summary>
-            <param name="value">The value.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_Equality(System.Int24,System.Int24)">
+        <member name="M:System.MathB.ToSigned(System.UInt64)">
             <summary>
-            Indicates whether the values of two specified <see cref="T:System.Int24"/> objects are equal.
+            Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
             </summary>
-            <param name="int1">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="int2">The second <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_Inequality(System.Int24,System.Int24)">
+        <member name="M:System.MathB.ToSigned(System.UInt32)">
             <summary>
-            Indicates whether the values of two specified <see cref="T:System.Int24"/> objects are not equal.
+            Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
             </summary>
-            <param name="int1">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="int2">The second <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if int1 and int2 are not equal; otherwise, <c>false</c>.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_LessThan(System.Int24,System.Int24)">
+        <member name="M:System.MathB.ToSigned(System.UInt16)">
             <summary>
-            Determines whether one specified <see cref="T:System.Int24"/> is less than another specified <see cref="T:System.Int24"/>.
+            Converts to signed integer bitwisely(65535 => -1 without exception).
             </summary>
-            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if left is less than right; otherwise, <c>false</c>.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
-        <member name="M:System.Int24.op_GreaterThan(System.Int24,System.Int24)">
+        <member name="M:System.MathB.ToSigned(System.Byte)">
             <summary>
-            Determines whether one specified <see cref="T:System.Int24"/> is greater than another specified <see cref="T:System.Int24"/> value.
+            Converts to signed integer bitwisely(255 => -1 without exception).
             </summary>
-            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if left is greater than right; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:System.Int24.op_LessThanOrEqual(System.Int24,System.Int24)">
-            <summary>
-            Returns a value that indicates whether a specified <see cref="T:System.Int24"/> is less than or equal to another specified <see cref="T:System.Int24"/>.
-            </summary>
-            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="right">The second <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if left is less than or equal to right; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:System.Int24.op_GreaterThanOrEqual(System.Int24,System.Int24)">
-            <summary>
-            Determines whether one specified <see cref="T:System.Int24"/> is greater than or equal to another specified <see cref="T:System.Int24"/>.
-            </summary>
-            <param name="left">The first <see cref="T:System.Int24"/> to compare.</param>
-            <param name="right">The second  <see cref="T:System.Int24"/> to compare.</param>
-            <returns>
-              <c>true</c> if <see cref="T:System.Int24"/> is greater than or equal to <see cref="T:System.Int24"/>; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:System.Int24.Equals(System.Object)">
-            <summary>
-            Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
-            </summary>
-            <param name="obj">The <see cref="T:System.Object" /> to compare with this instance.</param>
-            <returns>
-              <c>true</c> if the specified <see cref="T:System.Object" /> is equal to this instance; otherwise, <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:System.Int24.Equals(System.Int24)">
-            <summary>
-            Indicates whether the current object is equal to another object of the same type.
-            </summary>
-            <param name="other">An object to compare with this object.</param>
-            <returns>
-            true if the current object is equal to the <paramref name="other">other</paramref> parameter; otherwise, false.
-            </returns>
-        </member>
-        <member name="M:System.Int24.GetHashCode">
-            <summary>
-            Returns a hash code for this instance.
-            </summary>
-            <returns>
-            A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
-            </returns>
-        </member>
-        <member name="M:System.Int24.CompareTo(System.Int24)">
-            <summary>
-            Compares the value of this instance to a specified <see cref="T:System.Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="T:System.Int24"/> value.
-            </summary>
-            <param name="other">The <see cref="T:System.Int24"/> to compare to the current instance.</param>
-            <returns>
-            A signed number indicating the relative values of this instance and the other parameter.
-            </returns>
+            <param name="value">The value to convert.</param>
+            <returns></returns>
         </member>
         <member name="T:System.SpanUtils">
             <summary>
