@@ -996,18 +996,17 @@
             Arithmetic utilities for integral types.
             </summary>
         </member>
-        <member name="T:CSCodec.Core.AudioEncoding">
+        <member name="T:CSCodec.AudioEncoding">
             <summary>
             Audio encoding.
             </summary>
-            TODO Edit XML Comment Template for AudioEncoding
         </member>
-        <member name="F:CSCodec.Core.AudioEncoding.PCM">
+        <member name="F:CSCodec.AudioEncoding.PCM">
             <summary>
             The PCM.
             </summary>
         </member>
-        <member name="F:CSCodec.Core.AudioEncoding.IeeeFloat">
+        <member name="F:CSCodec.AudioEncoding.IeeeFloat">
             <summary>
             The IEEE754 floating point number.
             </summary>
@@ -1353,7 +1352,7 @@
             The extra size.
             </summary>
         </member>
-        <member name="M:CSCodec.Core.WaveFormat.#ctor(CSCodec.Core.AudioEncoding,System.Int16,System.Int32,System.Int16,System.Int16,System.Int16)">
+        <member name="M:CSCodec.Core.WaveFormat.#ctor(CSCodec.AudioEncoding,System.Int16,System.Int32,System.Int16,System.Int16,System.Int16)">
             <summary>
             Initializes a new instance of the <see cref="T:CSCodec.Core.WaveFormat"/> class.
             </summary>
