@@ -3,12 +3,12 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
-<# Type[] typegenAddSub = new Type[]{
-typeof(int), typeof(uint), typeof(long), typeof(ulong), typeof(short), typeof(ushort), typeof(sbyte), typeof(byte),
-typeof(float), typeof(double)}; #>
-<# Type[] typegenMul = new Type[]{typeof(int), typeof(short), typeof(float), typeof(double)}; #>
-<# Type[] typegenNeg = new Type[]{typeof(int), typeof(long), typeof(float), typeof(double)}; #>
-<# Type[] typegenNegCast = new Type[]{typeof(short), typeof(sbyte)}; #>
+<# var typegenAddSub = new string[]{
+"int", "uint", "long", "ulong", "short", "ushort", "sbyte", "byte",
+"float", "double"}; #>
+<# var typegenMul = new string[]{"int", "short", "float", "double"}; #>
+<# var typegenNeg = new string[]{"int", "long", "float", "double"}; #>
+<# var typegenNegCast = new string[]{"short", "sbyte"}; #>
 <#@ output extension=".cs" #>
 using System;
 using System.Collections.Generic;
@@ -17,117 +17,139 @@ using System.Xml;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace CSCodec{
-	public static partial class ArrayCalculationExtensions
+	public static partial class MathV
 	{
 	<#foreach(var type in typegenAddSub){#>
 		/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(<#= type #>[] bufferA, int offsetA, <#= type #>[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<<#= type #>> bufferA, ReadOnlySpan<<#= type #>> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<<#= type #>>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<<#= type #>>(bufferA, i) + new Vector<<#= type #>>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<<#= type #>>.Count;
-				j += Vector<<#= type #>>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<<#= type #>>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(bufferB);
+                var dst = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(<#= type #>[] bufferA, int offsetA, <#= type #>[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<<#= type #>> bufferA, ReadOnlySpan<<#= type #>> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<<#= type #>>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<<#= type #>>(bufferA, i) - new Vector<<#= type #>>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<<#= type #>>.Count;
-				j += Vector<<#= type #>>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<<#= type #>>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(bufferB);
+                var dst = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 	<# } #>
 	<#foreach(var type in typegenNeg){#>
 
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this <#= type #>[] buffer, int offset, int count)
+		public static void NegateArray(this Span<<#= type #>> span)
 		{
-			int procCountFinal = count % Vector<<#= type #>>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
-			{
-				(-(new Vector<<#= type #>>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = -buffer[i];
-			}
+			if (Vector<<#= type #>>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = -span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<<#= type #>>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = -spanR[i];
+                }
+            }
 		}
 	<#}#>
 	<#foreach(var type in typegenNegCast){#>
 
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this <#= type #>[] buffer, int offset, int count)
+		public static void NegateArray(this Span<<#= type #>> span)
 		{
-			int procCountFinal = count % Vector<<#= type #>>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<<#= type #>>.Count)
-			{
-				(-(new Vector<<#= type #>>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = (<#= type #>)(-buffer[i]);
-			}
+			if (Vector<<#= type #>>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = (<#= type #>)-span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<<#= type #>, Vector<<#= type #>>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<<#= type #>>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = (<#= type #>)-spanR[i];
+                }
+            }
 		}
 	<#}#>
 	}

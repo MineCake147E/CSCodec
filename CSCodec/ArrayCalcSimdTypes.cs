@@ -5,726 +5,830 @@ using System.Xml;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
 namespace CSCodec{
-	public static partial class ArrayCalculationExtensions
+	public static partial class MathV
 	{
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Int32[] bufferA, int offsetA, System.Int32[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<int> bufferA, ReadOnlySpan<int> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int32>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int32>(bufferA, i) + new Vector<System.Int32>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int32>.Count;
-				j += Vector<System.Int32>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<int>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<int, Vector<int>>(bufferB);
+                var dst = MemoryMarshal.Cast<int, Vector<int>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Int32[] bufferA, int offsetA, System.Int32[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<int> bufferA, ReadOnlySpan<int> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int32>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int32>(bufferA, i) - new Vector<System.Int32>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int32>.Count;
-				j += Vector<System.Int32>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<int>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<int, Vector<int>>(bufferB);
+                var dst = MemoryMarshal.Cast<int, Vector<int>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.UInt32[] bufferA, int offsetA, System.UInt32[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<uint> bufferA, ReadOnlySpan<uint> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt32>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt32>(bufferA, i) + new Vector<System.UInt32>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt32>.Count;
-				j += Vector<System.UInt32>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<uint>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<uint, Vector<uint>>(bufferB);
+                var dst = MemoryMarshal.Cast<uint, Vector<uint>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.UInt32[] bufferA, int offsetA, System.UInt32[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<uint> bufferA, ReadOnlySpan<uint> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt32>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt32>(bufferA, i) - new Vector<System.UInt32>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt32>.Count;
-				j += Vector<System.UInt32>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<uint>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<uint, Vector<uint>>(bufferB);
+                var dst = MemoryMarshal.Cast<uint, Vector<uint>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Int64[] bufferA, int offsetA, System.Int64[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<long> bufferA, ReadOnlySpan<long> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int64>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int64>(bufferA, i) + new Vector<System.Int64>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int64>.Count;
-				j += Vector<System.Int64>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<long>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<long, Vector<long>>(bufferB);
+                var dst = MemoryMarshal.Cast<long, Vector<long>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Int64[] bufferA, int offsetA, System.Int64[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<long> bufferA, ReadOnlySpan<long> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int64>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int64>(bufferA, i) - new Vector<System.Int64>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int64>.Count;
-				j += Vector<System.Int64>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<long>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<long, Vector<long>>(bufferB);
+                var dst = MemoryMarshal.Cast<long, Vector<long>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.UInt64[] bufferA, int offsetA, System.UInt64[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<ulong> bufferA, ReadOnlySpan<ulong> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt64>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt64>(bufferA, i) + new Vector<System.UInt64>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt64>.Count;
-				j += Vector<System.UInt64>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<ulong>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<ulong, Vector<ulong>>(bufferB);
+                var dst = MemoryMarshal.Cast<ulong, Vector<ulong>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.UInt64[] bufferA, int offsetA, System.UInt64[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<ulong> bufferA, ReadOnlySpan<ulong> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt64>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt64>(bufferA, i) - new Vector<System.UInt64>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt64>.Count;
-				j += Vector<System.UInt64>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<ulong>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<ulong, Vector<ulong>>(bufferB);
+                var dst = MemoryMarshal.Cast<ulong, Vector<ulong>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Int16[] bufferA, int offsetA, System.Int16[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<short> bufferA, ReadOnlySpan<short> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int16>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int16>(bufferA, i) + new Vector<System.Int16>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int16>.Count;
-				j += Vector<System.Int16>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<short>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<short, Vector<short>>(bufferB);
+                var dst = MemoryMarshal.Cast<short, Vector<short>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Int16[] bufferA, int offsetA, System.Int16[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<short> bufferA, ReadOnlySpan<short> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Int16>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Int16>(bufferA, i) - new Vector<System.Int16>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Int16>.Count;
-				j += Vector<System.Int16>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<short>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<short, Vector<short>>(bufferB);
+                var dst = MemoryMarshal.Cast<short, Vector<short>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.UInt16[] bufferA, int offsetA, System.UInt16[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<ushort> bufferA, ReadOnlySpan<ushort> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt16>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt16>(bufferA, i) + new Vector<System.UInt16>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt16>.Count;
-				j += Vector<System.UInt16>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<ushort>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<ushort, Vector<ushort>>(bufferB);
+                var dst = MemoryMarshal.Cast<ushort, Vector<ushort>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.UInt16[] bufferA, int offsetA, System.UInt16[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<ushort> bufferA, ReadOnlySpan<ushort> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.UInt16>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.UInt16>(bufferA, i) - new Vector<System.UInt16>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.UInt16>.Count;
-				j += Vector<System.UInt16>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<ushort>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<ushort, Vector<ushort>>(bufferB);
+                var dst = MemoryMarshal.Cast<ushort, Vector<ushort>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.SByte[] bufferA, int offsetA, System.SByte[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<sbyte> bufferA, ReadOnlySpan<sbyte> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.SByte>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.SByte>(bufferA, i) + new Vector<System.SByte>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.SByte>.Count;
-				j += Vector<System.SByte>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<sbyte>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<sbyte, Vector<sbyte>>(bufferB);
+                var dst = MemoryMarshal.Cast<sbyte, Vector<sbyte>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.SByte[] bufferA, int offsetA, System.SByte[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<sbyte> bufferA, ReadOnlySpan<sbyte> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.SByte>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.SByte>(bufferA, i) - new Vector<System.SByte>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.SByte>.Count;
-				j += Vector<System.SByte>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<sbyte>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<sbyte, Vector<sbyte>>(bufferB);
+                var dst = MemoryMarshal.Cast<sbyte, Vector<sbyte>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Byte[] bufferA, int offsetA, System.Byte[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<byte> bufferA, ReadOnlySpan<byte> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Byte>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Byte>(bufferA, i) + new Vector<System.Byte>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Byte>.Count;
-				j += Vector<System.Byte>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<byte>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<byte, Vector<byte>>(bufferB);
+                var dst = MemoryMarshal.Cast<byte, Vector<byte>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Byte[] bufferA, int offsetA, System.Byte[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<byte> bufferA, ReadOnlySpan<byte> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Byte>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Byte>(bufferA, i) - new Vector<System.Byte>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Byte>.Count;
-				j += Vector<System.Byte>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<byte>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<byte, Vector<byte>>(bufferB);
+                var dst = MemoryMarshal.Cast<byte, Vector<byte>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Single[] bufferA, int offsetA, System.Single[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<float> bufferA, ReadOnlySpan<float> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Single>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Single>(bufferA, i) + new Vector<System.Single>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Single>.Count;
-				j += Vector<System.Single>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<float>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<float, Vector<float>>(bufferB);
+                var dst = MemoryMarshal.Cast<float, Vector<float>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Single[] bufferA, int offsetA, System.Single[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<float> bufferA, ReadOnlySpan<float> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Single>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Single>(bufferA, i) - new Vector<System.Single>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Single>.Count;
-				j += Vector<System.Single>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<float>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<float, Vector<float>>(bufferB);
+                var dst = MemoryMarshal.Cast<float, Vector<float>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 			/// <summary>
 		/// Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
-		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
+		/// <param name="bufferA">The destination <see cref="Span{T}"/></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void AddArray(System.Double[] bufferA, int offsetA, System.Double[] bufferB, int offsetB, int count)
+		public static void AddArray(Span<double> bufferA, ReadOnlySpan<double> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Double>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Double>(bufferA, i) + new Vector<System.Double>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Double>.Count;
-				j += Vector<System.Double>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] += bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<double>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<double, Vector<double>>(bufferB);
+                var dst = MemoryMarshal.Cast<double, Vector<double>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] += src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] += srcRem[i];
+                }
+            }
 		}
 		/// <summary>
-		/// Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+		/// Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
 		/// <paramref name="bufferA"/> will be overwritten.
 		/// </summary>
 		/// <param name="bufferA"></param>
-		/// <param name="offsetA"></param>
 		/// <param name="bufferB"></param>
-		/// <param name="offsetB"></param>
-		/// <param name="count"></param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void SubtractArray(System.Double[] bufferA, int offsetA, System.Double[] bufferB, int offsetB, int count)
+		public static void SubtractArray(Span<double> bufferA, ReadOnlySpan<double> bufferB)
 		{
-			if (offsetA + count > bufferA.Length || offsetB + count > bufferB.Length) throw new ArgumentException("Insufficient buffer.", nameof(count));
-			int procCountFinal = count % Vector<System.Double>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i = offsetA;
-			int j = offsetB;
-			do
-			{
-				(new Vector<System.Double>(bufferA, i) - new Vector<System.Double>(bufferB, j)).CopyTo(bufferA, i);
-				i += Vector<System.Double>.Count;
-				j += Vector<System.Double>.Count;
-			} while (i < offsetA + procCountSIMD && j < offsetB + procCountSIMD);
-			for (int k = 0; k < procCountFinal; k++)
-			{
-				bufferA[i + k] -= bufferB[j + k];
-			}
+			if (bufferB.Length > bufferA.Length) throw new ArgumentException("Insufficient buffer.", nameof(bufferA));
+            var remainder = bufferB.Length % Vector<double>.Count;
+            var newLength = bufferB.Length - remainder;
+            if (newLength != 0)
+            {
+                var src = MemoryMarshal.Cast<double, Vector<double>>(bufferB);
+                var dst = MemoryMarshal.Cast<double, Vector<double>>(bufferA).Slice(0, src.Length);
+                for (int i = 0; i < src.Length; i++)
+                {
+                    dst[i] -= src[i];
+                }
+            }
+            if (remainder != 0)
+            {
+                var srcRem = bufferB.Slice(newLength);
+                var dstRem = bufferA.Slice(newLength).Slice(0, srcRem.Length);
+                for (int i = 0; i < srcRem.Length; i++)
+                {
+                    dstRem[i] -= srcRem[i];
+                }
+            }
 		}
 		
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.Int32[] buffer, int offset, int count)
+		public static void NegateArray(this Span<int> span)
 		{
-			int procCountFinal = count % Vector<System.Int32>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int32>.Count)
-			{
-				(-(new Vector<System.Int32>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = -buffer[i];
-			}
+			if (Vector<int>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = -span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<int, Vector<int>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<int>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = -spanR[i];
+                }
+            }
 		}
 	
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.Int64[] buffer, int offset, int count)
+		public static void NegateArray(this Span<long> span)
 		{
-			int procCountFinal = count % Vector<System.Int64>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int64>.Count)
-			{
-				(-(new Vector<System.Int64>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = -buffer[i];
-			}
+			if (Vector<long>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = -span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<long, Vector<long>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<long>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = -spanR[i];
+                }
+            }
 		}
 	
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.Single[] buffer, int offset, int count)
+		public static void NegateArray(this Span<float> span)
 		{
-			int procCountFinal = count % Vector<System.Single>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Single>.Count)
-			{
-				(-(new Vector<System.Single>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = -buffer[i];
-			}
+			if (Vector<float>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = -span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<float, Vector<float>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<float>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = -spanR[i];
+                }
+            }
 		}
 	
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.Double[] buffer, int offset, int count)
+		public static void NegateArray(this Span<double> span)
 		{
-			int procCountFinal = count % Vector<System.Double>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Double>.Count)
-			{
-				(-(new Vector<System.Double>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = -buffer[i];
-			}
+			if (Vector<double>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = -span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<double, Vector<double>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<double>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = -spanR[i];
+                }
+            }
 		}
 		
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.Int16[] buffer, int offset, int count)
+		public static void NegateArray(this Span<short> span)
 		{
-			int procCountFinal = count % Vector<System.Int16>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.Int16>.Count)
-			{
-				(-(new Vector<System.Int16>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = (System.Int16)(-buffer[i]);
-			}
+			if (Vector<short>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = (short)-span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<short, Vector<short>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<short>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = (short)-spanR[i];
+                }
+            }
 		}
 	
 		/// <summary>
-		/// Negates the specified <paramref name="buffer"/>.
+		/// Negates the specified <paramref name="span"/>.
 		/// </summary>
-		/// <param name="buffer">The array to Negate.</param>
-		/// <param name="offset">The offset to Negate.</param>
-		/// <param name="count">The count of element.</param>
+		/// <param name="span">The region to Negate.</param>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		[DebuggerNonUserCode()]
-		public static void NegateArray(this System.SByte[] buffer, int offset, int count)
+		public static void NegateArray(this Span<sbyte> span)
 		{
-			int procCountFinal = count % Vector<System.SByte>.Count;
-			int procCountSIMD = count - procCountFinal;
-			int i;
-			for (i = offset; i < offset + procCountSIMD; i += Vector<System.SByte>.Count)
-			{
-				(-(new Vector<System.SByte>(buffer, i))).CopyTo(buffer, i);
-			}
-			for (i = offset + procCountSIMD; i < offset + count; i++)
-			{
-				buffer[i] = (System.SByte)(-buffer[i]);
-			}
+			if (Vector<sbyte>.Count > span.Length)
+            {
+                for (int i = 0; i < span.Length; i++)
+                {
+                    span[i] = (sbyte)-span[i];
+                }
+            }
+            else
+            {
+                var spanV = MemoryMarshal.Cast<sbyte, Vector<sbyte>>(span);
+                for (int i = 0; i < spanV.Length; i++)
+                {
+                    spanV[i] = -spanV[i];
+                }
+                var spanR = span.Slice(spanV.Length * Vector<sbyte>.Count);
+                for (int i = 0; i < spanR.Length; i++)
+                {
+                    spanR[i] = (sbyte)-spanR[i];
+                }
+            }
 		}
 		}
 }

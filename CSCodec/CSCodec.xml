@@ -4,280 +4,208 @@
         <name>CSCodec</name>
     </assembly>
     <members>
-        <member name="T:CSCodec.ArrayCalculationExtensions">
+        <member name="T:CSCodec.MathV">
             <summary>
             Hardware-Accelerated (or not) array manipulation.
             </summary>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int32[],System.Int32,System.Int32[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int32[],System.Int32,System.Int32[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt32[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt32[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int64[],System.Int32,System.Int64[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int64[],System.Int32,System.Int64[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt64[],System.Int32,System.UInt64[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt64[],System.Int32,System.UInt64[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Int16[],System.Int32,System.Int16[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Int16[],System.Int32,System.Int16[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.UInt16[],System.Int32,System.UInt16[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.UInt16[],System.Int32,System.UInt16[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.SByte[],System.Int32,System.SByte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.SByte[],System.Int32,System.SByte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Byte[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Single[],System.Int32,System.Single[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Single[],System.Int32,System.Single[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.AddArray(System.Double[],System.Int32,System.Double[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
             <summary>
             Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
-            <param name="bufferA"></param>
-            <param name="offsetA"></param>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.SubtractArray(System.Double[],System.Int32,System.Double[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
             <summary>
-            Subtracts values from <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
             <paramref name="bufferA"/> will be overwritten.
             </summary>
             <param name="bufferA"></param>
-            <param name="offsetA"></param>
             <param name="bufferB"></param>
-            <param name="offsetB"></param>
-            <param name="count"></param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int32[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int32})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int64[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int64})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Single[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Single})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Double[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Double})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.Int16[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int16})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.NegateArray(System.SByte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.SByte})">
             <summary>
-            Negates the specified <paramref name="buffer"/>.
+            Negates the specified <paramref name="span"/>.
             </summary>
-            <param name="buffer">The array to Negate.</param>
-            <param name="offset">The offset to Negate.</param>
-            <param name="count">The count of element.</param>
+            <param name="span">The region to Negate.</param>
         </member>
-        <member name="P:CSCodec.ArrayCalculationExtensions.IsSIMDSupported">
+        <member name="P:CSCodec.MathV.IsSIMDSupported">
             <summary>
             Gets a value indicating whether SIMD is supported.
             </summary>
@@ -285,7 +213,7 @@
               <c>true</c> if this instance is SIMD supported; otherwise, <c>false</c>.
             </value>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.CopyReal(System.Span{System.Numerics.Complex},System.Span{System.Double}@)">
+        <member name="M:CSCodec.MathV.CopyReal(System.Span{System.Numerics.Complex},System.Span{System.Double}@)">
             <summary>
             Copies the real.
             </summary>
@@ -293,32 +221,32 @@
             <param name="destination">The destination.</param>
             <exception cref="T:System.ArgumentException">complices' length and destination's must be same!!!</exception>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int32[],System.Int32)">
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int32},System.Int32)">
             <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
             </summary>
-            <param name="buffer">The array to scale.</param>
+            <param name="span">The array to scale.</param>
             <param name="scale">The scale.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Int16[],System.Int16)">
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int16},System.Int16)">
             <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
             </summary>
-            <param name="buffer">The array to scale.</param>
+            <param name="span">The array to scale.</param>
             <param name="scale">The scale.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Single[],System.Single)">
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Single},System.Single)">
             <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
             </summary>
-            <param name="buffer">The array to scale.</param>
+            <param name="span">The array to scale.</param>
             <param name="scale">The scale.</param>
         </member>
-        <member name="M:CSCodec.ArrayCalculationExtensions.ScaleArray(System.Double[],System.Double)">
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Double},System.Double)">
             <summary>
-            Scales <paramref name="buffer"/> with <paramref name="scale"/>.
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
             </summary>
-            <param name="buffer">The array to scale.</param>
+            <param name="span">The array to scale.</param>
             <param name="scale">The scale.</param>
         </member>
         <member name="T:CSCodec.Binary.BitOrder">
@@ -2494,65 +2422,28 @@
             <summary>
             Initializes a new instance of the <see cref="T:CSCodec.Int24"/> struct.
             </summary>
-            <param name="shiftedValue">The 8-bit left shifted value. e.g. 0xffffff00 (the last 8 bits will be ignored.)</param>
+            <param name="value">The source <see cref="T:System.Int32"/> value. Mask:0x807fffff</param>
         </member>
-        <member name="M:CSCodec.Int24.ToBytes(CSCodec.Int24[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+        <member name="M:CSCodec.Int24.#ctor(System.Byte,System.Byte,System.Byte)">
             <summary>
-            Converts an array of <see cref="T:CSCodec.Int24"/>s to the specified array of bytes.
+            Initializes a new instance of the <see cref="T:CSCodec.Int24"/> struct.
             </summary>
-            <param name="buffer">The buffer.</param>
-            <param name="offset">The offset.</param>
-            <param name="outbuf">The output buffer.</param>
-            <param name="dstoffset">The destination offset.</param>
-            <param name="srccount">The source count.</param>
-        </member>
-        <member name="M:CSCodec.Int24.ToString">
-            <summary>
-            Converts to string.
-            </summary>
-            <returns>
-            A <see cref="T:System.String" /> that represents this instance.
-            </returns>
+            <param name="head">The head.</param>
+            <param name="middle">The middle.</param>
+            <param name="tail">The tail.</param>
         </member>
         <member name="M:CSCodec.Int24.op_Implicit(CSCodec.Int24)~System.Int32">
             <summary>
             Performs an implicit conversion from <see cref="T:CSCodec.Int24"/> to <see cref="T:System.Int32"/>.
-            </summary>
-            <param name="v">The input value.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
-        </member>
-        <member name="M:CSCodec.Int24.op_UnaryNegation(CSCodec.Int24)">
-            <summary>
-            Negates a specified <see cref="T:CSCodec.Int24"/> value.
-            </summary>
-            <param name="value">The value to negate.</param>
-            <returns>
-            The result of the <paramref name="value"/> parameter multiplied by negative one (-1).
-            </returns>
-        </member>
-        <member name="M:CSCodec.Int24.op_Explicit(System.Int32)~CSCodec.Int24">
-            <summary>
-            Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:CSCodec.Int24"/>.
-            </summary>
-            <param name="v">The input value.</param>
-            <returns>
-            The result of the conversion.
-            </returns>
-        </member>
-        <member name="M:CSCodec.Int24.op_Explicit(System.Single)~CSCodec.Int24">
-            <summary>
-            Performs an explicit conversion from <see cref="T:CSCodec.Int24"/> to <see cref="T:System.Single"/>.
             </summary>
             <param name="value">The value.</param>
             <returns>
             The result of the conversion.
             </returns>
         </member>
-        <member name="M:CSCodec.Int24.op_Explicit(System.Double)~CSCodec.Int24">
+        <member name="M:CSCodec.Int24.op_Explicit(System.Int32)~CSCodec.Int24">
             <summary>
-            Performs an explicit conversion from <see cref="T:System.Double"/> to <see cref="T:CSCodec.Int24"/>.
+            Performs an explicit conversion from <see cref="T:System.Int32"/> to <see cref="T:CSCodec.Int24"/>.
             </summary>
             <param name="value">The value.</param>
             <returns>
@@ -2567,6 +2458,23 @@
             <param name="int2">The second <see cref="T:CSCodec.Int24"/> to compare.</param>
             <returns>
               <c>true</c> if the value of int1 is the same as the value of int2; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.ToString">
+            <summary>
+            Converts to string.
+            </summary>
+            <returns>
+            A <see cref="T:System.String" /> that represents this instance.
+            </returns>
+        </member>
+        <member name="M:CSCodec.Int24.op_UnaryNegation(CSCodec.Int24)">
+            <summary>
+            Implements the operator -.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>
+            The result of the operator.
             </returns>
         </member>
         <member name="M:CSCodec.Int24.op_Inequality(CSCodec.Int24,CSCodec.Int24)">
@@ -2619,6 +2527,22 @@
               <c>true</c> if <see cref="T:CSCodec.Int24"/> is greater than or equal to <see cref="T:CSCodec.Int24"/>; otherwise, <c>false</c>.
             </returns>
         </member>
+        <member name="M:CSCodec.Int24.ReverseEndianness(CSCodec.Int24)">
+            <summary>
+            Reverses endianness of the given <see cref="T:CSCodec.Int24"/> value.
+            </summary>
+            <param name="value">The value to reverse endianness.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSCodec.Int24.CompareTo(CSCodec.Int24)">
+            <summary>
+            Compares the value of this instance to a specified <see cref="T:CSCodec.Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="T:CSCodec.Int24"/> value.
+            </summary>
+            <param name="other">The <see cref="T:CSCodec.Int24"/> to compare to the current instance.</param>
+            <returns>
+            A signed number indicating the relative values of this instance and the other parameter.
+            </returns>
+        </member>
         <member name="M:CSCodec.Int24.Equals(System.Object)">
             <summary>
             Determines whether the specified <see cref="T:System.Object" />, is equal to this instance.
@@ -2643,15 +2567,6 @@
             </summary>
             <returns>
             A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table.
-            </returns>
-        </member>
-        <member name="M:CSCodec.Int24.CompareTo(CSCodec.Int24)">
-            <summary>
-            Compares the value of this instance to a specified <see cref="T:CSCodec.Int24"/> value and returns an integer that indicates whether this instance is less than, equal to, or greater than the specified <see cref="T:CSCodec.Int24"/> value.
-            </summary>
-            <param name="other">The <see cref="T:CSCodec.Int24"/> to compare to the current instance.</param>
-            <returns>
-            A signed number indicating the relative values of this instance and the other parameter.
             </returns>
         </member>
         <member name="T:CSCodec.Utils.ArrayReadStream">

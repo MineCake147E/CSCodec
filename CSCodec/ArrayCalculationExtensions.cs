@@ -11,7 +11,7 @@ namespace CSCodec
     /// <summary>
     /// Hardware-Accelerated (or not) array manipulation.
     /// </summary>
-    public static partial class ArrayCalculationExtensions
+    public static partial class MathV
     {
         /// <summary>
         /// Gets a value indicating whether SIMD is supported.
@@ -21,7 +21,7 @@ namespace CSCodec
         /// </value>
         public static bool IsSIMDSupported => Vector.IsHardwareAccelerated;
 
-        static ArrayCalculationExtensions()
+        static MathV()
         {
         }
 
@@ -135,8 +135,6 @@ namespace CSCodec
                 }
             }
         }
-
-        private static readonly int StrideDouble = Vector<double>.Count;
 
         /// <summary>
         /// Scales <paramref name="span"/> with <paramref name="scale"/>.
