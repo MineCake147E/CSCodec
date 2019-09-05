@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Text;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using CSCodec.Core;
 
 namespace CSCodec.Filters.Transformation
 {
@@ -70,12 +69,12 @@ namespace CSCodec.Filters.Transformation
 		{
 			int N = span.Length;
 			if (!((uint)N).IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			Span<SingleComplex> fftInArray = stackalloc SingleComplex[8 * N];
-			fftInArray.Fill(SingleComplex.Zero);
+			Span<ComplexF> fftInArray = stackalloc ComplexF[8 * N];
+			fftInArray.Fill(ComplexF.Zero);
 			for (int n = 0; n < N; n++)
 			{
-				fftInArray[2 * n + 1] = fftInArray[8 * N - 2 * n - 1] = new SingleComplex(span[n], 0);
-				fftInArray[4 * N + 2 * n + 1] = fftInArray[4 * N - 2 * n - 1] = new SingleComplex(-span[n], 0);
+				fftInArray[2 * n + 1] = fftInArray[8 * N - 2 * n - 1] = new ComplexF(span[n], 0);
+				fftInArray[4 * N + 2 * n + 1] = fftInArray[4 * N - 2 * n - 1] = new ComplexF(-span[n], 0);
 			}
 			FastFourierTransformation.FFT(fftInArray, FftMode.Forward);
 			for (int n = 0; n < span.Length; n++)
@@ -94,12 +93,12 @@ namespace CSCodec.Filters.Transformation
 		{
 			int N = span.Length;
 			if (!((uint)N).IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-			Span<SingleComplex> fftInArray = stackalloc SingleComplex[8 * N];
-			fftInArray.Fill(SingleComplex.Zero);
+			Span<ComplexF> fftInArray = stackalloc ComplexF[8 * N];
+			fftInArray.Fill(ComplexF.Zero);
 			for (int n = 0; n < N; n++)
 			{
-				fftInArray[2 * n + 1] = fftInArray[8 * N - 2 * n - 1] = new SingleComplex(span[n], 0);
-				fftInArray[4 * N + 2 * n + 1] = fftInArray[4 * N - 2 * n - 1] = new SingleComplex(-span[n], 0);
+				fftInArray[2 * n + 1] = fftInArray[8 * N - 2 * n - 1] = new ComplexF(span[n], 0);
+				fftInArray[4 * N + 2 * n + 1] = fftInArray[4 * N - 2 * n - 1] = new ComplexF(-span[n], 0);
 			}
 			FastFourierTransformation.FFT(fftInArray, FftMode.Forward);
 			float ratio = N * 8;

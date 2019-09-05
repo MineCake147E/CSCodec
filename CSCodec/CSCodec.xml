@@ -4,251 +4,6 @@
         <name>CSCodec</name>
     </assembly>
     <members>
-        <member name="T:CSCodec.MathV">
-            <summary>
-            Hardware-Accelerated (or not) array manipulation.
-            </summary>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
-            <summary>
-            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
-            <summary>
-            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
-            <paramref name="bufferA"/> will be overwritten.
-            </summary>
-            <param name="bufferA"></param>
-            <param name="bufferB"></param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int32})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int64})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Single})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Double})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int16})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.SByte})">
-            <summary>
-            Negates the specified <paramref name="span"/>.
-            </summary>
-            <param name="span">The region to Negate.</param>
-        </member>
-        <member name="P:CSCodec.MathV.IsSIMDSupported">
-            <summary>
-            Gets a value indicating whether SIMD is supported.
-            </summary>
-            <value>
-              <c>true</c> if this instance is SIMD supported; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="M:CSCodec.MathV.CopyReal(System.Span{System.Numerics.Complex},System.Span{System.Double}@)">
-            <summary>
-            Copies the real.
-            </summary>
-            <param name="complices">The complices.</param>
-            <param name="destination">The destination.</param>
-            <exception cref="T:System.ArgumentException">complices' length and destination's must be same!!!</exception>
-        </member>
-        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int32},System.Int32)">
-            <summary>
-            Scales <paramref name="span"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="span">The array to scale.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int16},System.Int16)">
-            <summary>
-            Scales <paramref name="span"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="span">The array to scale.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Single},System.Single)">
-            <summary>
-            Scales <paramref name="span"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="span">The array to scale.</param>
-            <param name="scale">The scale.</param>
-        </member>
-        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Double},System.Double)">
-            <summary>
-            Scales <paramref name="span"/> with <paramref name="scale"/>.
-            </summary>
-            <param name="span">The array to scale.</param>
-            <param name="scale">The scale.</param>
-        </member>
         <member name="T:CSCodec.Binary.BitOrder">
             <summary>
             Represents Bit Order
@@ -998,18 +753,538 @@
         </member>
         <member name="T:CSCodec.AudioEncoding">
             <summary>
-            Audio encoding.
+            Defines known encoding types.
             </summary>
         </member>
-        <member name="F:CSCodec.AudioEncoding.PCM">
+        <member name="F:CSCodec.AudioEncoding.Unknown">
             <summary>
-            The PCM.
+            Unknown format
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Pcm">
+            <summary>
+            Microsoft PCM Format
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.MsAdpcm">
+            <summary>
+            Microsoft ADPCM Format
             </summary>
         </member>
         <member name="F:CSCodec.AudioEncoding.IeeeFloat">
             <summary>
-            The IEEE754 floating point number.
+            IEEE 754 Single Precision Floating-Point Number
             </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Vselp">
+            <summary>
+            Vector sum excited linear prediction Compaq Computer Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.IbmCvsd">
+            <summary>
+            IBM Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Alaw">
+            <summary>
+            A-law format by Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Mulaw">
+            <summary>
+            μ-law format by Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.OkiAdpcm">
+            <summary>
+            OKI ADPCM
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.ImaAdpcm">
+            <summary>
+            Intel Corporation ADPCM
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.MediaspaceAdpcm">
+            <summary>
+            Videologic ADPCM
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.SierraAdpcm">
+            <summary>
+            Sierra Semiconductor Corp
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G723Adpcm">
+            <summary>
+            Antex Electronics Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Digistd">
+            <summary>
+            DSP Solutions, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Digifix">
+            <summary>
+            DSP Solutions, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DialogicOkiAdpcm">
+            <summary>
+            Dialogic Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.MediavisionAdpcm">
+            <summary>
+            Media Vision, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.CuCodec">
+            <summary>
+            Hewlett-Packard Company
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.YamahaAdpcm">
+            <summary>
+            Yamaha Corporation of America
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Sonarc">
+            <summary>
+            Speech Compression
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DspgroupTruespeech">
+            <summary>
+            DSP Group, Inc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Echosc1">
+            <summary>
+            Echo Speech Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.AudiofileAf36">
+            <summary>
+            Audiofile, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Aptx">
+            <summary>
+            Audio Processing Technology
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.AudiofileAf10">
+            <summary>
+            Audiofile, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Prosody1612">
+            <summary>
+            Aculab plc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Lrc">
+            <summary>
+            Merging Technologies S.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DolbyAc2">
+            <summary>
+            Dolby Laboratories
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Gsm610">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Msnaudio">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.AntexAdpcme">
+            <summary>
+            Antex Electronics Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.ControlResVqlpc">
+            <summary>
+            Control Resources Limited
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Digireal">
+            <summary>
+            DSP Solutions, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Digiadpcm">
+            <summary>
+            DSP Solutions, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.ControlResCr10">
+            <summary>
+            Control Resources Limited
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.NmsVbxadpcm">
+            <summary>
+            Natural MicroSystems
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.RolandRdac">
+            <summary>
+            Roland
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Echosc3">
+            <summary>
+            Echo Speech Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.RockwellAdpcm">
+            <summary>
+            Rockwell International
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.RockwellDigitalk">
+            <summary>
+            Rockwell International
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Xebec">
+            <summary>
+            Xebec Multimedia Solutions Limited
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G721Adpcm">
+            <summary>
+            Antex Electronics Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G728Celp">
+            <summary>
+            Antex Electronics Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Msg723">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Mpeg">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Rt24">
+            <summary>
+            InSoft Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Pac">
+            <summary>
+            InSoft Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Mpeglayer3">
+            <summary>
+            MPEG 3 Layer 1
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.LucentG723">
+            <summary>
+            Lucent Technologies
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Cirrus">
+            <summary>
+            Cirrus Logic
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Espcm">
+            <summary>
+            ESS Technology
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Voxware">
+            <summary>
+            Voxware Inc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.CanopusAtrac">
+            <summary>
+            Canopus, Co., Ltd.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G726Adpcm">
+            <summary>
+            APICOM
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G722Adpcm">
+            <summary>
+            APICOM
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Dsat">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DsatDisplay">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareByteAligned">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareAc8">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareAc10">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareAc16">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareAc20">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareRt24">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareRt29">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareRt29hw">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareVr12">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareVr18">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxwareTq40">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Softsound">
+            <summary>
+            Softsound, Ltd.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VoxareTq60">
+            <summary>
+            Voxware Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Msrt24">
+            <summary>
+            Microsoft Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.G729a">
+            <summary>
+            AT&amp;T Laboratories
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.MviMv12">
+            <summary>
+            Motion Pixels
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DfG726">
+            <summary>
+            DataFusion Systems (Pty) (Ltd)
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DfGsm610">
+            <summary>
+            DataFusion Systems (Pty) (Ltd)
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Onlive">
+            <summary>
+            OnLive! Technologies, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Sbc24">
+            <summary>
+            Siemens Business Communications Systems
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DolbyAc3Spdif">
+            <summary>
+            Sonic Foundry
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.ZyxelAdpcm">
+            <summary>
+            ZyXEL Communications, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.PhilipsLpcbb">
+            <summary>
+            Philips Speech Processing
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Packed">
+            <summary>
+            Studer Professional Audio AG
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.RhetorexAdpcm">
+            <summary>
+            Rhetorex, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.IbmMulaw">
+            <summary>
+            IBM mu-law format
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.IbmAlaw">
+            <summary>
+            IBM a-law format
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Adpcm">
+            <summary>
+            IBM AVC Adaptive Differential PCM format
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VivoG723">
+            <summary>
+            Vivo Software
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VivoSiren">
+            <summary>
+            Vivo Software
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.DigitalG723">
+            <summary>
+            Digital Equipment Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.CreativeAdpcm">
+            <summary>
+            Creative Labs, Inc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.CreativeFastspeech8">
+            <summary>
+            Creative Labs, Inc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.CreativeFastspeech10">
+            <summary>
+            Creative Labs, Inc
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Quarterdeck">
+            <summary>
+            Quarterdeck Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.FmTownsSnd">
+            <summary>
+            Fujitsu Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.BzvDigital">
+            <summary>
+            Brooktree Corporation
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.VmeVmpcm">
+            <summary>
+            AT&amp;T Labs, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Oligsm">
+            <summary>
+            Ing C. Olivetti &amp; C., S.p.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Oliadpcm">
+            <summary>
+            Ing C. Olivetti &amp; C., S.p.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Olicelp">
+            <summary>
+            Ing C. Olivetti &amp; C., S.p.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Olisbc">
+            <summary>
+            Ing C. Olivetti &amp; C., S.p.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Oliopr">
+            <summary>
+            Ing C. Olivetti &amp; C., S.p.A.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.LhCodec">
+            <summary>
+            Lernout &amp; Hauspie
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Norris">
+            <summary>
+            Norris Communications, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.SoundspaceMusicompress">
+            <summary>
+            AT&amp;T Labs, Inc.
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Dvm">
+            <summary>
+            FAST Multimedia AG
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.InterwavVsc112">
+            <summary>
+            ?????
+            </summary>
+        </member>
+        <member name="F:CSCodec.AudioEncoding.Extensible">
+             <summary>
+            
+             </summary>
         </member>
         <member name="T:CSCodec.Core.SingleComplex">
             <summary>
@@ -1429,7 +1704,7 @@
             
              </summary>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Double}@,System.Span{System.Double}@,System.Int32,System.Boolean)">
+        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Double},System.Span{System.Double}@,System.Int32,System.Boolean)">
             <summary>
             Calculates the autocorrelation of specified data.
             </summary>
@@ -1438,7 +1713,7 @@
             <param name="order">The order.</param>
             <param name="useFftIfPossible">if set to <c>true</c> it uses FFT if possible.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Single}@,System.Span{System.Single}@,System.Int32,System.Boolean)">
+        <member name="M:CSCodec.Filters.Prediction.Autocorrelation.CalculateAutocorrelation(System.ReadOnlySpan{System.Single},System.Span{System.Single}@,System.Int32,System.Boolean)">
             <summary>
             Calculates the autocorrelation of specified data.
             </summary>
@@ -1453,7 +1728,7 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{`0}@)">
+        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Initialize(System.ReadOnlySpan{`0},System.Int32,System.Span{`0}@)">
             <summary>
             Initializes the Predictor using specified data.
             </summary>
@@ -1461,7 +1736,7 @@
             <param name="Order">The order of predictor.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Predict(System.ReadOnlySpan{`0}@,System.Span{`0})">
+        <member name="M:CSCodec.Filters.Prediction.IPredictor`1.Predict(System.ReadOnlySpan{`0},System.Span{`0})">
             <summary>
             Predicts outputs from the specified first data.
             </summary>
@@ -1495,7 +1770,7 @@
             The order.
             </value>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Initialize(System.ReadOnlySpan{`0}@,System.Int32,System.Span{`0}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Initialize(System.ReadOnlySpan{`0},System.Int32,System.Span{`0}@)">
             <summary>
             Initializes the Linear Predictor using specified data.
             </summary>
@@ -1503,19 +1778,19 @@
             <param name="Order">The order of predictor.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(System.ReadOnlySpan{`0}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(System.ReadOnlySpan{`0})">
             <summary>
             Resets this instance using specified coefficents.
             </summary>
             <param name="coefficents">The coefficents to be set.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(`0@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Reset(`0)">
             <summary>
             Resets this instance using specified global coefficient.
             </summary>
             <param name="fill">The coefficents to be set.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Predict(System.ReadOnlySpan{`0}@,System.Span{`0})">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorBase`1.Predict(System.ReadOnlySpan{`0},System.Span{`0})">
             <summary>
             Predicts outputs from the specified first data.
             </summary>
@@ -1544,7 +1819,7 @@
             The machine epsilon for <see cref="T:System.Double"/>
             </summary>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Initialize(System.ReadOnlySpan{System.Double}@,System.Int32,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Initialize(System.ReadOnlySpan{System.Double},System.Int32,System.Span{System.Double}@)">
             <summary>
             Initializes the Linear Predictor using specified data.
             </summary>
@@ -1552,14 +1827,14 @@
             <param name="Order">The order of predictor.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Predict(System.ReadOnlySpan{System.Double}@,System.Span{System.Double})">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Predict(System.ReadOnlySpan{System.Double},System.Span{System.Double})">
             <summary>
             Predicts the specified first.
             </summary>
             <param name="first">The first data.</param>
             <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first"/> will be copied first.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.LevinsonDurbinRecursion(System.Span{System.Double}@,System.ReadOnlySpan{System.Double}@,System.Int32@,System.Span{System.Double}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.LevinsonDurbinRecursion(System.Span{System.Double},System.ReadOnlySpan{System.Double},System.Int32,System.Span{System.Double}@)">
             <summary>
             Levinson durbin recursion calculation.
             </summary>
@@ -1568,13 +1843,13 @@
             <param name="order">The order.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.ReadOnlySpan{System.Double}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.ReadOnlySpan{System.Double})">
             <summary>
             Resets this instance using specified coefficents.
             </summary>
             <param name="coefficents">The coefficents to be set.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.Double@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorDouble.Reset(System.Double)">
             <summary>
             Resets this instance using specified global coefficient.
             </summary>
@@ -1597,7 +1872,7 @@
             The machine epsilon for <see cref="T:System.Single"/>
             </summary>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Initialize(System.ReadOnlySpan{System.Single}@,System.Int32,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Initialize(System.ReadOnlySpan{System.Single},System.Int32,System.Span{System.Single}@)">
             <summary>
             Initializes the Linear Predictor using specified data.
             </summary>
@@ -1605,7 +1880,7 @@
             <param name="Order">The order of predictor.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.LevinsonDurbinRecursion(System.Span{System.Single}@,System.ReadOnlySpan{System.Single}@,System.Int32@,System.Span{System.Single}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.LevinsonDurbinRecursion(System.Span{System.Single},System.ReadOnlySpan{System.Single},System.Int32,System.Span{System.Single}@)">
             <summary>
             Levinson durbin recursion calculation.
             </summary>
@@ -1614,20 +1889,20 @@
             <param name="order">The order.</param>
             <param name="errors">The errors.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Predict(System.ReadOnlySpan{System.Single}@,System.Span{System.Single})">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Predict(System.ReadOnlySpan{System.Single},System.Span{System.Single})">
             <summary>
             Predicts outputs from the specified first data.
             </summary>
             <param name="first">The first data.</param>
             <param name="output">The prediction output without overlapping <paramref name="first" />. <paramref name="first" /> will be copied first.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.ReadOnlySpan{System.Single}@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.ReadOnlySpan{System.Single})">
             <summary>
             Resets this instance using specified coefficents.
             </summary>
             <param name="coefficents">The coefficents to be set.</param>
         </member>
-        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.Single@)">
+        <member name="M:CSCodec.Filters.Prediction.LinearPredictorFloat.Reset(System.Single)">
             <summary>
             Resets this instance using specified global coefficient.
             </summary>
@@ -2400,6 +2675,251 @@
             </summary>
             <param name="even">The even.</param>
             <param name="odd">The odd.</param>
+        </member>
+        <member name="T:CSCodec.MathV">
+            <summary>
+            Hardware-Accelerated (or not) array manipulation.
+            </summary>
+        </member>
+        <member name="P:CSCodec.MathV.IsSIMDSupported">
+            <summary>
+            Gets a value indicating whether SIMD is supported.
+            </summary>
+            <value>
+              <c>true</c> if this instance is SIMD supported; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:CSCodec.MathV.CopyReal(System.Span{System.Numerics.Complex},System.Span{System.Double}@)">
+            <summary>
+            Copies the real.
+            </summary>
+            <param name="complices">The complices.</param>
+            <param name="destination">The destination.</param>
+            <exception cref="T:System.ArgumentException">complices' length and destination's must be same!!!</exception>
+        </member>
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int32},System.Int32)">
+            <summary>
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="span">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Int16},System.Int16)">
+            <summary>
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="span">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Single},System.Single)">
+            <summary>
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="span">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.MathV.ScaleArray(System.Span{System.Double},System.Double)">
+            <summary>
+            Scales <paramref name="span"/> with <paramref name="scale"/>.
+            </summary>
+            <param name="span">The array to scale.</param>
+            <param name="scale">The scale.</param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int32},System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt32},System.ReadOnlySpan{System.UInt32})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int64},System.ReadOnlySpan{System.Int64})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt64},System.ReadOnlySpan{System.UInt64})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Int16},System.ReadOnlySpan{System.Int16})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.UInt16},System.ReadOnlySpan{System.UInt16})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.SByte},System.ReadOnlySpan{System.SByte})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Byte},System.ReadOnlySpan{System.Byte})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Single},System.ReadOnlySpan{System.Single})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.AddArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
+            <summary>
+            Adds values from <paramref name="bufferB"/> to <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA">The destination <see cref="T:System.Span`1"/></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.SubtractArray(System.Span{System.Double},System.ReadOnlySpan{System.Double})">
+            <summary>
+            Subtracts <paramref name="bufferB"/> from <paramref name="bufferA"/>.
+            <paramref name="bufferA"/> will be overwritten.
+            </summary>
+            <param name="bufferA"></param>
+            <param name="bufferB"></param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int32})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int64})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Single})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Double})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.Int16})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
+        </member>
+        <member name="M:CSCodec.MathV.NegateArray(System.Span{System.SByte})">
+            <summary>
+            Negates the specified <paramref name="span"/>.
+            </summary>
+            <param name="span">The region to Negate.</param>
         </member>
         <member name="T:CSCodec.Int24">
             <summary>

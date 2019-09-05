@@ -1,5 +1,4 @@
-﻿using CSCodec.Core;
-using CSCodec.Filters.Transformation;
+﻿using CSCodec.Filters.Transformation;
 using System;
 using System.Collections.Generic;
 using System.Numerics;
@@ -99,7 +98,7 @@ namespace CSCodec.Filters.Prediction
 
         private static void CalculateAutocorrelationUsingFFT(ReadOnlySpan<float> data, Span<float> acorr)
         {
-            Span<SingleComplex> dataComplex = stackalloc SingleComplex[data.Length];
+            Span<ComplexF> dataComplex = stackalloc ComplexF[data.Length];
             for (int i = 0; i < data.Length; i++)
             {
                 dataComplex[i] = data[i];   //convert float into double
@@ -107,7 +106,7 @@ namespace CSCodec.Filters.Prediction
             FastFourierTransformation.FFT(dataComplex);
             for (int i = 0; i < dataComplex.Length; i++)
             {
-                dataComplex[i] *= SingleComplex.Conjugate(dataComplex[i]);
+                dataComplex[i] *= ComplexF.Conjugate(dataComplex[i]);
             }
             FastFourierTransformation.FFT(dataComplex, FftMode.Backward);
             for (int i = 0; i < acorr.Length; i++)
