@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -53,9 +53,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="ArrayCalcSimdTypes.tt">
+    <None Update="MathVTemplate.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ArrayCalcSimdTypes.cs</LastGenOutput>
+      <LastGenOutput>MathVTemplate.cs</LastGenOutput>
     </None>
     <None Update="Filters\Transformation\TDACTypes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -80,10 +80,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="ArrayCalcSimdTypes.cs">
+    <Compile Update="MathVTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>ArrayCalcSimdTypes.tt</DependentUpon>
+      <DependentUpon>MathVTemplate.tt</DependentUpon>
     </Compile>
     <Compile Update="Filters\Transformation\TDACTypes.cs">
       <DesignTime>True</DesignTime>
