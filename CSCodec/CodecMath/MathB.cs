@@ -156,7 +156,7 @@ namespace System
         public static uint ReverseBits(this uint i, int width)
         {
             int shift = 32 - width;
-            return (i << shift).ReverseBits();
+            return ReverseBits(i << shift);
         }
 
         /// <summary>
@@ -165,11 +165,11 @@ namespace System
         /// <param name="i">The value to reverse bit order.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ulong ReverseBits(this ulong i)
+        public static ulong ReverseBits(ulong i)
         {
-            i = ((i & 0x5555555555555555) << 1) | ((i >> 1) & 0x5555555555555555);
-            i = ((i & 0x3333333333333333) << 2) | ((i >> 2) & 0x3333333333333333);
-            i = ((i & 0x0f0f0f0f0f0f0f0f) << 4) | ((i >> 4) & 0x0f0f0f0f0f0f0f0f);
+            i = ((i & 0x5555_5555_5555_5555) << 1) | ((i >> 1) & 0x5555_5555_5555_5555);
+            i = ((i & 0x3333_3333_3333_3333) << 2) | ((i >> 2) & 0x3333_3333_3333_3333);
+            i = ((i & 0x0f0f_0f0f_0f0f_0f0f) << 4) | ((i >> 4) & 0x0f0f_0f0f_0f0f_0f0f);
             return BinaryPrimitives.ReverseEndianness(i);
         }
 
@@ -179,11 +179,11 @@ namespace System
         /// <param name="i">The value to reverse bit order.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static uint ReverseBits(this uint i)
+        public static uint ReverseBits(uint i)
         {
-            i = ((i & 0x55555555) << 1) | ((i >> 1) & 0x55555555);
-            i = ((i & 0x33333333) << 2) | ((i >> 2) & 0x33333333);
-            i = ((i & 0x0f0f0f0f) << 4) | ((i >> 4) & 0x0f0f0f0f);
+            i = ((i & 0x5555_5555) << 1) | ((i >> 1) & 0x5555_5555);
+            i = ((i & 0x3333_3333) << 2) | ((i >> 2) & 0x3333_3333);
+            i = ((i & 0x0f0f_0f0f) << 4) | ((i >> 4) & 0x0f0f_0f0f);
             return BinaryPrimitives.ReverseEndianness(i);
         }
 
@@ -193,12 +193,13 @@ namespace System
         /// <param name="i">The value to reverse bit order.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ushort ReverseBits(this ushort i)
+        public static ushort ReverseBits(ushort i)
         {
-            int j = ((i & 0x5555) << 1) | ((i >> 1) & 0x5555);
-            j = ((j & 0x3333) << 2) | ((j >> 2) & 0x3333);
-            j = ((j & 0x0f0f) << 4) | ((j >> 4) & 0x0f0f);
-            return BinaryPrimitives.ReverseEndianness(unchecked((ushort)(0xffff & j)));
+            uint j = i;
+            j = ((j >> 1) & 0x5555) | ((j & 0x5555) << 1);
+            j = ((j >> 2) & 0x3333) | ((j & 0x3333) << 2);
+            j = ((j >> 4) & 0x0f0f) | ((j & 0x0f0f) << 4);
+            return BinaryPrimitives.ReverseEndianness(unchecked((ushort)j));
         }
 
         /// <summary>
@@ -207,12 +208,12 @@ namespace System
         /// <param name="i">The value to reverse bit order.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static byte ReverseBits(this byte i)
+        public static byte ReverseBits(byte i)
         {
-            int j = ((i & 0x55) << 1) | ((i >> 1) & 0x55);
-            j = ((j & 0x33) << 2) | ((j >> 2) & 0x33);
-            j = ((j & 0x0f) << 4) | ((j >> 4) & 0x0f);
-            return BinaryPrimitives.ReverseEndianness(unchecked((byte)(0xff & j)));
+            uint x = i;
+            x = ((x >> 1) & 0x55u) | ((x & 0x55u) << 1);
+            x = ((x >> 2) & 0x33u) | ((x & 0x33u) << 2);
+            return (byte)(((x >> 4) & 0x0fu) | ((x & 0x0fu) << 4));
         }
 
         #endregion ReverseBits
@@ -225,10 +226,7 @@ namespace System
         ///   <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPowerOfTwo(this uint i)
-        {
-            return i != 0 && (i & (i - 1)) == 0;
-        }
+        public static bool IsPowerOfTwo(this uint i) => i != 0 && (i & (i - 1)) == 0;
 
         /// <summary>
         /// Determines whether the specified <paramref name="i"/> is power of two.
@@ -238,10 +236,7 @@ namespace System
         ///   <c>true</c> if the specified value is power of two; otherwise, <c>false</c>.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool IsPowerOfTwo(this int i)
-        {
-            return i != 0 && (i & (i - 1)) == 0;
-        }
+        public static bool IsPowerOfTwo(this int i) => i != 0 && (i & (i - 1)) == 0;
 
         #region SignedToFromUnsigned
 
@@ -251,7 +246,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ulong ToUnsigned(this long value) => unchecked((ulong)value);
+        public static ulong ToUnsigned(long value) => unchecked((ulong)value);
 
         /// <summary>
         /// Converts to unsigned integer bitwisely(-1 => 0xFFFFFFFFu without exception).
@@ -259,7 +254,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static uint ToUnsigned(this int value) => unchecked((uint)value);
+        public static uint ToUnsigned(int value) => unchecked((uint)value);
 
         /// <summary>
         /// Converts to unsigned integer bitwisely(-1 => 65535 without exception).
@@ -267,7 +262,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ushort ToUnsigned(this short value) => unchecked((ushort)value);
+        public static ushort ToUnsigned(short value) => unchecked((ushort)value);
 
         /// <summary>
         /// Converts to unsigned integer bitwisely(-1 => 255 without exception).
@@ -275,7 +270,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static byte ToUnsigned(this sbyte value) => unchecked((byte)value);
+        public static byte ToUnsigned(sbyte value) => unchecked((byte)value);
 
         /// <summary>
         /// Converts to signed integer bitwisely(0xFFFFFFFFFFFFFFFFUL => -1L without exception).
@@ -283,7 +278,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static long ToSigned(this ulong value) => unchecked((long)value);
+        public static long ToSigned(ulong value) => unchecked((long)value);
 
         /// <summary>
         /// Converts to signed integer bitwisely(0xFFFFFFFFu => -1 without exception).
@@ -291,7 +286,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static int ToSigned(this uint value) => unchecked((int)value);
+        public static int ToSigned(uint value) => unchecked((int)value);
 
         /// <summary>
         /// Converts to signed integer bitwisely(65535 => -1 without exception).
@@ -299,7 +294,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static short ToSigned(this ushort value) => unchecked((short)value);
+        public static short ToSigned(ushort value) => unchecked((short)value);
 
         /// <summary>
         /// Converts to signed integer bitwisely(255 => -1 without exception).
@@ -307,7 +302,7 @@ namespace System
         /// <param name="value">The value to convert.</param>
         /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static sbyte ToSigned(this byte value) => unchecked((sbyte)value);
+        public static sbyte ToSigned(byte value) => unchecked((sbyte)value);
 
         #endregion SignedToFromUnsigned
     }
