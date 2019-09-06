@@ -1561,7 +1561,22 @@
             <param name="span">The span.</param>
             <param name="mode">The FFT's Mode.</param>
         </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.Perform(System.Span{System.Numerics.ComplexF},CSCodec.Filters.Transformation.FftMode)">
+            <summary>
+            Performs forward transform to the specified span.
+            </summary>
+            <param name="span">The span.</param>
+            <param name="mode">The FFT's Mode.</param>
+        </member>
         <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.Complex},CSCodec.Filters.Transformation.FftMode)">
+            <summary>
+            Transforms the specified span using Cooley-Tukey algorithm.
+            </summary>
+            <param name="span">The buffer.</param>
+            <param name="mode">The FFT's Mode.</param>
+            <exception cref="T:System.ArgumentException">The length of span must be power of 2! - span</exception>
+        </member>
+        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.ComplexF},CSCodec.Filters.Transformation.FftMode)">
             <summary>
             Transforms the specified span using Cooley-Tukey algorithm.
             </summary>
@@ -1576,21 +1591,6 @@
             <param name="buffer">The buffer.</param>
             <param name="offset">The offset.</param>
             <param name="count">The count.</param>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.Perform(System.Span{System.Numerics.ComplexF},CSCodec.Filters.Transformation.FftMode)">
-            <summary>
-            Performs forward transform to the specified span.
-            </summary>
-            <param name="span">The span.</param>
-            <param name="mode">The FFT's Mode.</param>
-        </member>
-        <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Span{System.Numerics.ComplexF},CSCodec.Filters.Transformation.FftMode)">
-            <summary>
-            Transforms the specified span using Cooley-Tukey algorithm.
-            </summary>
-            <param name="span">The buffer.</param>
-            <param name="mode">The FFT's Mode.</param>
-            <exception cref="T:System.ArgumentException">The length of span must be power of 2! - span</exception>
         </member>
         <member name="M:CSCodec.Filters.Transformation.FastFourierTransformation.FFT(System.Numerics.ComplexF[],System.Int32,System.Int32)">
             <summary>

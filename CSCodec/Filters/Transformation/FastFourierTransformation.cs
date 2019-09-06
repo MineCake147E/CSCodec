@@ -28,7 +28,7 @@ namespace CSCodec.Filters.Transformation
 
         private static void ReverseInternal<T>(Span<T> span)
         {
-            int width = 33 - MathB.CountBits((uint)span.Length);
+            int width = 32 - MathB.CountBits((uint)span.Length);
             for (int i = 0; i < span.Length; i++)
             {
                 int index = (int)MathB.ReverseBits((uint)i << width);
@@ -46,9 +46,8 @@ namespace CSCodec.Filters.Transformation
         /// <param name="mode">The FFT's Mode.</param>
         private static void Perform(Span<Complex> span, FftMode mode)
         {
-            double thetaBase = mode == FftMode.Forward ? -tau : tau;
+            double thetaBase = 2 * Math.PI * (mode == FftMode.Forward ? -1 : 1);
             Complex omega, omegaM;
-            int index;
             if (span.Length >= 2)
             {
                 Perform2(span);
@@ -89,83 +88,6 @@ namespace CSCodec.Filters.Transformation
             }
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Perform4Backward(Span<Complex> span)
-        {
-            var sQ = MemoryMarshal.Cast<Complex, (Complex, Complex, Complex, Complex)>(span);
-            for (int k = 0; k < sQ.Length; k++)
-            {
-                ref var sA = ref sQ[k];
-                var v = new Complex(-sA.Item4.Imaginary, sA.Item4.Real);
-                var t = sA.Item3;
-                var w = sA.Item2;
-                var u = sA.Item1;
-                sA.Item1 = u + t;
-                sA.Item2 = w + v;
-                sA.Item3 = u - t;
-                sA.Item4 = w - v;
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Perform4Forward(Span<Complex> span)
-        {
-            var sQ = MemoryMarshal.Cast<Complex, (Complex, Complex, Complex, Complex)>(span);
-            for (int k = 0; k < sQ.Length; k++)
-            {
-                ref var sA = ref sQ[k];
-                var v = new Complex(sA.Item4.Imaginary, -sA.Item4.Real);
-                var t = sA.Item3;
-                var w = sA.Item2;
-                var u = sA.Item1;
-                sA.Item1 = u + t;
-                sA.Item2 = w + v;
-                sA.Item3 = u - t;
-                sA.Item4 = w - v;
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void Perform2(Span<Complex> span)
-        {
-            var sD = MemoryMarshal.Cast<Complex, (Complex, Complex)>(span);
-            for (int k = 0; k < sD.Length; k++)
-            {
-                ref var sA = ref sD[k];
-                var t = sA.Item2;
-                var u = sA.Item1;
-                sA.Item2 = u - t;
-                sA.Item1 = u + t;
-            }
-        }
-
-        /// <summary>
-        /// Transforms the specified span using Cooley-Tukey algorithm.
-        /// </summary>
-        /// <param name="span">The buffer.</param>
-        /// <param name="mode">The FFT's Mode.</param>
-        /// <exception cref="ArgumentException">The length of span must be power of 2! - span</exception>
-        public static void FFT(Span<Complex> span, FftMode mode = FftMode.Forward)
-        {
-            if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
-            ReverseInternal(span);
-            Perform(span, mode);
-            if (mode == FftMode.Forward)
-            {
-                double scale = 1.0 / span.Length;
-                var ds = MemoryMarshal.Cast<Complex, double>(span);
-                ds.ScaleArray(scale);
-            }
-        }
-
-        /// <summary>
-        /// Transforms the specified buffer using Cooley-Tukey algorithm.
-        /// </summary>
-        /// <param name="buffer">The buffer.</param>
-        /// <param name="offset">The offset.</param>
-        /// <param name="count">The count.</param>
-        public static void FFT(Complex[] buffer, int offset, int count) => FFT(new Span<Complex>(buffer, offset, count));
-
         /// <summary>
         /// Performs forward transform to the specified span.
         /// </summary>
@@ -175,7 +97,6 @@ namespace CSCodec.Filters.Transformation
         {
             double thetaBase = mode == FftMode.Forward ? -tau : tau;
             ComplexF omega, omegaM;
-            int index;
             if (span.Length >= 2)
             {
                 Perform2(span);
@@ -217,6 +138,24 @@ namespace CSCodec.Filters.Transformation
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Perform4Backward(Span<Complex> span)
+        {
+            var sQ = MemoryMarshal.Cast<Complex, (Complex s0, Complex s1, Complex s2, Complex s3)>(span);
+            for (int k = 0; k < sQ.Length; k++)
+            {
+                ref var sA = ref sQ[k];
+                var v = new Complex(-sA.s3.Imaginary, sA.s3.Real);
+                var t = sA.s2;
+                var w = sA.s1;
+                var u = sA.s0;
+                sA.s0 = u + t;
+                sA.s1 = w + v;
+                sA.s2 = u - t;
+                sA.s3 = w - v;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Perform4Backward(Span<ComplexF> span)
         {
             var sQ = MemoryMarshal.Cast<ComplexF, (ComplexF, ComplexF, ComplexF, ComplexF)>(span);
@@ -224,6 +163,24 @@ namespace CSCodec.Filters.Transformation
             {
                 ref var sA = ref sQ[k];
                 var v = new ComplexF(-sA.Item4.Imaginary, sA.Item4.Real);
+                var t = sA.Item3;
+                var w = sA.Item2;
+                var u = sA.Item1;
+                sA.Item1 = u + t;
+                sA.Item2 = w + v;
+                sA.Item3 = u - t;
+                sA.Item4 = w - v;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Perform4Forward(Span<Complex> span)
+        {
+            var sQ = MemoryMarshal.Cast<Complex, (Complex, Complex, Complex, Complex)>(span);
+            for (int k = 0; k < sQ.Length; k++)
+            {
+                ref var sA = ref sQ[k];
+                var v = new Complex(sA.Item4.Imaginary, -sA.Item4.Real);
                 var t = sA.Item3;
                 var w = sA.Item2;
                 var u = sA.Item1;
@@ -253,6 +210,20 @@ namespace CSCodec.Filters.Transformation
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void Perform2(Span<Complex> span)
+        {
+            var sD = MemoryMarshal.Cast<Complex, (Complex, Complex)>(span);
+            for (int k = 0; k < sD.Length; k++)
+            {
+                ref var sA = ref sD[k];
+                var t = sA.Item2;
+                var u = sA.Item1;
+                sA.Item2 = u - t;
+                sA.Item1 = u + t;
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static void Perform2(Span<ComplexF> span)
         {
             var sD = MemoryMarshal.Cast<ComplexF, (ComplexF, ComplexF)>(span);
@@ -261,8 +232,27 @@ namespace CSCodec.Filters.Transformation
                 ref var sA = ref sD[k];
                 var t = sA.Item2;
                 var u = sA.Item1;
-                sA.Item2 = u - t;
                 sA.Item1 = u + t;
+                sA.Item2 = u - t;
+            }
+        }
+
+        /// <summary>
+        /// Transforms the specified span using Cooley-Tukey algorithm.
+        /// </summary>
+        /// <param name="span">The buffer.</param>
+        /// <param name="mode">The FFT's Mode.</param>
+        /// <exception cref="ArgumentException">The length of span must be power of 2! - span</exception>
+        public static void FFT(Span<Complex> span, FftMode mode = FftMode.Forward)
+        {
+            if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+            ReverseInternal(span);
+            Perform(span, mode);
+            if (mode == FftMode.Forward)
+            {
+                double scale = 1.0 / span.Length;
+                var ds = MemoryMarshal.Cast<Complex, double>(span);
+                ds.ScaleArray(scale);
             }
         }
 
@@ -284,6 +274,14 @@ namespace CSCodec.Filters.Transformation
                 ds.ScaleArray(scale);
             }
         }
+
+        /// <summary>
+        /// Transforms the specified buffer using Cooley-Tukey algorithm.
+        /// </summary>
+        /// <param name="buffer">The buffer.</param>
+        /// <param name="offset">The offset.</param>
+        /// <param name="count">The count.</param>
+        public static void FFT(Complex[] buffer, int offset, int count) => FFT(new Span<Complex>(buffer, offset, count));
 
         /// <summary>
         /// Transforms the specified buffer using Cooley-Tukey algorithm.
