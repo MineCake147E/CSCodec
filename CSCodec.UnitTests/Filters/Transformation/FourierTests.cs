@@ -10,6 +10,8 @@ namespace CSCodec.UnitTests.Filters.Transformation
     [TestFixture]
     public class FourierTests
     {
+        private const double MachineEpsilon = 1.0 / (1ul << 52);
+
         [TestCase]
         public void FFTTestDouble()
         {

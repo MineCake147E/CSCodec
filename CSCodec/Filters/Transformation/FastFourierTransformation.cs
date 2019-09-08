@@ -17,22 +17,55 @@ namespace CSCodec.Filters.Transformation
         private const double sqrt2 = 1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764157273501384623091229702492483605585073721264412149709993583141322266592750559275579995050115278206057147010955997160597027453459686;
 
         /// <summary>
+        /// Contains (1 &lt;&lt; n) root of unity.
+        /// </summary>
+        private static readonly ReadOnlyMemory<Complex> powerRootsOfUnity = new Complex[]
+        {
+            /*     1 */new Complex(1, 0),
+            /*     2 */new Complex(-1, 0),
+            /*     4 */new Complex(0, 1),
+            /*     8 */new Complex(0.70710678118654757, 0.70710678118654757),
+            /*    16 */new Complex(0.92387953251128674, 0.38268343236508978),
+            /*    32 */new Complex(0.98078528040323043, 0.19509032201612828),
+            /*    64 */new Complex(0.99518472667219693, 0.0980171403295606),
+            /*   128 */new Complex(0.99879545620517241, 0.049067674327418015),
+            /*   256 */new Complex(0.99969881869620425, 0.024541228522912288),
+            /*   512 */new Complex(0.9999247018391445, 0.012271538285719925),
+            /*  1024 */new Complex(0.99998117528260111, 0.0061358846491544753),
+            /*  2048 */new Complex(0.99999529380957619, 0.0030679567629659761),
+            /*  4096 */new Complex(0.99999882345170188, 0.0015339801862847657),
+            /*  8192 */new Complex(0.99999970586288223, 0.00076699031874270449),
+            /* 16384 */new Complex(0.99999992646571789, 0.00038349518757139556),
+            /* 32768 */new Complex(0.99999998161642933, 0.00019174759731070332),
+            /* 65536 */new Complex(0.99999999540410733, 9.5873799095977345E-05),
+            /*131072 */new Complex(0.99999999885102686, 4.7936899603066881E-05),
+            /*262144 */new Complex(0.99999999971275666, 2.3968449808418219E-05),
+            /*524288 */new Complex(0.99999999992818922, 1.1984224905069707E-05),
+        };
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Complex GetValueToMultiply(int pos)
+            => pos >= powerRootsOfUnity.Length ? Complex.FromPolarCoordinates(1, tau * 1.0 / (1 << pos))
+         : Unsafe.Add(ref MemoryMarshal.GetReference(powerRootsOfUnity.Span), pos);
+
+        /// <summary>
         /// Bit-Reversal
         /// </summary>
         /// <param name="span">The in/out span.</param>
         public static void Reverse<T>(Span<T> span)
         {
-            if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be power of 2!", nameof(span));
+            if (!span.Length.IsPowerOfTwo()) throw new ArgumentException("The length of span must be a power of 2!", nameof(span));
             ReverseInternal(span);
         }
 
         private static void ReverseInternal<T>(Span<T> span)
         {
-            int width = 32 - MathB.CountBits((uint)span.Length);
-            for (int i = 0; i < span.Length; i++)
+            int bits = MathB.CountBits((uint)span.Length);
+            int shift = 32 - bits;
+            for (int i = span.Length >> (bits >> 1); i < span.Length; i++)
             {
-                int index = (int)MathB.ReverseBits((uint)i << width);
-                if (index < i) continue;
+                int index = (int)MathB.ReverseBits((uint)i << shift);
+                if (index >= i) continue;
                 var v = span[i];
                 span[i] = span[index];
                 span[index] = v;
@@ -46,43 +79,43 @@ namespace CSCodec.Filters.Transformation
         /// <param name="mode">The FFT's Mode.</param>
         private static void Perform(Span<Complex> span, FftMode mode)
         {
-            double thetaBase = 2 * Math.PI * (mode == FftMode.Forward ? -1 : 1);
-            Complex omega, omegaM;
-            if (span.Length >= 2)
+            if (span.Length < 2) return;
+            Perform2(span);
+            if (span.Length < 4) return;
+            switch (mode)
             {
-                Perform2(span);
-                if (span.Length >= 4)
+                case FftMode.Forward:
+                    Perform4Forward(span);
+                    break;
+                case FftMode.Backward:
+                    Perform4Backward(span);
+                    break;
+            }
+            int index = 3;
+            for (int m = 8; m <= span.Length; m <<= 1)
+            {
+                Complex t, u;
+                Complex omega = 1;
+                int mHalf = m >> 1;
+                var omegaM = GetValueToMultiply(index++);
+                omegaM = mode == FftMode.Forward ? Complex.Conjugate(omegaM) : omegaM;
+                Span<Complex> omegas = stackalloc Complex[mHalf];
+                for (int i = 0; i < omegas.Length; i++)
                 {
-                    switch (mode)
+                    omegas[i] = omega;
+                    omega *= omegaM;
+                }
+                for (int k = 0; k < span.Length; k += m)
+                {
+                    //Preset addressing reduces addition and boundary checks.
+                    var spanA = span.Slice(k, omegas.Length);
+                    var spanB = span.Slice(k + mHalf, spanA.Length);
+                    for (int j = 0; j < omegas.Length; j++)
                     {
-                        case FftMode.Forward:
-                            Perform4Forward(span);
-                            break;
-                        case FftMode.Backward:
-                            Perform4Backward(span);
-                            break;
-                    }
-                    for (int m = 8; m <= span.Length; m <<= 1)
-                    {
-                        Complex t, u;
-                        double theta = thetaBase / m;
-                        omegaM = Complex.FromPolarCoordinates(1, theta);
-                        for (int k = 0; k < span.Length; k += m)
-                        {
-                            omega = 1;
-                            int mHalf = m >> 1;
-                            //Preset addressing reduces addition and boundary checks.
-                            var spanA = span.Slice(k, mHalf);
-                            var spanB = span.Slice(k + mHalf, spanA.Length);
-                            for (int j = 0; j < spanA.Length; j++)
-                            {
-                                t = omega * spanB[j];
-                                u = spanA[j];
-                                spanA[j] = u + t;
-                                spanB[j] = u - t;
-                                omega *= omegaM;
-                            }
-                        }
+                        t = omegas[j] * spanB[j];
+                        u = spanA[j];
+                        spanA[j] = u + t;
+                        spanB[j] = u - t;
                     }
                 }
             }
@@ -96,42 +129,43 @@ namespace CSCodec.Filters.Transformation
         private static void Perform(Span<ComplexF> span, FftMode mode)
         {
             double thetaBase = mode == FftMode.Forward ? -tau : tau;
-            ComplexF omega, omegaM;
-            if (span.Length >= 2)
+            if (span.Length < 2) return;
+            Perform2(span);
+            if (span.Length < 4) return;
+            switch (mode)
             {
-                Perform2(span);
-                if (span.Length >= 4)
+                case FftMode.Forward:
+                    Perform4Forward(span);
+                    break;
+                case FftMode.Backward:
+                    Perform4Backward(span);
+                    break;
+            }
+            var index = 3;
+            for (int m = 8; m <= span.Length; m <<= 1)
+            {
+                ComplexF t, u;
+                Complex omega = 1;
+                int mHalf = m >> 1;
+                var omegaM = GetValueToMultiply(index++);
+                omegaM = mode == FftMode.Forward ? Complex.Conjugate(omegaM) : omegaM;
+                Span<ComplexF> omegas = stackalloc ComplexF[mHalf];
+                for (int i = 0; i < omegas.Length; i++)
                 {
-                    switch (mode)
+                    omegas[i] = (ComplexF)omega;
+                    omega *= omegaM;
+                }
+                for (int k = 0; k < span.Length; k += m)
+                {
+                    //Preset addressing reduces addition and boundary checks.
+                    var spanA = span.Slice(k, omegas.Length);
+                    var spanB = span.Slice(k + mHalf, spanA.Length);
+                    for (int j = 0; j < omegas.Length; j++)
                     {
-                        case FftMode.Forward:
-                            Perform4Forward(span);
-                            break;
-                        case FftMode.Backward:
-                            Perform4Backward(span);
-                            break;
-                    }
-                    for (int m = 8; m <= span.Length; m <<= 1)
-                    {
-                        ComplexF t, u;
-                        double theta = thetaBase / m;
-                        omegaM = ComplexF.FromPolarCoordinates(1, theta);
-                        for (int k = 0; k < span.Length; k += m)
-                        {
-                            omega = 1;
-                            int mHalf = m >> 1;
-                            //Preset addressing reduces addition and boundary checks.
-                            var spanA = span.Slice(k, mHalf);
-                            var spanB = span.Slice(k + mHalf, spanA.Length);
-                            for (int j = 0; j < spanA.Length; j++)
-                            {
-                                t = omega * spanB[j];
-                                u = spanA[j];
-                                spanA[j] = u + t;
-                                spanB[j] = u - t;
-                                omega *= omegaM;
-                            }
-                        }
+                        t = omegas[j] * spanB[j];
+                        u = spanA[j];
+                        spanA[j] = u + t;
+                        spanB[j] = u - t;
                     }
                 }
             }

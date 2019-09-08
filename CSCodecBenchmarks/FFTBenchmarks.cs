@@ -11,14 +11,15 @@ namespace CSCodecBenchmarks
         private Memory<ComplexF> testRegionF;
         private Memory<Complex> testRegion;
 
-        private const int size = 2048;
+        [Params(2048)]
+        public int Size { get; set; }
 
         [GlobalSetup]
         public void Init()
         {
             var r = new Random();
-            testRegionF = new ComplexF[size];
-            testRegion = new Complex[size];
+            testRegionF = new ComplexF[Size];
+            testRegion = new Complex[Size];
             Span<Complex> trs = testRegion.Span;
             Span<ComplexF> trfs = testRegionF.Span;
             for (int i = 0; i < trs.Length; i++)
@@ -33,8 +34,8 @@ namespace CSCodecBenchmarks
         public void Cleanup()
         {
             var r = new Random();
-            if (testRegionF.IsEmpty) testRegionF = new ComplexF[size];
-            if (testRegion.IsEmpty) testRegion = new Complex[size];
+            if (testRegionF.IsEmpty) testRegionF = new ComplexF[Size];
+            if (testRegion.IsEmpty) testRegion = new Complex[Size];
             Span<Complex> trs = testRegion.Span;
             Span<ComplexF> trfs = testRegionF.Span;
             for (int i = 0; i < trs.Length; i++)

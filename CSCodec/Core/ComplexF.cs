@@ -138,7 +138,7 @@ namespace System.Numerics
         /// <returns>
         /// The product of <paramref name="left"/> and <paramref name="right"/>.
         /// </returns>
-        public static ComplexF operator *(ComplexF left, float right) => new ComplexF(left.Real * right, left.Imaginary * right);
+        public static ComplexF operator *(ComplexF left, float right) => new ComplexF(left.value * right);
 
         /// <summary>
         /// Divides a specified complex number by another specified complex number.

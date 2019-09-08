@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Buffers.Binary;
 using System.Text;
+using System.Runtime.InteropServices;
 
 namespace System
 {
@@ -217,6 +218,39 @@ namespace System
         }
 
         #endregion ReverseBits
+
+        #region CountZeros
+
+        private static ReadOnlySpan<byte> TrailingZeroCountDeBruijn => new byte[32]
+        {
+            00, 01, 28, 02, 29, 14, 24, 03,
+            30, 22, 20, 15, 25, 17, 04, 08,
+            31, 27, 13, 23, 21, 19, 16, 07,
+            26, 12, 18, 06, 11, 05, 10, 09
+        };
+
+        /// <summary>
+        /// Counts the consecutive zero bits on the right.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int CountConsecutiveZeros(uint value)
+        {
+            if (value == 0)
+            {
+                return 32;
+            }
+
+            // uint.MaxValue >> 27 is always in range [0 - 31] so we use Unsafe.AddByteOffset to avoid bounds check
+            return Unsafe.AddByteOffset(
+                // Using deBruijn sequence, k=2, n=5 (2^5=32) : 0b_0000_0111_0111_1100_1011_0101_0011_0001u
+                ref MemoryMarshal.GetReference(TrailingZeroCountDeBruijn),
+                // uint|long -> IntPtr cast on 32-bit platforms does expensive overflow checks not needed here
+                (IntPtr)(int)(((value & (uint)-(int)value) * 0x077CB531u) >> 27)); // Multi-cast mitigates redundant conv.u8
+        }
+
+        #endregion CountZeros
 
         /// <summary>
         /// Determines whether the specified <paramref name="i"/> is power of two.
