@@ -252,6 +252,116 @@ namespace System
 
         #endregion CountZeros
 
+        #region RotateRight
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+        /// Equivalent to <c>ror</c> instruction in x64, by RyuJIT's optimization.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint RotateRight(int shift, uint value) => (value >> shift) | (value << (32 - shift));
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+        /// Equivalent to <c>ror</c> instruction in x64, by RyuJIT's optimization.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ulong RotateRight(int shift, ulong value) => (value >> shift) | (value << (64 - shift));
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+        /// Unfortunately, the "ror" optimization isn't supported for <see cref="ushort"/>, so the implementation won't get optimized.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ushort RotateRight(int shift, ushort value)
+        {
+            uint uval = value;
+            uval |= (uint)value << 16;
+            return (ushort)(uval >> shift);
+        }
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+        /// Unfortunately, the "ror" optimization isn't supported for <see cref="byte"/>, so the implementation won't get optimized.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte RotateRight(int shift, byte value)
+        {
+            uint uval = value;
+            uval |= (uint)value << 8;
+            return (byte)(uval >> shift);
+        }
+
+        #endregion RotateRight
+
+        #region RotateLeft
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/>.<br/>
+        /// Equivalent to <c>rol</c> instruction in x64, by RyuJIT's optimization.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static uint RotateLeft(int shift, uint value) => (value << shift) | (value >> (32 - shift));
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/>.<br/>
+        /// Equivalent to <c>rol</c> instruction in x64, by RyuJIT's optimization.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ulong RotateLeft(int shift, ulong value) => (value << shift) | (value >> (64 - shift));
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward MSB.<br/>
+        /// Unfortunately, the "rol" optimization isn't supported for <see cref="ushort"/>, so the implementation won't get optimized.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static ushort RotateLeft(int shift, ushort value)
+        {
+            uint uval = value;
+            uval |= uval << 16;
+            return (ushort)RotateLeft(shift, uval);
+        }
+
+        /// <summary>
+        /// Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward MSB.<br/>
+        /// Unfortunately, the "rol" optimization isn't supported for <see cref="byte"/>, so the implementation won't get optimized.
+        /// </summary>
+        /// <param name="value">The value to rotate.</param>
+        /// <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+        /// <returns></returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static byte RotateLeft(int shift, byte value)
+        {
+            uint uval = value;
+            uval |= uval << 24;
+            return (byte)RotateLeft(shift, uval);
+        }
+
+        #endregion RotateLeft
+
+        #region IsPowerOfTwo
+
         /// <summary>
         /// Determines whether the specified <paramref name="i"/> is power of two.
         /// </summary>
@@ -271,6 +381,8 @@ namespace System
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsPowerOfTwo(this int i) => i != 0 && (i & (i - 1)) == 0;
+
+        #endregion IsPowerOfTwo
 
         #region SignedToFromUnsigned
 
