@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace System
@@ -94,15 +95,19 @@ namespace System
         {
             Span<T> temp = new T[source.Length];
             source.CopyTo(temp);
-            even = source.Slice(0, source.Length >> 1);
-            odd = source.Slice(even.Length, even.Length);
-            int j = 0;
-            unchecked
+            var spanE = even = source.Slice(0, source.Length >> 1);
+            var spanO = odd = source.Slice(spanE.Length, spanE.Length);
+            ref var refE = ref MemoryMarshal.GetReference(spanE);
+            ref var refO = ref MemoryMarshal.GetReference(spanO);
+            ref var refTemp = ref MemoryMarshal.GetReference(temp);
+            var j = new IntPtr(0);
+            var sELength = new IntPtr(spanE.Length);
+            unsafe
             {
-                for (int i = 0; i < even.Length; i++, j += 2)
+                for (var i = new IntPtr(0); i.ToPointer() < sELength.ToPointer(); i += 1, j += 2)
                 {
-                    even[i] = temp[j];
-                    odd[i] = temp[j | 1];
+                    Unsafe.Add(ref refE, i) = Unsafe.Add(ref refTemp, j);
+                    Unsafe.Add(ref refO, i) = Unsafe.Add(ref refTemp, j + 1);
                 }
             }
             //temp gets released here
@@ -119,15 +124,16 @@ namespace System
         {
             Span<T> temp = stackalloc T[source.Length];
             source.CopyTo(temp);
-            even = source.Slice(0, source.Length >> 1);
-            odd = source.Slice(even.Length, even.Length);
-            int j = 0;
+            var spanE = even = source.Slice(0, source.Length >> 1);
+            var spanO = odd = source.Slice(spanE.Length, spanE.Length);
+            var tempV = MemoryMarshal.Cast<T, (T, T)>(temp).Slice(spanE.Length);
             unchecked
             {
-                for (int i = 0; i < even.Length; i++, j += 2)
+                for (int i = 0; i < spanE.Length; i++)
                 {
-                    even[i] = temp[j];
-                    odd[i] = temp[j | 1];
+                    var valV = tempV[i];
+                    spanE[i] = valV.Item1;
+                    spanO[i] = valV.Item2;
                 }
             }
             //temp gets released here

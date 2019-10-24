@@ -1548,7 +1548,7 @@
             Functions that performs Fast Fourier Transform.
             </summary>
         </member>
-        <member name="F:CSCodec.Filters.Transformation.FastFourierTransformation.powerRootsOfUnity">
+        <member name="F:CSCodec.Filters.Transformation.FastFourierTransformation.PowerRootsOfUnity">
             <summary>
             Contains (1 &lt;&lt; n) root of unity.
             </summary>
@@ -3031,6 +3031,78 @@
             Counts the consecutive zero bits on the right.
             </summary>
             <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateRight(System.Int32,System.UInt32)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+            Equivalent to <c>ror</c> instruction in x64, by RyuJIT's optimization.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateRight(System.Int32,System.UInt64)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+            Equivalent to <c>ror</c> instruction in x64, by RyuJIT's optimization.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateRight(System.Int32,System.UInt16)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+            Unfortunately, the "ror" optimization isn't supported for <see cref="T:System.UInt16"/>, so the implementation won't get optimized.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateRight(System.Int32,System.Byte)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward LSB.<br/>
+            Unfortunately, the "ror" optimization isn't supported for <see cref="T:System.Byte"/>, so the implementation won't get optimized.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateLeft(System.Int32,System.UInt32)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/>.<br/>
+            Equivalent to <c>rol</c> instruction in x64, by RyuJIT's optimization.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateLeft(System.Int32,System.UInt64)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/>.<br/>
+            Equivalent to <c>rol</c> instruction in x64, by RyuJIT's optimization.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateLeft(System.Int32,System.UInt16)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward MSB.<br/>
+            Unfortunately, the "rol" optimization isn't supported for <see cref="T:System.UInt16"/>, so the implementation won't get optimized.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.MathB.RotateLeft(System.Int32,System.Byte)">
+            <summary>
+            Rotates <paramref name="shift"/> bits the specified <paramref name="value"/> toward MSB.<br/>
+            Unfortunately, the "rol" optimization isn't supported for <see cref="T:System.Byte"/>, so the implementation won't get optimized.
+            </summary>
+            <param name="value">The value to rotate.</param>
+            <param name="shift">The value which indicates how many bits are we rotating <paramref name="value"/>.</param>
             <returns></returns>
         </member>
         <member name="M:System.MathB.IsPowerOfTwo(System.UInt32)">

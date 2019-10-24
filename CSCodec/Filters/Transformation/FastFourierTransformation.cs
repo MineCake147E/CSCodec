@@ -12,14 +12,14 @@ namespace CSCodec.Filters.Transformation
     /// </summary>
     public static class FastFourierTransformation
     {
-        private const double tau = 2 * Math.PI;
+        private const double Tau = 2 * Math.PI;
 
-        private const double sqrt2 = 1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764157273501384623091229702492483605585073721264412149709993583141322266592750559275579995050115278206057147010955997160597027453459686;
+        private const double Sqrt2 = 1.41421356237309504880168872420969807856967187537694807317667973799073247846210703885038753432764157273501384623091229702492483605585073721264412149709993583141322266592750559275579995050115278206057147010955997160597027453459686;
 
         /// <summary>
         /// Contains (1 &lt;&lt; n) root of unity.
         /// </summary>
-        private static readonly ReadOnlyMemory<Complex> powerRootsOfUnity = new Complex[]
+        private static readonly ReadOnlyMemory<Complex> PowerRootsOfUnity = new Complex[]
         {
             /*     1 */new Complex(1, 0),
             /*     2 */new Complex(-1, 0),
@@ -45,8 +45,8 @@ namespace CSCodec.Filters.Transformation
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         private static Complex GetValueToMultiply(int pos)
-            => pos >= powerRootsOfUnity.Length ? Complex.FromPolarCoordinates(1, tau * 1.0 / (1 << pos))
-         : Unsafe.Add(ref MemoryMarshal.GetReference(powerRootsOfUnity.Span), pos);
+            => pos >= PowerRootsOfUnity.Length ? Complex.FromPolarCoordinates(1, Tau * 1.0 / (1 << pos))
+         : Unsafe.Add(ref MemoryMarshal.GetReference(PowerRootsOfUnity.Span), pos);
 
         /// <summary>
         /// Bit-Reversal
@@ -128,7 +128,7 @@ namespace CSCodec.Filters.Transformation
         /// <param name="mode">The FFT's Mode.</param>
         private static void Perform(Span<ComplexF> span, FftMode mode)
         {
-            double thetaBase = mode == FftMode.Forward ? -tau : tau;
+            double thetaBase = mode == FftMode.Forward ? -Tau : Tau;
             if (span.Length < 2) return;
             Perform2(span);
             if (span.Length < 4) return;
