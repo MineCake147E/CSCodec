@@ -45,7 +45,7 @@ namespace CSCodec.Binary.Checksum
                 else value <<= 24;
                 for (int j = 0; j < 8; j++)
                 {
-                    uint mask = ((value & 0x80000000) == 0x80000000) ? Polynomial : 0u;
+                    uint mask = ((value & 0x80000000) > 0) ? Polynomial : 0u;
                     value <<= 1;
                     value ^= mask;
                 }

@@ -50,7 +50,7 @@ namespace CSCodec.Binary.Checksum
                 else value <<= 8;
                 for (int j = 0; j < 8; j++)
                 {
-                    ushort mask = ((value & 0x8000) == 0x8000) ? Polynomial : (ushort)0;
+                    ushort mask = ((value & 0x8000) > 0) ? Polynomial : (ushort)0;
                     value <<= 1;
                     value ^= mask;
                 }

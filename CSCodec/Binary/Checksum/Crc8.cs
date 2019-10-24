@@ -49,7 +49,7 @@ namespace CSCodec.Binary.Checksum
                 if (ReverseInput) value = MathB.ReverseBits(value);
                 for (int j = 0; j < 8; j++)
                 {
-                    byte mask = ((value & 0x80) == 0x80) ? Polynomial : (byte)0;
+                    byte mask = ((value & 0x80) > 0) ? Polynomial : (byte)0;
                     value <<= 1;
                     value ^= mask;
                 }
