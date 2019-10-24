@@ -1,3 +1,4 @@
+![CSCodec Logo](CSCodec-Logo.svg)
 # CSCodec - .NET Standard Audio Codec Development Library #
 CSCodec is an open-source Audio Codec development library that has many features supporting development of your decoder and/or encoder for both your original or well-known formats.
 
