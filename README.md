@@ -2,7 +2,7 @@
 # CSCodec - .NET Standard Audio Codec Development Library #
 CSCodec is an open-source Audio Codec development library that has many features supporting development of your decoder and/or encoder for both your original or well-known formats.
 
-### Currently Supported Features: ###
+### Currently Implemented Features: ###
 - **Core Project is LICENSED UNDER __[Apache-2.0](https://github.com/MineCake147E/CSCodec/blob/master/LICENSE.md)__**
 - A lot of `Span<T>` Based APIs
 - 24Bit Signed Integer Structure `Int24`
